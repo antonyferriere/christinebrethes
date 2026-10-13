@@ -5,6 +5,9 @@ on:
     branches: [preprod]
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 concurrency:
   group: deploy-preprod
   cancel-in-progress: true
@@ -24,22 +27,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
-
-      - name: Build site
-        run: npm run build
-
-      - name: Check production build
+      # Le site n'a aucune dépendance npm : aucun npm ci ni cache npm nécessaires.
+      - name: Build and test site
         run: npm run check
 
-      - name: Echo target
-        run: echo "➡️ Déploiement PREPROD sur '${{ secrets.FTP_DIR }}' via FTP"
+      - name: Verify deployment files
+        run: |
+          test -f dist/index.html
+          test -f dist/.htaccess
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
