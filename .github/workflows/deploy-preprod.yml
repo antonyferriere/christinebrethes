@@ -46,8 +46,9 @@ jobs:
         env:
           FTP_DIR: ${{ secrets.FTP_DIR }}
         run: |
-          if [[ -z "$FTP_DIR" || "$FTP_DIR" == "/" || "$FTP_DIR" != */ ]]; then
-            echo "FTP_DIR must name a dedicated site directory ending in / (not the FTP root)."
+          # Le compte FTP ouvre directement sur le site : sa racine / est autorisée.
+          if [[ -z "$FTP_DIR" || "$FTP_DIR" != */ || "$FTP_DIR" == *\\* ]]; then
+            echo "FTP_DIR must be non-empty, use forward slashes, and end in /. Use / for the FTP account root."
             exit 1
           fi
 

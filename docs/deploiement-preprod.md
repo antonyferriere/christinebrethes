@@ -13,7 +13,18 @@ Le transfert FTPS reste une synchronisation de fichiers, pas une publication ato
 - `FTP_HOST` : nom du serveur FTPS couvert par son certificat TLS.
 - `FTP_USERNAME`, `FTP_PASSWORD` : compte limité au site.
 - `FTP_PORT` : port FTPS explicite, 21 par défaut.
-- `FTP_DIR` : dossier dédié à ce site, terminé par `/`, non vide et différent de `/`.
+- `FTP_DIR` : `/` pour ce compte FTP, dont la racine correspond au site. Saisir
+  uniquement le slash `/`, sans guillemets, ni antislash `\`. Pour un sous-dossier,
+  utiliser un chemin non vide terminé par `/`, par exemple `/www/`.
+
+Dans GitHub : **Settings → Environments → PREPROD → Environment secrets**, modifier
+`FTP_DIR`. Si le secret est défini au niveau du dépôt et non de l’environnement,
+le modifier dans **Settings → Secrets and variables → Actions**. Un secret de même
+nom dans `PREPROD` prend la priorité.
+
+Après intégration du correctif de `dev` dans `preprod`, lancer le workflow sur
+`preprod` (ou laisser le push le déclencher). Relancer uniquement l’ancien job
+conserverait l’ancienne version du workflow qui refusait `/`.
 
 Le serveur doit accepter FTPS explicite et présenter un certificat valide. Le
 workflow utilise `security: strict` ; corriger le nom du serveur ou son certificat
