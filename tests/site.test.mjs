@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { prepareEmail } from '../src/scripts/contact.mjs';
+import { prepareEmail } from '../src/scripts/contact.js';
 import { linkedinSections } from '../src/components/sections.mjs';
 import { recommendations, publications, linkedinSettings } from '../src/data/linkedin.mjs';
 import { site } from '../src/data/site.mjs';
@@ -73,7 +73,7 @@ test('aucune réservation disponible ni faux envoi ne sont annoncés', () => {
   assert.match(readFileSync('dist/rendez-vous/index.html', 'utf8'), /réservation en ligne n’est pas activée/);
   assert.match(readFileSync('dist/contact/index.html', 'utf8'), /Retrouver Christine sur LinkedIn/);
   for (const path of pages) assert.doesNotMatch(readFileSync(path, 'utf8'), /href="(?:mailto:|tel:)"/);
-  assert.doesNotMatch(readFileSync('src/scripts/contact.mjs', 'utf8'), /fetch\(/);
+  assert.doesNotMatch(readFileSync('src/scripts/contact.js', 'utf8'), /fetch\(/);
 });
 
 test('LinkedIn : sections indépendantes, vides masquées, données échappées', () => {
@@ -120,6 +120,25 @@ test('aucune requête tierce au chargement et JavaScript léger', () => {
     assert.doesNotMatch(html, /<(?:script|iframe|img)[^>]+src="https?:/);
     assert.doesNotMatch(html, /<link[^>]+href="https?:[^>]+(?:stylesheet|preconnect)/);
   }
-  const bytes = statSync('dist/scripts/main.js').size + statSync('dist/scripts/contact.mjs').size;
+  const bytes = statSync('dist/scripts/main.js').size + statSync('dist/scripts/contact.js').size;
   assert.ok(bytes < 12000, `${bytes} octets de JavaScript`);
+});
+
+test('HTTPS, type MIME JavaScript et polices locales garantis au build', () => {
+  const apache = readFileSync('dist/.htaccess', 'utf8');
+  assert.ok(apache.includes('RewriteCond %{HTTPS} !=on'));
+  assert.ok(apache.includes('RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]'));
+  assert.ok(apache.includes('AddType text/javascript .js .mjs'));
+  assert.ok(apache.includes("font-src 'self'"));
+  assert.ok(existsSync('dist/scripts/contact.js'));
+  assert.ok(!existsSync('dist/scripts/contact.mjs'));
+  assert.ok(readFileSync('dist/scripts/main.js', 'utf8').includes("from './contact.js'"));
+  for (const path of pages) {
+    const html = readFileSync(path, 'utf8');
+    assert.ok(!html.includes('fonts.googleapis.com'), path);
+    assert.ok(!html.includes('fonts.gstatic.com'), path);
+  }
+  const css = readFileSync('dist/styles/site.css', 'utf8');
+  assert.ok(!css.includes('fonts.googleapis.com'));
+  assert.ok(!css.includes('fonts.gstatic.com'));
 });

@@ -1,4 +1,4 @@
-import { initializeContact } from './contact.mjs';
+import { initializeContact } from './contact.js';
 
 document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
