@@ -35,8 +35,7 @@
 .introduction .section-heading { margin-bottom: 1.5rem; }
 .landscape-band { background: var(--color-ivory) url('/assets/paysage.webp') center bottom/cover no-repeat; min-height: 420px; display: flex; align-items: flex-start; text-align: center; padding-block: 3rem 10rem; }
 .landscape-band .eyebrow { color: var(--color-primary); }
-.landscape-quote { font: clamp(2rem, 3.8vw, 3.5rem)/1.25 var(--font-display); }
-.landscape-quote em { color: var(--color-primary); }
+.landscape-quote { max-width: 900px; margin: 0 auto; font: clamp(1.3rem, 2.3vw, 2rem)/1.5 var(--font-display); }
 .places { align-items: center; }
 .places-photo { aspect-ratio: 4/4.5; overflow: hidden; border-radius: 42% 42% 8px 8px; }
 .places-photo img { object-position: 62% center; }
