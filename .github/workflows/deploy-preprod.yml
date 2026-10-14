@@ -1,4 +1,4 @@
-name: Deploy PREPROD (FTP)
+name: Deploy PREPROD (FTPS)
 
 on:
   push:
@@ -10,23 +10,28 @@ permissions:
 
 concurrency:
   group: deploy-preprod
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/preprod'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
 
     environment:
       name: PREPROD
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2, Node 24
+        with:
+          persist-credentials: false
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0, Node 24
         with:
-          node-version: "22"
+          node-version: "24"
+          package-manager-cache: false
 
       # Le site n'a aucune dépendance npm : aucun npm ci ni cache npm nécessaires.
       - name: Build and test site
@@ -37,14 +42,29 @@ jobs:
           test -f dist/index.html
           test -f dist/.htaccess
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Verify deployment destination
+        env:
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        run: |
+          if [[ -z "$FTP_DIR" || "$FTP_DIR" == "/" || "$FTP_DIR" != */ ]]; then
+            echo "FTP_DIR must name a dedicated site directory ending in / (not the FTP root)."
+            exit 1
+          fi
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0, Node 24
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
+          protocol: ftps
+          security: strict
           port: ${{ secrets.FTP_PORT || 21 }}
           local-dir: dist/
           server-dir: ${{ secrets.FTP_DIR }}
           dangerous-clean-slate: false
+
+      - name: Verify deployed HTTPS site
+        env:
+          DEPLOY_URL: https://christinebrethes.antonyferriere.fr/
+        run: node scripts/verify-deployment.mjs "$DEPLOY_URL"

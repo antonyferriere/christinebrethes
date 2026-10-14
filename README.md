@@ -1,6 +1,6 @@
 # Christine BRETHES — Ancrage & reprise d’élan
 
-Site vitrine statique de Christine BRETHES, coach certifiée santé-travail et instructrice en méditation de pleine conscience. Version de présentation sur **dev**, sans déploiement ni modification de main.
+Site vitrine statique de Christine BRETHES, coach certifiée santé-travail et instructrice en méditation de pleine conscience. Version de présentation sur **dev** ; la branche **preprod** dispose d’un déploiement automatique FTPS, sans modification de main.
 
 ## Démarrer
 
@@ -74,7 +74,7 @@ Le rendu visuel dans un navigateur, les interactions réelles sur appareils, les
 
 ## Avant toute mise en ligne
 
-Voir [les validations de production](docs/validation-production.md). Le site ne doit pas être publié en l’état : mentions légales incomplètes, réservation indisponible et contrôle navigateur restant. `node scripts/build.mjs --production` refuse de générer une version de production tant que `site.productionReady` reste `false`. Aucun outil de déploiement automatique n’est installé.
+Voir [les validations de production](docs/validation-production.md). Le site ne doit pas être publié en l’état : mentions légales incomplètes, réservation indisponible et contrôle navigateur restant. `node scripts/build.mjs --production` refuse de générer une version de production tant que `site.productionReady` reste `false`. Le déploiement de préproduction est décrit dans [le guide de déploiement](docs/deploiement-preprod.md). Il conserve le blocage de publication en production et le mode non indexable.
 
 - [Guide de modification](docs/maintenance.md)
 - [Audit éditorial](docs/audit-editorial.md)
