@@ -40,6 +40,7 @@
 .places-photo { aspect-ratio: 4/4.5; overflow: hidden; border-radius: 42% 42% 8px 8px; }
 .places-photo img { object-position: 62% center; }
 .places .section-heading { margin-bottom: 2rem; }
+.home .places h2 { font-size: clamp(1.8rem, 2.8vw, 2.7rem); }
 .page-hero { padding-block: 3rem var(--space-section); }
 .page-hero.split { display: grid; gap: 3rem; align-items: center; }
 .page-hero .lede { max-width: 650px; }
