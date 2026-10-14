@@ -132,7 +132,7 @@ test('HTTPS, type MIME JavaScript et polices locales garantis au build', () => {
   assert.ok(apache.includes("font-src 'self'"));
   assert.ok(existsSync('dist/scripts/contact.js'));
   assert.ok(!existsSync('dist/scripts/contact.mjs'));
-  assert.ok(readFileSync('dist/scripts/main.js', 'utf8').includes("from './contact.js'"));
+  assert.match(readFileSync('dist/scripts/main.js', 'utf8'), /from '\.\/contact\.js\?v=[a-f0-9]{16}'/);
   for (const path of pages) {
     const html = readFileSync(path, 'utf8');
     assert.ok(!html.includes('fonts.googleapis.com'), path);
@@ -141,4 +141,17 @@ test('HTTPS, type MIME JavaScript et polices locales garantis au build', () => {
   const css = readFileSync('dist/styles/site.css', 'utf8');
   assert.ok(!css.includes('fonts.googleapis.com'));
   assert.ok(!css.includes('fonts.gstatic.com'));
+});
+
+
+test('les pages et le module contact partagent une version calculée sur les assets', async () => {
+  const { createHash } = await import('node:crypto');
+  const sources = ['src/scripts/main.js', 'src/scripts/contact.js', ...['tokens', 'base', 'components', 'pages', 'responsive'].map(name => `src/styles/${name}.css`)];
+  const version = createHash('sha256').update(JSON.stringify(sources.map(path => readFileSync(path, 'utf8')))).digest('hex').slice(0, 16);
+  for (const path of pages) {
+    const html = readFileSync(path, 'utf8');
+    assert.ok(html.includes(`/scripts/main.js?v=${version}`), path);
+    assert.ok(html.includes(`/styles/site.css?v=${version}`), path);
+  }
+  assert.ok(readFileSync('dist/scripts/main.js', 'utf8').includes(`./contact.js?v=${version}`));
 });

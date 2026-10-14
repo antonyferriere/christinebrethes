@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { layout } from '../src/components/layout.mjs';
 import { sectionHeading, button } from '../src/components/ui.mjs';
@@ -17,6 +18,10 @@ const dist = resolve(root, 'dist');
 if (process.argv.includes('--production') && !site.productionReady) {
   throw new Error('Publication bloquée : renseigner les validations dans docs/validation-production.md, puis activer productionReady.');
 }
+// Une nouvelle URL invalide aussi les anciens caches qui ignoraient no-cache.
+const browserScripts = await Promise.all(['main.js', 'contact.js'].map(name => readFile(resolve(root, 'src/scripts', name), 'utf8')));
+const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
+const assetVersion = createHash('sha256').update(JSON.stringify([...browserScripts, ...css])).digest('hex').slice(0, 16);
 const pages = [
   { path: '/', title: 'Coaching santé-travail à Paris, Chartres et en visio', description: 'Retrouver sa place, son rythme et sa capacité d’agir avec Christine Brethes. Coaching professionnel, santé-travail et pleine conscience.', body: homePage(), home: true },
   { path: '/accompagnements/', title: 'Les accompagnements', description: 'Quatre accompagnements pour votre parcours : coaching professionnel, santé-travail, pleine conscience et interventions en organisations.', body: `<section class="container page-hero compact"><p class="eyebrow">Trouver votre point d’appui</p><h1>Votre parcours.<br><em>Notre point de départ.</em></h1><p class="lede">Une approche personnalisée pour traverser les transitions et retrouver une manière durable d’avancer.</p></section><section class="section container">${sectionHeading('Quatre accompagnements', 'De quoi avez-vous besoin aujourd’hui ?')}${offerCards()}</section>${closing()}` },
@@ -33,13 +38,13 @@ await cp(resolve(root, 'public'), dist, { recursive: true });
 for (const page of pages) {
   const directory = resolve(dist, `.${page.path}`);
   await mkdir(directory, { recursive: true });
-  await writeFile(resolve(directory, 'index.html'), layout(page));
+  await writeFile(resolve(directory, 'index.html'), layout({ ...page, assetVersion }));
 }
-await writeFile(resolve(dist, '404.html'), layout({ path: '/404/', title: 'Page introuvable', description: 'Retrouvez les accompagnements de Christine Brethes.', body: `<section class="container page-hero compact"><p class="eyebrow">Page introuvable</p><h1>Retrouvons le chemin.</h1><p>Cette page n’existe pas ou a changé d’adresse.</p>${button('Revenir à l’accueil', '/')}</section>` }));
+await writeFile(resolve(dist, '404.html'), layout({ assetVersion, path: '/404/', title: 'Page introuvable', description: 'Retrouvez les accompagnements de Christine Brethes.', body: `<section class="container page-hero compact"><p class="eyebrow">Page introuvable</p><h1>Retrouvons le chemin.</h1><p>Cette page n’existe pas ou a changé d’adresse.</p>${button('Revenir à l’accueil', '/')}</section>` }));
 await mkdir(resolve(dist, 'styles'), { recursive: true });
-const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive'].map((name) => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
 await writeFile(resolve(dist, 'styles/site.css'), css.join('\n'));
 await cp(resolve(root, 'src/scripts'), resolve(dist, 'scripts'), { recursive: true });
+await writeFile(resolve(dist, 'scripts/main.js'), browserScripts[0].replace("'./contact.js'", `'./contact.js?v=${assetVersion}'`));
 await writeFile(resolve(dist, 'robots.txt'), site.productionReady ? `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
 await writeFile(resolve(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(({path})=>`<url><loc>${site.domain}${path}</loc></url>`).join('')}</urlset>\n`);
 console.log(`${pages.length} pages + page 404 générées dans dist/ — ${site.productionReady ? 'production' : 'présentation non indexable'}.`);
