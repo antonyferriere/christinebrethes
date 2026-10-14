@@ -12,7 +12,6 @@
   .hero-grid { grid-template-columns: 1.2fr .85fr; align-items: center; gap: 4rem; padding-block: 4.5rem; }
   .hero h1 { font-size: clamp(2.5rem, 3.8vw, 4.1rem); }
   .hero-visual { width: 100%; }
-  .hero-leaf { width: 150px; left: -4rem; }
   .hero-portrait { max-height: 600px; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: .65rem; }
   .approach-grid, .introduction, .places, .detail-grid, .modalities, .booking-grid, .page-hero.split { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 7vw, 7rem); }
@@ -41,11 +40,9 @@
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy { animation: arrive 800ms var(--ease-standard) both; }
   .hero-visual { animation: arrive 1s var(--ease-standard) both; }
-  .hero-leaf { animation: sway 10s ease-in-out infinite alternate; transform-origin: 80% 90%; }
   .reveal-ready { opacity: 0; transform: translateY(18px); transition: opacity var(--duration-reveal) var(--ease-standard), transform var(--duration-reveal) var(--ease-standard); }
   .reveal-ready.is-visible { opacity: 1; transform: none; }
   @keyframes arrive { from { opacity: .15; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  @keyframes sway { from { transform: rotate(-25deg); } to { transform: rotate(-20deg); } }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

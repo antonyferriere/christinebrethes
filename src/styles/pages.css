@@ -11,7 +11,6 @@
 .hero-visual { position: relative; width: 90%; max-width: 510px; margin-inline: auto; padding-bottom: 1rem; }
 .hero-portrait { aspect-ratio: 4/5; object-position: center 38%; border-radius: 48% 48% 8px 8px; position: relative; z-index: 1; }
 .portrait-outline { position: absolute; inset: -12px -12px 25px 16px; border: 1px solid var(--color-taupe); border-radius: 48% 48% 8px 8px; opacity: .6; }
-.hero-leaf { position: absolute; left: -2.5rem; bottom: 2.8rem; width: 110px; height: auto; z-index: 3; transform: rotate(-25deg); opacity: .9; }
 .portrait-caption { position: absolute; bottom: -.1rem; right: -1rem; background: var(--color-paper); padding: 1.2rem 1.6rem; z-index: 4; box-shadow: var(--shadow-low); min-width: 230px; border-radius: 3px; }
 .portrait-caption span { display: block; }
 .portrait-caption span:first-child { font: 1.3rem var(--font-display); margin-bottom: .35rem; }
