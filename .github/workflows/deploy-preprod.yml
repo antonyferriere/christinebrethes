@@ -55,7 +55,9 @@ jobs:
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0, Node 24
         with:
-          server: ${{ secrets.FTP_HOST }}
+          # Nom couvert par le certificat FTPS du serveur o2switch.
+          # L'alias FTP précédent provoquait ERR_TLS_CERT_ALTNAME_INVALID.
+          server: trigone.o2switch.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps

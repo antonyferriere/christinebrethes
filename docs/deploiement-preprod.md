@@ -10,7 +10,9 @@ Le transfert FTPS reste une synchronisation de fichiers, pas une publication ato
 
 ## Configuration de l'environnement GitHub PREPROD
 
-- `FTP_HOST` : nom du serveur FTPS couvert par son certificat TLS.
+- Serveur FTPS : `trigone.o2switch.net`, configuré dans le workflow. Ce nom figure
+  dans les noms autorisés du certificat présenté dans le journal du 14 octobre 2026.
+  Le secret historique `FTP_HOST` n’est plus utilisé pour cette préproduction.
 - `FTP_USERNAME`, `FTP_PASSWORD` : compte limité au site.
 - `FTP_PORT` : port FTPS explicite, 21 par défaut.
 - `FTP_DIR` : `/` pour ce compte FTP, dont la racine correspond au site. Saisir
@@ -67,3 +69,18 @@ Security/Network et corriger son origine. Ne pas accepter d'exception de certifi
 Références : [checkout](https://github.com/actions/checkout),
 [setup-node](https://github.com/actions/setup-node),
 [FTP Deploy](https://github.com/SamKirkland/FTP-Deploy-Action).
+
+## Erreur FTPS ERR_TLS_CERT_ALTNAME_INVALID
+
+Cette erreur se produit avant le transfert lorsque le nom de connexion ne figure
+pas dans le certificat TLS du serveur. Le journal du 14 octobre 2026 présente un
+certificat couvrant notamment `trigone.o2switch.net` ; le workflow utilise désormais
+ce nom directement au lieu de l’alias contenu dans `FTP_HOST`.
+
+Le protocole reste `ftps` avec `security: strict`. Les identifiants, le port et
+`FTP_DIR` restent issus des secrets de l’environnement PREPROD. Aucun transfert
+FTP n’a été exécuté pendant cette correction ; le prochain déploiement vérifiera
+la connexion et l’authentification réelles. En cas de migration d’hébergement,
+actualiser le nom du serveur avec celui indiqué par o2switch.
+
+Référence : [configuration FTP o2switch](https://faq.o2switch.fr/guides/configuration-logiciel/filezilla/).
