@@ -21,7 +21,7 @@
 .approach { background: var(--color-sage); }
 .approach-grid, .introduction, .places { display: grid; gap: 3rem; }
 .approach h2 { font-size: clamp(2.6rem, 4vw, 4rem); }
-.approach-leaf { opacity: .7; width: 80px; height: auto; margin-top: 2.5rem; }
+.approach-leaf { opacity: .7; width: 80px; height: auto; aspect-ratio: 8 / 9; margin-top: 2.5rem; }
 .approach-copy .lead { color: var(--color-ink); }
 .principles { margin-block: 2rem; }
 .principles article { display: flex; gap: 1.5rem; border-top: 1px solid #555d4840; padding-top: 1.5rem; }
