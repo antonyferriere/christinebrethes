@@ -6,7 +6,7 @@ Six scènes issues des dossiers Drive fournis, dans l’ordre :
 | --- | --- | --- |
 | christine-ecoute | Christine - IA | Image ChatGPT 15 oct. 2026, 14_24_14-7.png |
 | espace-accueil | Illustrations | Image ChatGPT 15 oct. 2026, 15_01_03-1.png |
-| chemin-elan | Illustrations | Image ChatGPT 15 oct. 2026, 15_01_06-4.png |
+| chemin-elan | Illustrations | Image ChatGPT 15 oct. 2026, 15_01_23-4.png |
 | christine-partage | Christine - IA | Image ChatGPT 15 oct. 2026, 14_24_13-4.png |
 | pleine-conscience | Illustrations | Image ChatGPT 15 oct. 2026, 15_01_26-7.png |
 | horizon | Illustrations | Image ChatGPT 15 oct. 2026, 15_01_24-5.png |
@@ -25,3 +25,7 @@ Transition d’opacité de 1,8 s, changement après 7,5 s. Pause et sélection m
 - Défilement automatique, pause pendant plus d’un cycle, sélection et décodage des six images vérifiés.
 - Réduction des animations : première image maintenue ; sans JavaScript : première image affichée et commandes masquées.
 - Une vérification sur appareils physiques reste distincte de ces tests Chromium.
+
+## Évolution du 15 octobre au soir
+
+Le chemin végétal est remplacé par le sentier côtier fourni. Le bouton lecture/pause est supprimé. La sélection d’un repère relance le délai automatique ; aucune pause persistante. Le défilement reste actif avec la préférence de réduction des animations, mais les transitions sont alors instantanées. Suspension conservée lorsque le hero est hors écran ou l’onglet masqué.
