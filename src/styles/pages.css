@@ -1,23 +1,4 @@
-.hero { position: relative; overflow: hidden; background: var(--color-ivory); }
-.hero::before { content: ''; position: absolute; inset: 0; background: url('/assets/texture.webp') center/cover; opacity: .42; pointer-events: none; }
-.hero-grid { position: relative; display: grid; gap: 3rem; padding-top: 3rem; padding-bottom: 3rem; }
-.hero-copy { align-self: center; z-index: 2; }
-.hero-copy .eyebrow { font-size: .68rem; letter-spacing: .12em; display: flex; align-items: center; gap: .9rem; }
 .small-rule { width: 28px; height: 1px; background: var(--color-primary); flex-shrink: 0; }
-.hero h1 { margin-bottom: 1.5rem; }
-.hero-description { max-width: 550px; font-size: 1.15rem; color: var(--color-muted); }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; margin-block: 2rem 1.5rem; }
-.hero-location { font-size: .9rem; color: var(--color-muted); display: flex; gap: .65rem; margin-bottom: 0; }
-.hero-visual { position: relative; width: 90%; max-width: 510px; margin-inline: auto; padding-bottom: 1rem; }
-.hero-portrait { aspect-ratio: 4/5; object-position: center 38%; border-radius: 48% 48% 8px 8px; position: relative; z-index: 1; }
-.portrait-outline { position: absolute; inset: -12px -12px 25px 16px; border: 1px solid var(--color-taupe); border-radius: 48% 48% 8px 8px; opacity: .6; }
-.portrait-caption { position: absolute; bottom: -.1rem; right: -1rem; background: var(--color-paper); padding: 1.2rem 1.6rem; z-index: 4; box-shadow: var(--shadow-low); min-width: 230px; border-radius: 3px; }
-.portrait-caption span { display: block; }
-.portrait-caption span:first-child { font: 1.3rem var(--font-display); margin-bottom: .35rem; }
-.portrait-caption span:last-child { font-size: .85rem; color: var(--color-muted); }
-.hero-bottom { position: relative; border-top: 1px solid #947b6740; padding-block: 1.2rem; display: flex; justify-content: space-between; align-items: center; font-size: .75rem; }
-.hero-bottom a { display: flex; align-items: center; gap: 1.5rem; text-decoration: none; min-height: 44px; }
-.hero-bottom > span { display: none; letter-spacing: .15em; color: var(--color-muted); }
 .approach { background: var(--color-sage); }
 .approach-grid, .introduction, .places { display: grid; gap: 3rem; }
 .approach h2 { font-size: clamp(2.6rem, 4vw, 4rem); }

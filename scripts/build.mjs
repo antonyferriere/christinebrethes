@@ -20,7 +20,7 @@ if (process.argv.includes('--production') && !site.productionReady) {
 }
 // Une nouvelle URL invalide aussi les anciens caches qui ignoraient no-cache.
 const browserScripts = await Promise.all(['main.js', 'contact.js'].map(name => readFile(resolve(root, 'src/scripts', name), 'utf8')));
-const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
+const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive', 'hero'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
 const assetVersion = createHash('sha256').update(JSON.stringify([...browserScripts, ...css])).digest('hex').slice(0, 16);
 const pages = [
   { path: '/', title: 'Coaching santé-travail à Paris, Chartres et en visio', description: 'Retrouver sa place, son rythme et sa capacité d’agir avec Christine Brethes. Coaching professionnel, santé-travail et pleine conscience.', body: homePage(), home: true },
