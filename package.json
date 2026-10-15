@@ -4,11 +4,17 @@
   "private": true,
   "type": "module",
   "description": "Site statique de Christine BRETHES — Ancrage & reprise d’élan",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run build && npm test",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "preview:https": "http-server dist --ssl --cert %USERPROFILE%\\.certs\\localhost.pem --key %USERPROFILE%\\.certs\\localhost-key.pem --port 4173 --address 127.0.0.1 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
