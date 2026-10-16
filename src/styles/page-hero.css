@@ -28,3 +28,6 @@
  .page-hero-inner .breadcrumb { font-size: .75rem; margin-bottom: 1.25rem; }
 }
 @media print { .page-hero-background { display: none; } .page-hero-inner { padding: 1rem 0; } .page-hero-copy { width: 100%; } }
+/* Overscan hides the edges of both static and carousel backgrounds. */
+.hero-scenes, .page-hero-background { transform: translate3d(0, var(--depth-y, 0px), 0) scale(1.12); transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .hero-scenes, .page-hero-background { transform: none; } }

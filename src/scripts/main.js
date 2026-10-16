@@ -93,3 +93,22 @@ if (hero) {
   controls.hidden = false;
   schedule();
 }
+
+// A single animation frame per scroll; reduced motion keeps every image still.
+const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background')];
+let depthFrame = 0;
+function paintDepth() {
+  depthFrame = 0;
+  depthLayers.forEach(layer => {
+    const rect = layer.parentElement.getBoundingClientRect();
+    const offset = motion.matches ? 0 : Math.min(36, Math.max(-36, -rect.top * .09));
+    layer.style.setProperty('--depth-y', `${offset.toFixed(2)}px`);
+  });
+}
+function requestDepth() {
+  if (!depthFrame) depthFrame = requestAnimationFrame(paintDepth);
+}
+window.addEventListener('scroll', requestDepth, { passive: true });
+window.addEventListener('resize', requestDepth, { passive: true });
+motion.addEventListener('change', requestDepth);
+paintDepth();
