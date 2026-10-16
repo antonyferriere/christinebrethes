@@ -1,13 +1,16 @@
-:root { --header-height: 98px; --header-surface: rgb(250 247 242 / 82%); }
-.site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; transition: background 350ms ease, box-shadow 350ms ease; }
-.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { background: var(--header-surface); backdrop-filter: blur(14px); border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
+:root { --header-height: 98px; --header-surface: rgb(250 247 242 / 82%); --header-blur: blur(14px); }
+.site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transition: box-shadow 350ms ease; }
+/* A separate surface keeps the header from becoming a backdrop root for its dropdown. */
+.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: transparent; transition: background 350ms ease; }
+.site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
+.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
 .header-inner { flex-wrap: nowrap; gap: .75rem; min-height: 90px; padding-block: .65rem; }
 .brand, .home .brand { width: 235px; flex: 0 1 235px; min-width: 0; margin-right: auto; }
 .menu-toggle { order: 3; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; background: #faf7f244; }
 .menu-toggle span { margin: 0; }
 .header-booking { order: 2; flex-shrink: 0; gap: .6rem; }
 .calendar-icon { flex-shrink: 0; }
-#navigation, .js #navigation.is-open { position: absolute; top: 100%; right: 0; left: 0; width: 100%; padding: 1rem 1.5rem; background: var(--header-surface); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); border-radius: 0; }
+#navigation, .js #navigation.is-open { position: absolute; top: 100%; right: 0; left: 0; width: 100%; padding: 1rem 1.5rem; background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); box-shadow: var(--shadow-raised); border-radius: 0; }
 #navigation ul { flex-direction: column; width: 100%; gap: .3rem; }
 .standard-page main { padding-top: var(--header-height); }
 .has-immersive-hero .hero { min-height: 100svh; }
@@ -17,7 +20,7 @@
 @media (min-width: 1200px) {
  .header-inner { min-height: 98px; gap: 1.5rem; }
  .brand { flex-basis: 260px; }
- #navigation, .js #navigation, .js #navigation.is-open { position: static; order: 1; width: auto; padding: 0; background: none; backdrop-filter: none; box-shadow: none; }
+ #navigation, .js #navigation, .js #navigation.is-open { position: static; order: 1; width: auto; padding: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
  #navigation ul { flex-direction: row; width: auto; }
  .header-booking .calendar-icon { display: none; }
 }
