@@ -9,12 +9,14 @@ Prérequis : Node.js 22 ou ultérieur. Aucune dépendance à installer.
 ```sh
 git clone --branch dev https://github.com/antonyferriere/christinebrethes.git
 cd christinebrethes
-npm run build
-npm test
-npm run preview
+npm run dev
 ```
 
-Ouvrir **http://localhost:4173**. `Ctrl+C` arrête l’aperçu. Après modification, relancer `npm run build`, puis actualiser la page. Ne pas ouvrir directement le fichier HTML avec `file://` : les liens partent de la racine du serveur.
+Ouvrir **http://localhost:4173** et laisser le terminal tourner dans VS Code. Le premier build est automatique. À chaque enregistrement dans `src/`, `public/` ou `scripts/build.mjs`, le site est reconstruit et les onglets ouverts sont rechargés automatiquement. `Ctrl+C` arrête le serveur. En cas d’erreur de build, consulter le terminal : une nouvelle sauvegarde relance la compilation. Ne pas ouvrir directement le fichier HTML avec `file://` : les liens partent de la racine du serveur.
+
+`npm run dev:https` propose le même rechargement sur **https://localhost:4173**, avec les certificats `localhost.pem` et `localhost-key.pem` dans le dossier `.certs` de votre profil utilisateur (sur Windows : `%USERPROFILE%\.certs`). Arrêter le serveur précédent avant de changer de commande. Après modification de `scripts/dev.mjs` ou `scripts/preview.mjs`, redémarrer le serveur.
+
+`npm run build` puis `npm run preview` restent disponibles pour consulter un build fixe, sans surveillance. Le rechargement automatique est injecté uniquement par le serveur de développement ; aucun script de développement n’est ajouté à `dist/`.
 
 `npm run check` reconstruit le site et exécute les tests. Le dossier `dist/` est généré, non versionné.
 

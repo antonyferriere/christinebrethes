@@ -12,7 +12,9 @@
     "test": "node --test tests/*.test.mjs",
     "check": "npm run build && npm test",
     "preview": "node scripts/preview.mjs",
-    "preview:https": "http-server dist --ssl --cert %USERPROFILE%\\.certs\\localhost.pem --key %USERPROFILE%\\.certs\\localhost-key.pem --port 4173 --address 127.0.0.1 -c-1"
+    "preview:https": "http-server dist --ssl --cert %USERPROFILE%\\.certs\\localhost.pem --key %USERPROFILE%\\.certs\\localhost-key.pem --port 4173 --address 127.0.0.1 -c-1",
+    "dev": "node scripts/dev.mjs",
+    "dev:https": "node scripts/dev.mjs --https"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
