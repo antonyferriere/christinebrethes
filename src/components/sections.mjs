@@ -1,10 +1,10 @@
+import { pageImage } from './page-hero.mjs';
 import { offers } from '../data/offers.mjs';
 import { site, offerPath } from '../data/site.mjs';
 import { linkedinSettings, recommendations, publications } from '../data/linkedin.mjs';
 import { escape, button, photo, arrow, sectionHeading } from './ui.mjs';
 export function offerCards(exclude = '') {
-  const pictures = ['allee', 'christine-parcours', 'jardin', 'cabinet'];
-  return `<div class="offer-grid">${offers.map((o, i) => o.slug === exclude ? '' : `<article class="offer-card"><a href="${offerPath(o)}" class="offer-image" tabindex="-1" aria-hidden="true">${photo(pictures[i], '', { sizes: '(min-width: 1200px) 23vw, (min-width: 600px) 45vw, 90vw' })}<span class="offer-number">0${i + 1}</span></a><div class="offer-content"><p class="eyebrow">${i === 3 ? 'Pour les organisations' : 'Pour les particuliers'}</p><h3><a href="${offerPath(o)}">${escape(o.title)}</a></h3><p>${escape(o.summary)}</p><a class="text-link" href="${offerPath(o)}">Découvrir ${arrow}<span class="sr-only"> : ${escape(o.title)}</span></a></div></article>`).join('')}</div>`;
+  return `<div class="offer-grid">${offers.map((o, i) => o.slug === exclude ? '' : `<article class="offer-card"><a href="${offerPath(o)}" class="offer-image" tabindex="-1" aria-hidden="true">${pageImage(o.slug, { card: true })}<span class="offer-number">0${i + 1}</span></a><div class="offer-content"><p class="eyebrow">${i === 3 ? 'Pour les organisations' : 'Pour les particuliers'}</p><h3><a href="${offerPath(o)}">${escape(o.title)}</a></h3><p>${escape(o.summary)}</p><a class="text-link" href="${offerPath(o)}">Découvrir ${arrow}<span class="sr-only"> : ${escape(o.title)}</span></a></div></article>`).join('')}</div>`;
 }
 export function closing() {
   return `<section class="closing"><div class="container closing-grid"><div><p class="eyebrow">Le premier pas</p><h2>Et si nous prenions<br>le temps d’en parler ?</h2><p>Une question, une transition, un besoin d’accompagnement.<br>Commençons simplement par un échange.</p></div><div class="closing-actions">${button('Prendre rendez-vous', '/rendez-vous/')}<a class="text-link" href="/contact/?profil=organisation">Vous représentez une organisation ? ${arrow}</a></div></div></section>`;
