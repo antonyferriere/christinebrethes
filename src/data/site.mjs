@@ -9,9 +9,9 @@ export const site = {
   phoneLink: '',
   linkedin: 'https://www.linkedin.com/in/christinebrethes/',
   booking: {
-    url: '',
+    url: 'https://www.crenolibre.fr/prendre-rdv/166171_brethes-christine',
     available: false,
-    checkedOn: '2026-10-13',
+    checkedOn: '2026-10-15',
   },
   // Laisser false jusqu’à validation des mentions légales, du domaine et des parcours.
   productionReady: false,

@@ -14,10 +14,10 @@ function filesIn(directory) {
   });
 }
 const files = filesIn('dist');
-const pages = files.filter((path) => extname(path) === '.html');
+const pages = files.filter((path) => extname(path) === '.html' && !path.endsWith('/rendez-vous/index.html'));
 
 test('toutes les pages ont un titre, un H1 et des métadonnées uniques', () => {
-  assert.equal(pages.length, 12);
+  assert.equal(pages.length, 11);
   const titles = new Set();
   for (const path of pages) {
     const html = readFileSync(path, 'utf8');
@@ -70,7 +70,9 @@ test('préparation email encode les saisies sans injection d’en-têtes', () =>
 
 test('aucune réservation disponible ni faux envoi ne sont annoncés', () => {
   assert.equal(site.booking.available, false);
-  assert.match(readFileSync('dist/rendez-vous/index.html', 'utf8'), /réservation en ligne n’est pas activée/);
+  assert.match(readFileSync('dist/rendez-vous/index.html', 'utf8'), /content="0;url=\/contact\/"/);
+  assert.match(readFileSync('dist/contact/index.html', 'utf8'), /réservation en ligne n’est pas activée/);
+  assert.match(readFileSync('dist/index.html', 'utf8'), /href="https:\/\/www.crenolibre.fr\/prendre-rdv\/166171_brethes-christine"/);
   assert.match(readFileSync('dist/contact/index.html', 'utf8'), /Retrouver Christine sur LinkedIn/);
   for (const path of pages) assert.doesNotMatch(readFileSync(path, 'utf8'), /href="(?:mailto:|tel:)"/);
   assert.doesNotMatch(readFileSync('src/scripts/contact.js', 'utf8'), /fetch\(/);

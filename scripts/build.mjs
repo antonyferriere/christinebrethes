@@ -8,7 +8,7 @@ import { sectionHeading, button } from '../src/components/ui.mjs';
 import { offerCards, closing } from '../src/components/sections.mjs';
 import { homePage } from '../src/pages/home.mjs';
 import { aboutPage } from '../src/pages/about.mjs';
-import { contactPage, bookingPage } from '../src/pages/contact.mjs';
+import { contactPage } from '../src/pages/contact.mjs';
 import { offerPage } from '../src/pages/offer.mjs';
 import { legalPage, privacyPage } from '../src/pages/legal.mjs';
 import { offers } from '../src/data/offers.mjs';
@@ -28,7 +28,6 @@ const pages = [
   { path: '/accompagnements/', title: 'Les accompagnements', description: 'Quatre accompagnements pour votre parcours : coaching professionnel, santé-travail, pleine conscience et interventions en organisations.', body: `${pageHero('accompagnements', `<p class="eyebrow">Trouver votre point d’appui</p><h1>Votre parcours.<br><em>Notre point de départ.</em></h1><p class="lede">Une approche personnalisée pour traverser les transitions et retrouver une manière durable d’avancer.</p>`)}<section class="section container">${sectionHeading('Quatre accompagnements', 'De quoi avez-vous besoin aujourd’hui ?')}${offerCards()}</section>${closing()}` },
   { path: '/a-propos/', title: 'À propos de Christine Brethes', description: 'Découvrez le parcours et l’approche intégrative de Christine Brethes, coach professionnelle certifiée et instructrice en pleine conscience.', body: aboutPage() },
   { path: '/contact/', title: 'Contacter Christine', description: 'Contactez Christine Brethes pour un accompagnement à Paris, Chartres ou en visio, une intervention ou un partenariat.', body: contactPage() },
-  { path: '/rendez-vous/', title: 'Organiser votre rendez-vous', description: 'Contactez Christine Brethes pour organiser votre rendez-vous en cabinet ou en visioconférence.', body: bookingPage() },
   { path: '/mentions-legales/', title: 'Mentions légales', description: 'Informations légales du site de Christine Brethes. Version de présentation à compléter avant publication.', body: legalPage() },
   { path: '/confidentialite/', title: 'Confidentialité', description: 'Informations sur la confidentialité, le formulaire de préparation d’email et les liens externes du site de Christine Brethes.', body: privacyPage() },
   ...offers.map((offer) => ({ path: offerPath(offer), title: offer.title, description: offer.summary, body: offerPage(offer) })),
@@ -49,3 +48,7 @@ await writeFile(resolve(dist, 'scripts/main.js'), browserScripts[0].replace("'./
 await writeFile(resolve(dist, 'robots.txt'), site.productionReady ? `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
 await writeFile(resolve(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(({path})=>`<url><loc>${site.domain}${path}</loc></url>`).join('')}</urlset>\n`);
 console.log(`${pages.length} pages + page 404 générées dans dist/ — ${site.productionReady ? 'production' : 'présentation non indexable'}.`);
+
+// Compatibility redirect for existing bookmarks, including static previews.
+await mkdir(resolve(dist, 'rendez-vous'), { recursive: true });
+await writeFile(resolve(dist, 'rendez-vous/index.html'), '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta http-equiv="refresh" content="0;url=/contact/"><link rel="canonical" href="'+site.domain+'/contact/"><title>Redirection vers Contact</title></head><body><p><a href="/contact/">Contacter Christine</a></p></body></html>');
