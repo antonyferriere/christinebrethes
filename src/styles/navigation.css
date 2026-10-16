@@ -37,6 +37,9 @@
  .header-booking { width: 46px; height: 46px; padding: 0; }
  .header-booking > span { display: none; }
 }
+@media (min-width: 599px) {
+ .header-booking > svg { display: none; }
+}
 @media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
 @media print { .site-header { display: none; } .standard-page main, .has-immersive-hero .hero-grid, .has-immersive-hero .page-hero-inner { padding-top: 0; } }
 
