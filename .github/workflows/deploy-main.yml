@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 15
 
     environment:
-      name: PRODUCTION
+      name: PROD
 
     steps:
       - name: Checkout
