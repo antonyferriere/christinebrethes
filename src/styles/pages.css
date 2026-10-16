@@ -40,7 +40,8 @@
 .step-index { display: inline-block; color: var(--color-primary); font-size: .85rem; margin-bottom: 1.5rem; }
 .steps h3, .values-grid h3 { font-size: 1.6rem; }
 .steps p, .values-grid p { color: var(--color-muted); }
-.modalities { display: grid; gap: 2rem; border-top: 1px solid var(--color-outline); }
+.modalities-section { background: var(--color-ivory); }
+.modalities { display: grid; gap: 2rem; }
 .reading-section { max-width: 860px; padding-bottom: 4rem; }
 .reading-section h2:not(:first-child), .legal h2 { margin-top: 2.5rem; font-size: 1.8rem; }
 .faq-section { max-width: 1000px; }
