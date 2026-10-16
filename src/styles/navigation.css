@@ -46,3 +46,5 @@
 .menu-toggle[aria-expanded='true'] span { border-color: transparent; }
 .menu-toggle[aria-expanded='true'] span::before { transform: rotate(45deg); }
 .menu-toggle[aria-expanded='true'] span::after { transform: rotate(-45deg); }
+
+@media (max-width: 699px) { .brand, .home .brand { width: 64px; flex: 0 0 64px; } .brand img { height: 64px; object-fit: contain; } }
