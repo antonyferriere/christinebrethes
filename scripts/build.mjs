@@ -1,3 +1,4 @@
+import { pageHero } from '../src/components/page-hero.mjs';
 import { mkdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -20,11 +21,11 @@ if (process.argv.includes('--production') && !site.productionReady) {
 }
 // Une nouvelle URL invalide aussi les anciens caches qui ignoraient no-cache.
 const browserScripts = await Promise.all(['main.js', 'contact.js'].map(name => readFile(resolve(root, 'src/scripts', name), 'utf8')));
-const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive', 'hero'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
+const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive', 'hero', 'page-hero'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
 const assetVersion = createHash('sha256').update(JSON.stringify([...browserScripts, ...css])).digest('hex').slice(0, 16);
 const pages = [
   { path: '/', title: 'Coaching santé-travail à Paris, Chartres et en visio', description: 'Retrouver sa place, son rythme et sa capacité d’agir avec Christine Brethes. Coaching professionnel, santé-travail et pleine conscience.', body: homePage(), home: true },
-  { path: '/accompagnements/', title: 'Les accompagnements', description: 'Quatre accompagnements pour votre parcours : coaching professionnel, santé-travail, pleine conscience et interventions en organisations.', body: `<section class="container page-hero compact"><p class="eyebrow">Trouver votre point d’appui</p><h1>Votre parcours.<br><em>Notre point de départ.</em></h1><p class="lede">Une approche personnalisée pour traverser les transitions et retrouver une manière durable d’avancer.</p></section><section class="section container">${sectionHeading('Quatre accompagnements', 'De quoi avez-vous besoin aujourd’hui ?')}${offerCards()}</section>${closing()}` },
+  { path: '/accompagnements/', title: 'Les accompagnements', description: 'Quatre accompagnements pour votre parcours : coaching professionnel, santé-travail, pleine conscience et interventions en organisations.', body: `${pageHero('accompagnements', `<p class="eyebrow">Trouver votre point d’appui</p><h1>Votre parcours.<br><em>Notre point de départ.</em></h1><p class="lede">Une approche personnalisée pour traverser les transitions et retrouver une manière durable d’avancer.</p>`)}<section class="section container">${sectionHeading('Quatre accompagnements', 'De quoi avez-vous besoin aujourd’hui ?')}${offerCards()}</section>${closing()}` },
   { path: '/a-propos/', title: 'À propos de Christine Brethes', description: 'Découvrez le parcours et l’approche intégrative de Christine Brethes, coach professionnelle certifiée et instructrice en pleine conscience.', body: aboutPage() },
   { path: '/contact/', title: 'Contacter Christine', description: 'Contactez Christine Brethes pour un accompagnement à Paris, Chartres ou en visio, une intervention ou un partenariat.', body: contactPage() },
   { path: '/rendez-vous/', title: 'Organiser votre rendez-vous', description: 'Contactez Christine Brethes pour organiser votre rendez-vous en cabinet ou en visioconférence.', body: bookingPage() },
