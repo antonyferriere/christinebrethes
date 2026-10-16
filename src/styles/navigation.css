@@ -17,7 +17,7 @@
 @media (min-width: 1200px) {
  .header-inner { min-height: 98px; gap: 1.5rem; }
  .brand { flex-basis: 260px; }
- #navigation, .js #navigation, .js #navigation.is-open { position: static; order: 1; width: auto; padding: 0; background: none; box-shadow: none; }
+ #navigation, .js #navigation, .js #navigation.is-open { position: static; order: 1; width: auto; padding: 0; background: none; backdrop-filter: none; box-shadow: none; }
  #navigation ul { flex-direction: row; width: auto; }
  .header-booking .calendar-icon { display: none; }
 }
