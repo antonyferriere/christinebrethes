@@ -146,7 +146,7 @@ test('HTTPS, type MIME JavaScript et polices locales garantis au build', () => {
 
 test('les pages et le module contact partagent une version calculée sur les assets', async () => {
   const { createHash } = await import('node:crypto');
-  const sources = ['src/scripts/main.js', 'src/scripts/contact.js', ...['tokens', 'base', 'components', 'pages', 'responsive', 'hero', 'page-hero'].map(name => `src/styles/${name}.css`)];
+  const sources = ['src/scripts/main.js', 'src/scripts/contact.js', ...['tokens', 'base', 'components', 'pages', 'responsive', 'hero', 'page-hero', 'navigation'].map(name => `src/styles/${name}.css`)];
   const version = createHash('sha256').update(JSON.stringify(sources.map(path => readFileSync(path, 'utf8')))).digest('hex').slice(0, 16);
   for (const path of pages) {
     const html = readFileSync(path, 'utf8');

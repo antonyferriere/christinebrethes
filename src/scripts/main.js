@@ -5,11 +5,13 @@ const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 function closeMenu() {
   menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Ouvrir le menu');
   navigation.classList.remove('is-open');
 }
 menu.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
   menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
   navigation.classList.toggle('is-open', open);
 });
 navigation.addEventListener('click', (event) => {
@@ -55,10 +57,6 @@ initializeContact();
 // Only the homepage owns a carousel. Deferred images never block the first scene.
 const hero = document.querySelector('[data-hero-carousel]');
 if (hero) {
-  const header = document.querySelector('.site-header');
-  const measureHeader = () => hero.style.setProperty('--header-height', `${header.getBoundingClientRect().height}px`);
-  measureHeader();
-  new ResizeObserver(measureHeader).observe(header);
   const slides = [...hero.querySelectorAll('.hero-scene')];
   const controls = hero.querySelector('.hero-controls');
   const dots = [...controls.querySelectorAll('[data-slide]')];
@@ -112,3 +110,12 @@ window.addEventListener('scroll', requestDepth, { passive: true });
 window.addEventListener('resize', requestDepth, { passive: true });
 motion.addEventListener('change', requestDepth);
 paintDepth();
+
+// The header overlays the hero at entry and becomes a paper surface on scroll.
+const siteHeader = document.querySelector('.site-header');
+const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
+new ResizeObserver(measureSiteHeader).observe(siteHeader);
+measureSiteHeader();
+const updateHeaderSurface = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 16);
+window.addEventListener('scroll', updateHeaderSurface, { passive: true });
+updateHeaderSurface();
