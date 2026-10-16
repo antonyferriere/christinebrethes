@@ -2,11 +2,11 @@ export const site = {
   name: 'Christine BRETHES',
   profession: 'Coach santé-travail · Pleine conscience',
   tagline: 'Cultiver l’équilibre, retrouver son élan',
-  // Configuration de présentation. Les coordonnées directes restent à renseigner.
+  // Coordonnées publiques validées par Christine.
   domain: 'https://christinebrethes.fr',
-  email: '',
-  phone: '',
-  phoneLink: '',
+  email: 'contact@christinebrethes.fr',
+  phone: '07 81 65 96 98',
+  phoneLink: '+33781659698',
   linkedin: 'https://www.linkedin.com/in/christinebrethes/',
   booking: {
     url: 'https://www.crenolibre.fr/prendre-rdv/166171_brethes-christine',

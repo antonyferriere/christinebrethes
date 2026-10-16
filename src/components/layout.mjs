@@ -1,3 +1,4 @@
+import { contactDetails } from './contact-details.mjs';
 import { site, navigation, offerPath } from '../data/site.mjs';
 import { offers } from '../data/offers.mjs';
 import { escape, button } from './ui.mjs';
@@ -13,7 +14,7 @@ function header(path) {
 function footer() {
   return `<footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="/">Christine Brethes</a><p>Coach santé-travail<br>Instructrice en méditation de pleine conscience</p><p class="signature">${site.tagline}</p></div>
   <div><h2>Vous accompagner</h2><ul>${offers.map((o) => `<li><a href="${offerPath(o)}">${escape(o.title)}</a></li>`).join('')}</ul></div>
-  <div><h2>Restons en lien</h2><ul><li>Paris · Chartres · Visioconférence</li>${site.phoneLink ? `<li><a href="tel:${site.phoneLink}">${site.phone}</a></li>` : ''}${site.email ? `<li><a href="mailto:${site.email}">${site.email}</a></li>` : ''}<li><a href="${site.linkedin}">Le profil LinkedIn de Christine ↗</a></li></ul></div></div>
+  <div><h2>Restons en lien</h2>${contactDetails()}</div></div>
   <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Christine BRETHES</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a></div></div></footer>`;
 }
 export function layout({ title, description, path, body, home = false, assetVersion = '' }) {
