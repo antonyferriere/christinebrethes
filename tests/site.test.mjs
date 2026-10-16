@@ -71,7 +71,8 @@ test('préparation email encode les saisies sans injection d’en-têtes', () =>
 test('aucune réservation disponible ni faux envoi ne sont annoncés', () => {
   assert.equal(site.booking.available, false);
   assert.match(readFileSync('dist/rendez-vous/index.html', 'utf8'), /content="0;url=\/contact\/"/);
-  assert.match(readFileSync('dist/contact/index.html', 'utf8'), /réservation en ligne n’est pas activée/);
+  assert.match(readFileSync('dist/contact/index.html', 'utf8'), /mailto:contact@christinebrethes.fr/);
+  assert.match(readFileSync('dist/contact/index.html', 'utf8'), /tel:\+33781659698/);
   assert.match(readFileSync('dist/index.html', 'utf8'), /href="https:\/\/www.crenolibre.fr\/prendre-rdv\/166171_brethes-christine"/);
   assert.match(readFileSync('dist/contact/index.html', 'utf8'), /Retrouver Christine sur LinkedIn/);
   for (const path of pages) assert.doesNotMatch(readFileSync(path, 'utf8'), /href="(?:mailto:|tel:)"/);
