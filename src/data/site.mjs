@@ -4,7 +4,7 @@ export const site = {
   tagline: 'Cultiver l’équilibre, retrouver son élan',
   // Coordonnées publiques validées par Christine.
   domain: 'https://christinebrethes.fr',
-  email: 'contact@christinebrethes.fr',
+  email: 'christine_brethes@yahoo.fr',
   phone: '07 81 65 96 98',
   phoneLink: '+33781659698',
   linkedin: 'https://www.linkedin.com/in/christinebrethes/',
