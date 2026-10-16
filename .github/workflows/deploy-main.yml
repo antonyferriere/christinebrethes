@@ -1,0 +1,73 @@
+name: Deploy PRODUCTION  (FTPS)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    environment:
+      name: PRODUCTION
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2, Node 24
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0, Node 24
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      # Le site n'a aucune dépendance npm : aucun npm ci ni cache npm nécessaires.
+      - name: Build and test site
+        run: npm run check
+
+      - name: Verify deployment files
+        run: |
+          test -f dist/index.html
+          test -f dist/.htaccess
+
+      - name: Verify deployment destination
+        env:
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        run: |
+          # Le compte FTP ouvre directement sur le site : sa racine / est autorisée.
+          if [[ -z "$FTP_DIR" || "$FTP_DIR" != */ || "$FTP_DIR" == *\\* ]]; then
+            echo "FTP_DIR must be non-empty, use forward slashes, and end in /. Use / for the FTP account root."
+            exit 1
+          fi
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0, Node 24
+        with:
+          # Nom couvert par le certificat FTPS du serveur o2switch.
+          # L'alias FTP précédent provoquait ERR_TLS_CERT_ALTNAME_INVALID.
+          server: trigone.o2switch.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: strict
+          port: ${{ secrets.FTP_PORT || 21 }}
+          local-dir: dist/
+          server-dir: ${{ secrets.FTP_DIR }}
+          dangerous-clean-slate: false
+
+      - name: Verify deployed HTTPS site
+        env:
+          DEPLOY_URL: https://christinebrethes.fr/
+        run: node scripts/verify-deployment.mjs "$DEPLOY_URL"
