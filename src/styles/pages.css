@@ -1,0 +1,80 @@
+.small-rule { width: 28px; height: 1px; background: var(--color-primary); flex-shrink: 0; }
+.approach { background: var(--color-sage); }
+.approach-grid, .introduction, .places { display: grid; gap: 3rem; }
+.approach h2 { font-size: clamp(2.6rem, 4vw, 4rem); }
+.approach-leaf { opacity: .7; width: 80px; height: auto; aspect-ratio: 8 / 9; margin-top: 2.5rem; }
+.approach-copy .lead { color: var(--color-ink); }
+.principles { margin-block: 2rem; }
+.principles article { display: flex; gap: 1.5rem; border-top: 1px solid #555d4840; padding-top: 1.5rem; }
+.principles article > span { font-size: .8rem; color: var(--color-forest); margin-top: .3rem; }
+.principles h3 { margin-bottom: .5rem; font-size: 1.4rem; }
+.principles p { color: var(--color-muted); }
+.introduction { align-items: center; }
+.introduction-image { position: relative; }
+.introduction-image .photo { max-height: 620px; border-radius: 8px 8px 38% 8px; }
+.image-note { position: absolute; bottom: 2rem; left: 1.5rem; background: var(--color-paper); padding: .75rem 1rem; font: italic 1rem var(--font-display); max-width: calc(100% - 3rem); }
+.introduction .section-heading { margin-bottom: 1.5rem; }
+.landscape-band { background: var(--color-ivory) url('/assets/paysage.webp') center bottom/cover no-repeat; min-height: 420px; display: flex; align-items: flex-start; text-align: center; padding-block: 3rem 10rem; }
+.landscape-band .eyebrow { color: var(--color-primary); }
+.landscape-quote { max-width: 900px; margin: 0 auto; font: clamp(1.3rem, 2.3vw, 2rem)/1.5 var(--font-display); }
+.places { align-items: center; }
+.places-photo { aspect-ratio: 4/4.5; overflow: hidden; border-radius: 42% 42% 8px 8px; }
+.places-photo img { object-position: 62% center; }
+.places .section-heading { margin-bottom: 2rem; }
+.home .places h2 { font-size: clamp(1.8rem, 2.8vw, 2.7rem); }
+.page-hero { padding-block: 3rem var(--space-section); }
+.page-hero.split { display: grid; gap: 3rem; align-items: center; }
+.page-hero .lede { max-width: 650px; }
+.page-hero .button { margin-top: 1rem; }
+.page-hero-image { aspect-ratio: 1; overflow: hidden; border-radius: 45% 45% var(--radius-small) var(--radius-small); }
+.page-hero-image.portrait { aspect-ratio: 4/5; }
+.page-hero.compact { padding-bottom: 2rem; max-width: 1000px; }
+.reading-intro { padding-top: 1rem; max-width: 900px; }
+.tinted { background: var(--color-ivory); }
+.detail-grid { display: grid; gap: 3rem; }
+.goals-panel { background: var(--color-paper); padding: 2rem; border-radius: var(--radius-card); }
+.goals-panel img { width: 45px; height: auto; margin-bottom: 1.5rem; }
+.goals-panel h2 { font-size: 1.8rem; }
+.steps, .values-grid { display: grid; gap: 2rem; }
+.steps article, .values-grid article { border-top: 1px solid var(--color-outline); padding-top: 1.5rem; }
+.step-index { display: inline-block; color: var(--color-primary); font-size: .85rem; margin-bottom: 1.5rem; }
+.steps h3, .values-grid h3 { font-size: 1.6rem; }
+.steps p, .values-grid p { color: var(--color-muted); }
+.modalities-section { background: var(--color-ivory); }
+.modalities { display: grid; gap: 2rem; }
+.reading-section { max-width: 860px; padding-bottom: 4rem; }
+.reading-section h2:not(:first-child), .legal h2 { margin-top: 2.5rem; font-size: 1.8rem; }
+.faq-section { max-width: 1000px; }
+.contact-grid { display: grid; gap: 3rem; padding-block: 2rem 5rem; }
+.contact-aside { min-width: 0; }
+.contact-aside > a { display: flex; width: fit-content; margin-bottom: 1rem; overflow-wrap: anywhere; }
+.contact-aside h2 { font-size: 1.8rem; }
+.contact-phone { font: 1.8rem var(--font-display); text-decoration: none; }
+.contact-cabinet { margin-top: 2rem; }
+.contact-cabinet img { aspect-ratio: 4/3; max-height: 320px; border-radius: var(--radius-card); }
+.contact-cabinet p { margin-top: 1rem; }
+.contact-form-panel { background: var(--color-ivory); padding: 1.5rem; border-radius: var(--radius-card); min-width: 0; }
+.contact-form-panel .section-heading { margin-bottom: 1rem; }
+.contact-form-panel h2 { font-size: 2rem; }
+label { display: block; font-weight: 600; font-size: 1rem; margin-top: 1.2rem; margin-bottom: .4rem; }
+label span { font-weight: 400; color: var(--color-muted); font-size: .85rem; }
+input, select, textarea { width: 100%; min-height: 50px; border: 1px solid #85776a; border-radius: var(--radius-small); background: var(--color-paper); padding: .75rem; color: var(--color-ink); }
+textarea { resize: vertical; }
+.field-help { font-size: .9rem; color: var(--color-muted); }
+.form-grid { display: grid; gap: 0 1rem; }
+#form-status:not(:empty) { margin-top: 1.5rem; padding: 1rem; background: var(--color-paper); border-left: 3px solid var(--color-forest); }
+#message-fallback button { margin-top: 1rem; }
+.booking-grid { display: grid; gap: 3rem; }
+.booking-panel { background: var(--color-ivory); padding: 2rem; border-radius: var(--radius-card); }
+.booking-panel h2 { font-size: 2rem; }
+.booking-panel > a { display: flex; width: fit-content; margin-bottom: 1rem; }
+
+.landscape-band { position: relative; isolation: isolate; align-items: center; padding-block: clamp(4rem, 8vw, 7rem); }
+.landscape-band::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f3ebe0ed, #f3ebe0c9, #f3ebe0ad); }
+.landscape-band .container { max-width: 900px; }
+.landscape-band h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1.5rem; }
+.landscape-quote { max-width: 760px; font-style: italic; line-height: 1.65; text-wrap: pretty; }
+
+.landscape-band { overflow: hidden; background-image: none; }
+.landscape-depth { position: absolute; inset: -36px 0; z-index: -2; background: url('/assets/paysage.webp') center bottom / cover no-repeat; transform: translate3d(0, var(--depth-y, 0px), 0); }
+@media (prefers-reduced-motion: reduce) { .landscape-depth { transform: none; } }

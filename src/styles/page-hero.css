@@ -1,0 +1,33 @@
+/* Shared editorial hero; content determines height, never a fixed viewport. */
+.immersive-page-hero { position: relative; isolation: isolate; overflow: hidden; background: var(--color-ivory); padding: 0; }
+.page-hero-background { position: absolute; inset: 0 0 0 35%; z-index: -2; }
+.page-hero-background img { height: 100%; width: 100%; object-fit: cover; object-position: center 40%; }
+.immersive-page-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, var(--color-ivory) 25%, #f3ebe0fa 36%, #f3ebe0e8 44%, #f3ebe080 55%, transparent 75%), linear-gradient(0deg, var(--color-paper), transparent 23%); }
+.page-hero-inner { padding-block: clamp(3rem, 6vw, 6rem); }
+.page-hero-copy { width: 53%; max-width: 650px; }
+.page-hero-copy h1 { font-size: clamp(2.3rem, 3.8vw, 4.1rem); }
+.page-hero-copy > :last-child { margin-bottom: 0; }
+.page-hero-inner .breadcrumb { width: 100%; margin: 0 0 2rem; padding: 0; }
+.page-hero-copy .lede { font-size: clamp(1.15rem, 1.6vw, 1.45rem); }
+.portrait-warm { filter: brightness(1.035) sepia(.12) saturate(.93); }
+[data-page-image='a-propos'] .page-hero-background { left: 47%; }
+[data-page-image='a-propos'] .photo { object-position: center 22%; }
+[data-page-image='contact'] .photo { object-position: center top; }
+@media (min-width: 700px) and (max-width: 999px) {
+ .page-hero-copy { width: 60%; }
+ .immersive-page-hero::before { background: linear-gradient(90deg, var(--color-ivory) 25%, #f3ebe0fa 46%, #f3ebe0e8 60%, #f3ebe060 72%, transparent 85%), linear-gradient(0deg, var(--color-paper), transparent 25%); }
+}
+@media (max-width: 699px) {
+ .page-hero-background, [data-page-image='a-propos'] .page-hero-background { inset: 0 0 auto; height: 380px; }
+ .page-hero-background img { object-position: center 30%; }
+ [data-page-image='a-propos'] .photo { object-position: center 20%; }
+ .immersive-page-hero::before { background: linear-gradient(180deg, transparent 140px, #f3ebe050 220px, var(--color-ivory) 370px); }
+ .page-hero-inner { padding-block: 300px 3rem; }
+ .page-hero-copy { width: 100%; }
+ .page-hero-copy h1 { font-size: clamp(2rem, 8vw, 3rem); }
+ .page-hero-inner .breadcrumb { font-size: .75rem; margin-bottom: 1.25rem; }
+}
+@media print { .page-hero-background { display: none; } .page-hero-inner { padding: 1rem 0; } .page-hero-copy { width: 100%; } }
+/* Overscan hides the edges of both static and carousel backgrounds. */
+.hero-scenes, .page-hero-background { transform: translate3d(0, var(--depth-y, 0px), 0) scale(1.12); transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .hero-scenes, .page-hero-background { transform: none; } }

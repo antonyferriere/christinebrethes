@@ -1,0 +1,44 @@
+@media (min-width: 600px) {
+  .offer-grid, .values-grid, .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-hero-image { max-height: 550px; }
+  .contact-form-panel { padding: 2.5rem; }
+}
+@media (min-width: 840px) {
+  .approach-grid, .introduction, .places, .detail-grid, .modalities, .booking-grid, .page-hero.split { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 7vw, 7rem); }
+  .introduction { grid-template-columns: .85fr 1fr; }
+  .places { grid-template-columns: .8fr 1fr; }
+  .places-photo { max-height: 600px; }
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
+  .closing-grid { grid-template-columns: 1.3fr 1fr; }
+  .closing-actions { align-items: flex-end; }
+  .footer-grid { grid-template-columns: 1.25fr 1fr 1fr; }
+  .contact-grid { grid-template-columns: .8fr 1.2fr; gap: 5rem; }
+  .review-grid, .post-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .landscape-band { min-height: 460px; padding-top: 3rem; background-size: 100% auto; }
+}
+@media (min-width: 1200px) {
+  .header-inner { flex-wrap: nowrap; min-height: 96px; }
+  .brand { width: 280px; }
+  .js .menu-toggle { display: none; }
+  #navigation, .js #navigation, .js #navigation.is-open { width: auto; display: flex; padding: 0; flex-wrap: nowrap; }
+  .js #navigation ul { flex-direction: row; width: auto; gap: 1.3rem; }
+  .offer-grid, .values-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .related .offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready { opacity: 0; transform: translateY(18px); transition: opacity var(--duration-reveal) var(--ease-standard), transform var(--duration-reveal) var(--ease-standard); }
+  .reveal-ready.is-visible { opacity: 1; transform: none; }
+  @keyframes arrive { from { opacity: .15; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal-ready { opacity: 1; transform: none; }
+}
+@media print {
+  .site-header, .site-footer, .closing, .hero-bottom { display: none; }
+  body { background: white; color: black; }
+  .section { padding-block: 1rem; }
+  .reveal-ready { opacity: 1; transform: none; }
+}
