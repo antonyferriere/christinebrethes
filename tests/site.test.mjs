@@ -158,3 +158,20 @@ test('les pages et le module contact partagent une version calculée sur les ass
   }
   assert.ok(readFileSync('dist/scripts/main.js', 'utf8').includes(`./contact.js?v=${version}`));
 });
+
+test('every generated external web link opens in a new tab', () => {
+  let count = 0;
+  for (const path of pages) {
+    for (const [tag] of readFileSync(path, 'utf8').matchAll(/<a\b[^>]*>/g)) {
+      const href = tag.match(/href="([^"]*)"/)?.[1];
+      if (!href) continue;
+      const url = new URL(href, site.domain);
+      if (['http:', 'https:'].includes(url.protocol) && url.origin !== new URL(site.domain).origin) {
+        count++;
+        assert.match(tag, /target="_blank"/);
+        assert.match(tag, /rel="noopener noreferrer"/);
+      } else assert.doesNotMatch(tag, /target="_blank"/);
+    }
+  }
+  assert.ok(count > 0);
+});
