@@ -1,0 +1,31 @@
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^rendez-vous(?:/index\.html)?/?$ /contact/ [R=301,L]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+<IfModule mod_mime.c>
+AddType text/javascript .js .mjs
+AddType font/woff .woff
+AddType font/woff2 .woff2
+</IfModule>
+
+# The FTP synchronizer stores its inventory in the web root.
+<FilesMatch "^\.">
+Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+# Stable filenames must be revalidated after each deployment.
+<FilesMatch "\.(html|css|js|mjs)$">
+Header always set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+</IfModule>
