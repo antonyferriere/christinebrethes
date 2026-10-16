@@ -68,3 +68,9 @@ textarea { resize: vertical; }
 .booking-panel { background: var(--color-ivory); padding: 2rem; border-radius: var(--radius-card); }
 .booking-panel h2 { font-size: 2rem; }
 .booking-panel > a { display: flex; width: fit-content; margin-bottom: 1rem; }
+
+.landscape-band { position: relative; isolation: isolate; align-items: center; padding-block: clamp(4rem, 8vw, 7rem); }
+.landscape-band::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f3ebe0ed, #f3ebe0c9, #f3ebe0ad); }
+.landscape-band .container { max-width: 900px; }
+.landscape-band h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1.5rem; }
+.landscape-quote { max-width: 760px; font-style: italic; line-height: 1.65; text-wrap: pretty; }
