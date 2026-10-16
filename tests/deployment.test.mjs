@@ -12,6 +12,10 @@ function server(overrides = {}) {
     if (url.protocol === 'http:') return new Response(null, { status: 301, headers: { location: url.href.replace('http:', 'https:') } });
     if (url.pathname === '/__deployment_missing_page__') return new Response(null, { status: 404 });
     if (url.pathname === '/.ftp-deploy-sync-state.json') return new Response(null, { status: overrides.stateStatus ?? 403 });
+    if (/^\/rendez-vous(?:\/index\.html)?\/?$/.test(url.pathname)) {
+      return new Response(null, { status: overrides.bookingStatus ?? 301,
+        headers: overrides.missingLocation ? {} : { location: overrides.bookingLocation ?? `/contact/${url.search}` } });
+    }
     const file = resolve('dist', '.' + url.pathname, url.pathname.endsWith('/') ? 'index.html' : '');
     const body = overrides.stale && url.pathname === '/scripts/main.js'
       ? "import './contact.mjs';" : await readFile(file);
@@ -56,4 +60,16 @@ test('Apache denies deployment inventory and revalidates stable asset names', ()
   assert.match(apache, /<FilesMatch "\^\\\.">\s*Require all denied/);
   assert.match(apache, /Cache-Control "no-cache, must-revalidate"/);
   assert.match(apache, /upgrade-insecure-requests/);
+});
+
+test('legacy appointment URLs require a permanent redirect to Contact with the query preserved', async () => {
+  assert.ok(await verifyDeployment(base, { request: server({ bookingStatus: 308 }) }));
+  for (const [overrides, message] of [
+    [{ bookingStatus: 200 }, /expected permanent redirect/],
+    [{ bookingStatus: 302 }, /expected permanent redirect/],
+    [{ missingLocation: true }, /missing redirect location/],
+    [{ bookingLocation: '/contact/' }, /incorrect redirect destination/],
+    [{ bookingLocation: '/rendez-vous/?deployment-check=1' }, /incorrect redirect destination/],
+    [{ bookingLocation: 'https://other.example/contact/?deployment-check=1' }, /incorrect redirect destination/],
+  ]) await assert.rejects(verifyDeployment(base, { request: server(overrides) }), message);
 });

@@ -36,7 +36,19 @@ export async function verifyDeployment(value, { request = fetch, directory = res
     new URL('contact/?deployment-check=1', base).href, 'HTTPS redirect must preserve host, path and query.');
   await redirect.body?.cancel();
 
-  const files = (await filesIn(directory)).filter(file => mimeTypes[extname(file)]);
+  // This legacy page is intentionally redirected by Apache. Check every supported
+  // spelling explicitly; Contact itself is still verified byte-for-byte below.
+  for (const path of ['rendez-vous', 'rendez-vous/', 'rendez-vous/index.html']) {
+    const source = new URL(`${path}?deployment-check=1`, base);
+    const response = await get(source);
+    assert.ok([301, 308].includes(response.status), `${path}: expected permanent redirect to Contact`);
+    assert.ok(response.headers.get('location'), `${path}: missing redirect location`);
+    assert.equal(new URL(response.headers.get('location'), source).href,
+      new URL('contact/?deployment-check=1', base).href, `${path}: incorrect redirect destination`);
+    await response.body?.cancel();
+  }
+
+  const files = (await filesIn(directory)).filter(file => mimeTypes[extname(file)] && file !== 'rendez-vous/index.html');
   for (const file of files) {
     const path = file.replace(/(^|\/)index\.html$/, '$1');
     const response = await get(new URL(path, base));
