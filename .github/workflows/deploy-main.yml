@@ -57,7 +57,7 @@ jobs:
         with:
           # Nom couvert par le certificat FTPS du serveur o2switch.
           # L'alias FTP précédent provoquait ERR_TLS_CERT_ALTNAME_INVALID.
-          server: trigone.o2switch.net
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
