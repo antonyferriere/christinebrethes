@@ -17,3 +17,7 @@ export function linkedinSections() {
   const posts = linkedinSettings.publications ? publications.filter((p) => p.visible) : [];
   return `${reviews.length ? `<section class="container section">${sectionHeading('Regards partagés', 'Ils témoignent de mon accompagnement')}<div class="review-grid">${reviews.map((r) => `<figure class="review"><blockquote>${escape(r.text)}</blockquote><figcaption>${escape(r.author)}${r.role ? ` · ${escape(r.role)}` : ''} <a href="${escape(r.source)}">Lire sur LinkedIn ↗</a></figcaption></figure>`).join('')}</div><a class="text-link" href="${site.linkedin}">Voir le profil LinkedIn de Christine ↗</a></section>` : ''}${posts.length ? `<section class="container section">${sectionHeading('Au fil des idées', 'Actualités & réflexions')}<div class="post-grid">${posts.map((p) => `<article class="post">${p.image ? `<img src="${escape(p.image)}" alt="" loading="lazy" width="600" height="400">` : ''}<p class="eyebrow">${escape(p.topic)} · <time datetime="${escape(p.date)}">${escape(p.date)}</time></p><h3>${escape(p.title)}</h3><p>${escape(p.excerpt)}</p><a class="text-link" href="${escape(p.url)}">Lire sur LinkedIn ↗</a></article>`).join('')}</div></section>` : ''}`;
 }
+
+export function needsSection() {
+ return `<section class="section container">${sectionHeading('Quatre accompagnements', 'De quoi avez-vous besoin aujourd’hui ?')}${offerCards()}</section>`;
+}
