@@ -42,31 +42,67 @@ jobs:
           test -f dist/index.html
           test -f dist/.htaccess
 
-      - name: Verify deployment destination
+      - name: Validate SFTP settings
         env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_DIR: ${{ secrets.FTP_DIR }}
+          SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS }}
+        shell: bash
         run: |
-          # Le compte FTP ouvre directement sur le site : sa racine / est autorisée.
-          if [[ -z "$FTP_DIR" || "$FTP_DIR" != */ || "$FTP_DIR" == *\\* ]]; then
-            echo "FTP_DIR must be non-empty, use forward slashes, and end in /. Use / for the FTP account root."
+          if [[ -z "$FTP_HOST" || -z "$FTP_USERNAME" || -z "$FTP_PASSWORD" || -z "$SFTP_KNOWN_HOSTS" ]]; then
+            echo 'Missing SFTP credentials or SFTP_KNOWN_HOSTS in the PROD environment.'
+            exit 1
+          fi
+          # The deployed files must never be written at the SFTP account root.
+          if [[ -z "$FTP_DIR" || "$FTP_DIR" != */ || "$FTP_DIR" == / || "$FTP_DIR" == ./ || "$FTP_DIR" == *..* || "$FTP_DIR" == *\\* ]]; then
+            echo 'FTP_DIR must be a non-root directory ending in / (e.g., www/), verified in OVH > Mes sites.'
+            exit 1
+          fi
+          if [[ ! "$FTP_DIR" =~ ^[a-zA-Z0-9_./-]+/$ ]]; then
+            echo 'FTP_DIR has unexpected characters.'
             exit 1
           fi
 
-      - name: Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0, Node 24
-        with:
-          # Nom couvert par le certificat FTPS du serveur o2switch.
-          # L'alias FTP précédent provoquait ERR_TLS_CERT_ALTNAME_INVALID.
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: sftp
-          security: strict
-          port: ${{ secrets.FTP_PORT || 21 }}
-          local-dir: dist/
-          server-dir: ${{ secrets.FTP_DIR }}
-          dangerous-clean-slate: false
+      - name: Install SFTP client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
 
+      - name: Configure verified SSH host key
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$SFTP_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          ssh-keygen -F "$FTP_HOST" -f "$HOME/.ssh/known_hosts" >/dev/null || {
+            echo 'No verified SSH host key found for FTP_HOST.'
+            exit 1
+          }
+
+      - name: Deploy via SFTP (port 22)
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        shell: bash
+        run: |
+          # SFTP is not FTPS. Keep strict SSH host-key verification enabled.
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p 22 "sftp://$FTP_HOST" <<EOF
+          set cmd:fail-exit yes
+          set net:timeout 20
+          set net:max-retries 2
+          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=yes"
+          cd "$FTP_DIR"
+          mirror --reverse --verbose --parallel=2 --no-perms dist/ .
+          bye
+          EOF
+          # No --delete: protects other files on the OVH server.
       - name: Verify deployed HTTPS site
         env:
           DEPLOY_URL: https://christinebrethes.fr/
