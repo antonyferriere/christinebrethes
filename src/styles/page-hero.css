@@ -12,7 +12,7 @@
 .portrait-warm { filter: brightness(1.035) sepia(.12) saturate(.93); }
 [data-page-image='a-propos'] .page-hero-background { left: 47%; }
 [data-page-image='a-propos'] .photo { object-position: center 22%; }
-[data-page-image='contact'] .photo { object-position: center 25%; }
+[data-page-image='contact'] .photo { object-position: center top; }
 @media (min-width: 700px) and (max-width: 999px) {
  .page-hero-copy { width: 60%; }
  .immersive-page-hero::before { background: linear-gradient(90deg, var(--color-ivory) 25%, #f3ebe0fa 46%, #f3ebe0e8 60%, #f3ebe060 72%, transparent 85%), linear-gradient(0deg, var(--color-paper), transparent 25%); }
