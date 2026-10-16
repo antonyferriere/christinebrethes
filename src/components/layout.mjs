@@ -6,7 +6,7 @@ function header(path) {
   return `<a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/" aria-label="Christine BRETHES — Accueil"><img src="/assets/logo.webp" width="300" height="91" alt="Christine BRETHES, coaching, santé et travail, pleine conscience"></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu"><span aria-hidden="true">☰</span></button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu"><span aria-hidden="true"></span></button>
     <nav id="navigation" aria-label="Navigation principale"><ul>${navigation.map(([url, label]) => `<li><a href="${url}"${path === url || (url === '/accompagnements/' && path.startsWith(url)) ? ' aria-current="page"' : ''}>${label}</a></li>`).join('')}</ul></nav><a class="button button-small header-booking" href="${site.booking.url || '/contact/'}" aria-label="Prendre rendez-vous"><svg class="calendar-icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3M7 18h3"/></svg><span>Prendre rendez-vous</span></a>
   </div></header>`;
 }

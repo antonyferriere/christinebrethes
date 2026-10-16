@@ -1,13 +1,13 @@
-:root { --header-height: 98px; }
+:root { --header-height: 98px; --header-surface: rgb(250 247 242 / 82%); }
 .site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; transition: background 350ms ease, box-shadow 350ms ease; }
-.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { background: #faf7f2ed; backdrop-filter: blur(14px); border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
+.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { background: var(--header-surface); backdrop-filter: blur(14px); border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
 .header-inner { flex-wrap: nowrap; gap: .75rem; min-height: 90px; padding-block: .65rem; }
 .brand, .home .brand { width: 235px; flex: 0 1 235px; min-width: 0; margin-right: auto; }
 .menu-toggle { order: 3; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; background: #faf7f244; }
 .menu-toggle span { margin: 0; }
 .header-booking { order: 2; flex-shrink: 0; gap: .6rem; }
 .calendar-icon { flex-shrink: 0; }
-#navigation, .js #navigation.is-open { position: absolute; top: 100%; right: var(--gutter); width: min(420px, calc(100vw - var(--gutter) * 2)); padding: 1rem 1.5rem; background: var(--color-paper); box-shadow: var(--shadow-raised); border-radius: 0 0 1rem 1rem; }
+#navigation, .js #navigation.is-open { position: absolute; top: 100%; right: 0; left: 0; width: 100%; padding: 1rem 1.5rem; background: var(--header-surface); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); border-radius: 0; }
 #navigation ul { flex-direction: column; width: 100%; gap: .3rem; }
 .standard-page main { padding-top: var(--header-height); }
 .has-immersive-hero .hero { min-height: 100svh; }
@@ -36,3 +36,13 @@
 }
 @media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
 @media print { .site-header { display: none; } .standard-page main, .has-immersive-hero .hero-grid, .has-immersive-hero .page-hero-inner { padding-top: 0; } }
+
+@media (max-width: 1199px) {
+ .js #navigation { display: flex; visibility: hidden; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity 260ms ease, transform 260ms ease, visibility 260ms; max-height: calc(100dvh - var(--header-height)); overflow-y: auto; padding-inline: var(--gutter); }
+ .js #navigation.is-open { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+}
+.menu-toggle span { position: relative; width: 20px; height: 16px; display: block; margin: auto; border-block: 1.5px solid currentColor; transition: border-color 220ms; }
+.menu-toggle span::before, .menu-toggle span::after { content: ''; position: absolute; left: 0; top: 6px; width: 20px; height: 1.5px; background: currentColor; transition: transform 260ms ease; }
+.menu-toggle[aria-expanded='true'] span { border-color: transparent; }
+.menu-toggle[aria-expanded='true'] span::before { transform: rotate(45deg); }
+.menu-toggle[aria-expanded='true'] span::after { transform: rotate(-45deg); }
