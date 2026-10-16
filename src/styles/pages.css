@@ -74,3 +74,7 @@ textarea { resize: vertical; }
 .landscape-band .container { max-width: 900px; }
 .landscape-band h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1.5rem; }
 .landscape-quote { max-width: 760px; font-style: italic; line-height: 1.65; text-wrap: pretty; }
+
+.landscape-band { overflow: hidden; background-image: none; }
+.landscape-depth { position: absolute; inset: -36px 0; z-index: -2; background: url('/assets/paysage.webp') center bottom / cover no-repeat; transform: translate3d(0, var(--depth-y, 0px), 0); }
+@media (prefers-reduced-motion: reduce) { .landscape-depth { transform: none; } }
