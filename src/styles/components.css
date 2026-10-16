@@ -16,8 +16,8 @@
 .offer-card { background: var(--color-ivory); border-radius: var(--radius-card); overflow: hidden; transition: box-shadow var(--duration-normal), transform var(--duration-normal); display: flex; flex-direction: column; }
 .offer-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-raised); }
 .offer-image { height: 220px; position: relative; overflow: hidden; }
-.offer-image img { transition: transform 900ms var(--ease-standard); }
-.offer-card:hover .offer-image img { transform: scale(1.035); }
+
+
 .offer-number { position: absolute; top: 1rem; left: 1rem; border-radius: 50%; background: var(--color-paper); width: 40px; height: 40px; display: grid; place-items: center; font-size: .85rem; }
 .offer-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 .offer-content .eyebrow { font-size: .65rem; margin-bottom: 1rem; }
@@ -59,3 +59,8 @@
 .review-grid, .post-grid { display: grid; gap: 1.5rem; }
 .review, .post { margin: 0; padding: 2rem; background: var(--color-ivory); border-radius: var(--radius-card); }
 .review blockquote { margin: 0 0 1rem; font-family: var(--font-display); }
+
+.photo-depth { display: block; position: relative; overflow: hidden; height: 100%; border-radius: inherit; }
+.photo-depth img, .offer-image img { transform: translate3d(0, var(--depth-y, 0px), 0) scale(1.18); }
+.introduction-image .photo-depth { border-radius: 8px 8px 38% 8px; }
+@media (prefers-reduced-motion: reduce) { .photo-depth img, .offer-image img { transform: none; } }
