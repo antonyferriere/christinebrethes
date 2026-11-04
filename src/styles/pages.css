@@ -2,7 +2,22 @@
 .approach { background: var(--color-sage); }
 .approach-grid, .introduction, .places { display: grid; gap: 3rem; }
 .approach h2 { font-size: clamp(2.6rem, 4vw, 4rem); }
-.approach-leaf { opacity: .7; width: 80px; height: auto; aspect-ratio: 8 / 9; margin-top: 2.5rem; }
+.approach-grid > div:first-child::after {
+  content: ''; display: block; margin-top: 1rem; aspect-ratio: 4 / 3;
+  border-radius: 8px; background: var(--approach-image) center / cover no-repeat;
+}
+.approach-leaf { display: none; }
+.approach-grid > div:first-child { --approach-image: url('/assets/vase-fleurs-480.webp'); }
+.approach-grid > div:first-child[data-books] { --approach-image: url('/assets/livres-fleurs-480.webp'); }
+@media (min-width: 480px), (min-resolution: 1.5dppx) {
+.approach-grid > div:first-child { --approach-image: url('/assets/vase-fleurs-800.webp'); }
+.approach-grid > div:first-child[data-books] { --approach-image: url('/assets/livres-fleurs-800.webp'); }
+}
+@media (min-width: 1200px), (min-width: 600px) and (min-resolution: 1.5dppx) {
+.approach-grid > div:first-child { --approach-image: url('/assets/vase-fleurs-1200.webp'); }
+.approach-grid > div:first-child[data-books] { --approach-image: url('/assets/livres-fleurs-1200.webp'); }
+}
+
 .approach-copy .lead { color: var(--color-ink); }
 .principles { margin-block: 2rem; }
 .principles article { display: flex; gap: 1.5rem; border-top: 1px solid #555d4840; padding-top: 1.5rem; }
