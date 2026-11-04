@@ -76,5 +76,8 @@ textarea { resize: vertical; }
 .landscape-quote { max-width: 760px; font-style: italic; line-height: 1.65; text-wrap: pretty; }
 
 .landscape-band { overflow: hidden; background-image: none; }
-.landscape-depth { position: absolute; inset: -36px 0; z-index: -2; background: url('/assets/paysage.webp') center bottom / cover no-repeat; transform: translate3d(0, var(--depth-y, 0px), 0); }
+.landscape-depth { position: absolute; inset: 0; z-index: -2; background: url('/assets/soleil-mobile-525.webp') center / cover no-repeat; transform: none; }
 @media (prefers-reduced-motion: reduce) { .landscape-depth { transform: none; } }
+
+@media (min-width: 700px) { .landscape-depth { background-image: url('/assets/soleil-tablette-1000.webp'); } }
+@media (min-width: 1200px) { .landscape-depth { background-image: url('/assets/soleil-large-2100.webp'); } }
