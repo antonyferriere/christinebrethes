@@ -29,9 +29,9 @@
 .introduction-image .photo { max-height: 620px; border-radius: 8px 8px 38% 8px; }
 .image-note { position: absolute; bottom: 2rem; left: 1.5rem; background: var(--color-paper); padding: .75rem 1rem; font: italic 1rem var(--font-display); max-width: calc(100% - 3rem); }
 .introduction .section-heading { margin-bottom: 1.5rem; }
-.landscape-band { background: var(--color-ivory) url('/assets/paysage.webp') center bottom/cover no-repeat; min-height: 420px; display: flex; align-items: flex-start; text-align: center; padding-block: 3rem 10rem; }
+.landscape-band { background: var(--color-ivory) url('/assets/paysage.webp') center bottom/cover no-repeat; display: flex; align-items: flex-start; text-align: center; padding-block: 3rem 10rem; }
 .landscape-band .eyebrow { color: var(--color-primary); }
-.landscape-quote { max-width: 900px; margin: 0 auto; font: clamp(1.3rem, 2.3vw, 2rem)/1.5 var(--font-display); }
+.landscape-quote { max-width: 900px; margin: 0 auto; font: clamp(1.2rem, 1.6vw, 1.45rem)/1.5 var(--font-display); }
 .places { align-items: center; }
 .places-photo { aspect-ratio: 4/4.5; overflow: hidden; border-radius: 42% 42% 8px 8px; }
 .places-photo img { object-position: center; transform: none; }
@@ -84,7 +84,7 @@ textarea { resize: vertical; }
 .booking-panel h2 { font-size: 2rem; }
 .booking-panel > a { display: flex; width: fit-content; margin-bottom: 1rem; }
 
-.landscape-band { position: relative; isolation: isolate; align-items: center; padding-block: clamp(4rem, 8vw, 7rem); }
+.landscape-band { position: relative; isolation: isolate; align-items: center; padding-block: clamp(2.5rem, 5vw, 4rem); }
 .landscape-band::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f3ebe0ed, #f3ebe0c9, #f3ebe0ad); }
 .landscape-band .container { max-width: 900px; }
 .landscape-band h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1.5rem; }
