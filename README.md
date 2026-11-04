@@ -33,11 +33,11 @@ Ouvrir **http://localhost:4173** et laisser le terminal tourner dans VS Code. Le
 
 ## État des conversions
 
-La version publique livrée utilise **LinkedIn comme contact provisoire**. Email, téléphone et URL de réservation ne figurent pas dans la configuration publique, leur transfert ayant été bloqué par le contrôle automatique. Aucune donnée privée des documents de travail n’est incluse dans la documentation.
+Les coordonnées publiques confirmées sont centralisées dans `src/data/site.mjs` : contact@christinebrethes.fr et 07 81 65 96 98.
 
-Le composant de préparation d’email est conservé, mais masqué tant que `site.email` est vide. Il prépare un brouillon dans la messagerie du visiteur ; il n’envoie rien au serveur. Renseigner les coordonnées autorisées dans `src/data/site.mjs` pour l’activer, puis vérifier le parcours.
+La page Contact affiche les liens email et téléphone. Aucun formulaire n’est actuellement rendu. Le module de préparation d’email est conservé dans le code, sans envoi au serveur.
 
-La réservation en ligne n’est pas activée. La page rendez-vous oriente vers LinkedIn sans annoncer de créneau disponible.
+La réservation en ligne n’est pas activée. La page rendez-vous oriente vers la page Contact sans annoncer de créneau disponible.
 
 ## Organisation
 
