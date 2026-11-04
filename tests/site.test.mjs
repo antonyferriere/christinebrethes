@@ -14,7 +14,7 @@ function filesIn(directory) {
   });
 }
 const files = filesIn('dist');
-const pages = files.filter((path) => extname(path) === '.html' && !path.endsWith('/rendez-vous/index.html'));
+const pages = files.filter((path) => extname(path) === '.html' && path !== resolve('dist/rendez-vous/index.html'));
 
 test('toutes les pages ont un titre, un H1 et des métadonnées uniques', () => {
   assert.equal(pages.length, 11);
@@ -175,3 +175,4 @@ test('every generated external web link opens in a new tab', () => {
   }
   assert.ok(count > 0);
 });
+

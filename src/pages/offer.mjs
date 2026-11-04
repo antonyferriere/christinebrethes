@@ -1,8 +1,10 @@
+import { editorialPage } from './editorial.mjs';
 import { site } from '../data/site.mjs';
 import { pageHero } from '../components/page-hero.mjs';
 import { escape, photo, button, list, faq, sectionHeading } from '../components/ui.mjs';
 import { closing, offerCards } from '../components/sections.mjs';
 export function offerPage(offer) {
+  if (offer.sections) return editorialPage(offer);
   const business = offer.slug === 'entreprises-organisations';
   const meditation = offer.slug === 'pleine-conscience';
   const health = offer.slug === 'sante-travail';
