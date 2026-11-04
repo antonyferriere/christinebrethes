@@ -9,6 +9,11 @@
   .introduction { grid-template-columns: .85fr 1fr; }
   .places { grid-template-columns: .8fr 1fr; }
   .places-photo { max-height: 600px; }
+  /* Text defines homepage row heights; photos fill the available column. */
+  .home .approach-grid, .home .introduction, .home .places { align-items: stretch; }
+  .home .approach-visual, .home .introduction-image, .home .places-photo { position: relative; aspect-ratio: auto; max-height: none; min-height: 0; }
+  .home .introduction-image .photo-depth, .home .places-photo .photo-depth { position: absolute; inset: 0; }
+  .home .introduction-image .photo { max-height: none; border-radius: 0; }
   .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
   .closing-grid { grid-template-columns: 1.3fr 1fr; }
   .closing-actions { align-items: flex-end; }
