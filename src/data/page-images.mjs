@@ -29,10 +29,12 @@ export const pageImages = {
   "a-propos": [
     [
       480,
-      640
+      800,
+      1280
     ],
-    640,
-    960
+    1280,
+    1920,
+    "christine-portrait"
   ],
   "entreprises-organisations": [
     [
