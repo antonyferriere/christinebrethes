@@ -48,10 +48,11 @@ export const pageImages = {
     [
       480,
       800,
-      1254
+      1440
     ],
-    1254,
-    1254
+    1448,
+    1086,
+    "fauteuil-lecture"
   ]
 };
 pageImages['pleine-conscience'] = [[480, 800, 1440], 1440, 1080];
