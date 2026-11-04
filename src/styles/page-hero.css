@@ -9,9 +9,8 @@
 .page-hero-copy > :last-child { margin-bottom: 0; }
 .page-hero-inner .breadcrumb { width: 100%; margin: 0 0 2rem; padding: 0; }
 .page-hero-copy .lede { font-size: clamp(1.15rem, 1.6vw, 1.45rem); }
-.portrait-warm { filter: brightness(1.035) sepia(.12) saturate(.93); }
 [data-page-image='a-propos'] .page-hero-background { left: 47%; }
-[data-page-image='a-propos'] .photo { object-position: center 22%; }
+[data-page-image='a-propos'] .photo { object-position: center top; }
 [data-page-image='contact'] .photo { object-position: center top; }
 @media (min-width: 700px) and (max-width: 999px) {
  .page-hero-copy { width: 60%; }
@@ -20,7 +19,7 @@
 @media (max-width: 699px) {
  .page-hero-background, [data-page-image='a-propos'] .page-hero-background { inset: 0 0 auto; height: 380px; }
  .page-hero-background img { object-position: center 30%; }
- [data-page-image='a-propos'] .photo { object-position: center 20%; }
+ [data-page-image='a-propos'] .photo { object-position: center top; }
  .immersive-page-hero::before { background: linear-gradient(180deg, transparent 140px, #f3ebe050 220px, var(--color-ivory) 370px); }
  .page-hero-inner { padding-block: 300px 3rem; }
  .page-hero-copy { width: 100%; }
@@ -31,3 +30,13 @@
 /* Overscan hides the edges of both static and carousel backgrounds. */
 .hero-scenes, .page-hero-background { transform: translate3d(0, var(--depth-y, 0px), 0) scale(1.12); transform-origin: center; }
 @media (prefers-reduced-motion: reduce) { .hero-scenes, .page-hero-background { transform: none; } }
+
+[data-page-image='a-propos'] .page-hero-background {
+  container-type: size;
+  transform: none;
+}
+[data-page-image='a-propos'] .page-hero-background img {
+  /* Keep enough vertical space for the whole face even in a panoramic hero. */
+  max-width: min(100%, 170cqh);
+  margin-inline: auto;
+}
