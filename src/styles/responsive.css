@@ -20,7 +20,7 @@
   .footer-grid { grid-template-columns: 1.25fr 1fr 1fr; }
   .contact-grid { grid-template-columns: .8fr 1.2fr; gap: 5rem; }
   .review-grid, .post-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .landscape-band { min-height: 460px; padding-top: 3rem; background-size: 100% auto; }
+  .landscape-band { padding-top: 3rem; background-size: 100% auto; }
 }
 @media (min-width: 1200px) {
   .header-inner { flex-wrap: nowrap; min-height: 96px; }
