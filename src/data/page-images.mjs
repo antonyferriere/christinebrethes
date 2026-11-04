@@ -16,7 +16,8 @@ export const pageImages = {
       1440
     ],
     1448,
-    1086
+    1086,
+    "papeterie-creative"
   ],
   "sante-travail": [
     [
@@ -25,7 +26,8 @@ export const pageImages = {
       1440
     ],
     1448,
-    1086
+    1086,
+    "carnet-cafe"
   ],
   "a-propos": [
     [
@@ -45,7 +47,7 @@ export const pageImages = {
     ],
     1448,
     1086,
-    "entreprises-organisations-atelier"
+    "bureau-ordinateur"
   ],
   "contact": [
     [
