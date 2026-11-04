@@ -79,5 +79,21 @@ textarea { resize: vertical; }
 .landscape-depth { position: absolute; inset: 0; z-index: -2; background: url('/assets/soleil-mobile-525.webp') center / cover no-repeat; transform: none; }
 @media (prefers-reduced-motion: reduce) { .landscape-depth { transform: none; } }
 
+/* Editorial pages: comfortable reading width and naturally wrapping titles. */
+.editorial-section { max-width: 1000px; }
+.editorial-section h2 { font-size: clamp(1.65rem, 2.3vw, 2.15rem); }
+.editorial-section h3 { font-size: clamp(1.3rem, 1.8vw, 1.6rem); margin-top: 2rem; }
+.editorial-section .prose { max-width: 76ch; }
+.editorial-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.editorial-page .closing-grid { grid-template-columns: 1fr; }
+.editorial-page .closing-actions { align-items: flex-start; }
+.closing h2 { font-size: clamp(1.6rem, 2.2vw, 2.1rem); }
+@media (min-width: 1000px) {
+  .closing-grid { grid-template-columns: 1.9fr 1fr; }
+  .editorial-page [data-page-image='coaching-professionnel'] .page-hero-copy { width: 100%; max-width: none; }
+  .editorial-page [data-page-image='coaching-professionnel'] h1 { font-size: clamp(1.6rem, 2.4vw, 2.15rem); text-wrap: wrap; }
+  .editorial-page [data-page-image='coaching-professionnel'] .page-hero-copy > p { max-width: 650px; }
+}
+
 @media (min-width: 700px) { .landscape-depth { background-image: url('/assets/soleil-tablette-1000.webp'); } }
 @media (min-width: 1200px) { .landscape-depth { background-image: url('/assets/soleil-large-2100.webp'); } }
