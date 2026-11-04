@@ -11,15 +11,15 @@ export function homePage() {
 }
 
 const heroScenes = [
-  ['christine-ecoute', 'Christine en séance'],
-  ['espace-accueil', 'Un espace pour se retrouver'],
-  ['chemin-elan', 'Un chemin vers un nouvel élan'],
-  ['christine-partage', 'Écouter et partager'],
-  ['pleine-conscience', 'Revenir au moment présent'],
-  ['horizon', 'S’ouvrir à de nouvelles perspectives'],
+  ['portrait-tasse', 'Bienvenue avec Christine', 1122, 1402],
+  ['dunes', 'Cheminer vers un nouvel horizon', 1440, 1080],
+  ['pleine-conscience', 'Revenir au moment présent', 1440, 1080],
+  ['atelier-cercle', 'Méditer en groupe avec Christine', 1440, 1080],
+  ['salon', 'Un espace chaleureux', 1440, 1080],
+  ['horizon', 'S’ouvrir à de nouvelles perspectives', 1440, 1080],
 ];
 function heroSlides() {
-  return `<div class="hero-scenes" aria-hidden="true">${heroScenes.map(([name], i) => `<div class="hero-scene${i === 0 ? ' is-active' : ''}"><img ${i === 0 ? 'src' : 'data-src'}="/assets/hero/${name}-1440.webp${name === 'chemin-elan' ? '?v=20261015-coast' : ''}" ${i === 0 ? 'srcset' : 'data-srcset'}="/assets/hero/${name}-480.webp${name === 'chemin-elan' ? '?v=20261015-coast' : ''} 480w, /assets/hero/${name}-800.webp${name === 'chemin-elan' ? '?v=20261015-coast' : ''} 800w, /assets/hero/${name}-1440.webp${name === 'chemin-elan' ? '?v=20261015-coast' : ''} ${name.startsWith('christine') ? 1122 : 1440}w" sizes="(max-width: 699px) 100vw, 65vw" width="${name.startsWith('christine') ? 1122 : 1440}" height="${name.startsWith('christine') ? 1402 : 1080}" alt="" ${i === 0 ? 'fetchpriority="high"' : ''} decoding="async"></div>`).join('')}</div>`;
+  return `<div class="hero-scenes" aria-hidden="true">${heroScenes.map(([name, , width, height], i) => `<div class="hero-scene${i === 0 ? ' is-active' : ''}"><img ${i === 0 ? 'src' : 'data-src'}="/assets/hero/${name}-${width}.webp" ${i === 0 ? 'srcset' : 'data-srcset'}="/assets/hero/${name}-480.webp 480w, /assets/hero/${name}-800.webp 800w, /assets/hero/${name}-${width}.webp ${width}w" sizes="(max-width: 699px) 100vw, 65vw" width="${width}" height="${height}" alt="" ${i === 0 ? 'fetchpriority="high"' : ''} decoding="async"></div>`).join('')}</div>`;
 }
 function heroControls() {
   return `<div class="hero-controls" hidden role="group" aria-label="Images d’ambiance"><div class="hero-dots">${heroScenes.map(([,label],i) => `<button type="button" class="hero-dot" aria-label="Image ${i+1} : ${label}" aria-pressed="${i===0}" data-slide="${i}"><span></span></button>`).join('')}</div></div>`;
