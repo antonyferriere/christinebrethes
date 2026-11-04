@@ -1,4 +1,4 @@
-import { initializeContact } from './contact.js?v=ab149750201d9c07';
+import { initializeContact } from './contact.js?v=d4fe3474d05db15f';
 
 document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
