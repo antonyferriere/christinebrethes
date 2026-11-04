@@ -6,7 +6,8 @@ export const pageImages = {
       1440
     ],
     1448,
-    1086
+    1086,
+    "seance-individuelle"
   ],
   "coaching-professionnel": [
     [
