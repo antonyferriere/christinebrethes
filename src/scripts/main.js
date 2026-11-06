@@ -60,6 +60,8 @@ if (hero) {
   const slides = [...hero.querySelectorAll('.hero-scene')];
   const controls = hero.querySelector('.hero-controls');
   const dots = [...controls.querySelectorAll('[data-slide]')];
+  const pause = controls.querySelector('.hero-pause');
+  let paused = false, hovered = false, focused = false;
   let index = 0, timer, visible = true, request = 0;
   const load = async (i) => {
     const img = slides[i].querySelector('img');
@@ -72,7 +74,7 @@ if (hero) {
   };
   const schedule = () => {
     clearTimeout(timer);
-    if (visible && !document.hidden) timer = setTimeout(() => show((index + 1) % slides.length), 7500);
+    if (visible && !document.hidden && !motion.matches && !paused && !hovered && !focused) timer = setTimeout(() => show((index + 1) % slides.length), 7500);
   };
   const show = async (next) => {
     const token = ++request;
@@ -85,6 +87,17 @@ if (hero) {
     dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
     schedule();
   };
+  pause.addEventListener('click', () => {
+    paused = !paused;
+    pause.setAttribute('aria-pressed', String(paused));
+    pause.textContent = paused ? 'Reprendre le diaporama' : 'Mettre le diaporama en pause';
+    schedule();
+  });
+  hero.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+  hero.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+  hero.addEventListener('focusin', () => { focused = true; schedule(); });
+  hero.addEventListener('focusout', event => { focused = hero.contains(event.relatedTarget); schedule(); });
+  motion.addEventListener('change', () => { ++request; schedule(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
   document.addEventListener('visibilitychange', schedule);
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; schedule(); }).observe(hero);
