@@ -14,7 +14,7 @@ const heroScenes = [
   ['portrait-tasse', 'Bienvenue avec Christine', 1122, 1402],
   ['dunes', 'Cheminer vers un nouvel horizon', 1440, 1080],
   ['pleine-conscience', 'Revenir au moment présent', 1440, 1080],
-  ['atelier-cercle', 'Méditer en groupe avec Christine', 1440, 1080],
+  ['espace-atelier', 'Un espace accueillant pour les ateliers en groupe', 1440, 1080],
   ['salon', 'Un espace chaleureux', 1440, 1080],
   ['horizon', 'S’ouvrir à de nouvelles perspectives', 1440, 1080],
 ];
