@@ -4,15 +4,11 @@
 .approach h2 { font-size: clamp(2.6rem, 4vw, 4rem); }
 .approach-visual { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px 38% 8px 24%; --approach-image: url('/assets/vase-fleurs-480.webp'); }
 .approach-depth { position: absolute; inset: -18px 0; background: var(--approach-image) center / cover no-repeat; transform: translate3d(0, var(--depth-y, 0px), 0); }
-.approach-visual .button { position: absolute; bottom: 1.5rem; right: 1.5rem; max-width: calc(100% - 3rem); white-space: normal; background: var(--color-paper); }
-.approach-visual[data-books] { --approach-image: url('/assets/livres-fleurs-480.webp'); }
 @media (min-width: 480px), (min-resolution: 1.5dppx) {
   .approach-visual { --approach-image: url('/assets/vase-fleurs-800.webp'); }
-  .approach-visual[data-books] { --approach-image: url('/assets/livres-fleurs-800.webp'); }
 }
 @media (min-width: 1200px), (min-width: 600px) and (min-resolution: 1.5dppx) {
   .approach-visual { --approach-image: url('/assets/vase-fleurs-1200.webp'); }
-  .approach-visual[data-books] { --approach-image: url('/assets/livres-fleurs-1200.webp'); }
 }
 @media (prefers-reduced-motion: reduce) { .approach-depth { transform: none; } }
 
