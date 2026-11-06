@@ -1,3 +1,4 @@
+import { privacyConfig } from '../data/privacy-config.mjs';
 import { site } from '../data/site.mjs';
 
 export function legalPage() {
@@ -19,11 +20,15 @@ export function legalPage() {
 }
 
 export function privacyPage() {
+  const analytics = Boolean(privacyConfig(process.env, site.productionReady || process.argv.includes('--production') || process.env.NODE_ENV === 'production').id);
   return `<section class="container page-hero compact"><p class="eyebrow">Respecter votre confiance</p><h1>Confidentialité</h1></section>
 <div class="container reading-section legal">
   <p class="notice">Version de présentation. Les informations relatives au traitement des données et des échanges restent à compléter et à valider avant publication.</p>
   <h2>Une consultation sans suivi publicitaire</h2>
-  <p>Cette version du site n’utilise ni traceur publicitaire, ni outil de mesure d’audience, ni cookie applicatif. Les polices et images sont hébergées avec le site. Aucun contenu LinkedIn ou Crenolibre n’est chargé automatiquement.</p>
+  <p>${analytics ? 'Google Analytics peut mesurer la fréquentation des pages et les clics de contact uniquement après votre accord. Aucun suivi publicitaire n’est activé.' : 'Aucun outil facultatif de mesure d’audience ni traceur publicitaire n’est actif.'} Les polices et images sont hébergées avec le site. Aucun contenu LinkedIn ou Crenolibre n’est chargé automatiquement.</p>
+  <h2>Vos choix de cookies</h2>
+  <p>La mesure d’audience est refusée par défaut. Le choix est enregistré localement pendant six mois, que vous acceptiez ou refusiez. Le lien « Gestion des cookies » en pied de page permet de modifier ou retirer votre accord. Le refus ne limite pas l’accès au site. En cas de retrait, le suivi est arrêté et les cookies Analytics accessibles sont supprimés.</p>
+  ${analytics ? '<p>Google Analytics (Google Ireland Limited) utilise notamment des cookies _ga et _ga_… pour mesurer les visites. Les événements du site excluent les paramètres d’URL, les coordonnées et le contenu de vos échanges. La durée des cookies est limitée à 180 jours ; le choix de consentement est renouvelé à six mois. Le service reçoit nécessairement des informations techniques de connexion. Les paramètres de conservation dans la propriété Analytics, les destinataires et les garanties applicables aux éventuels transferts hors de l’Union européenne doivent être validés avant activation publique.</p>' : ''}
   <h2>Hébergement</h2>
   <p>Le site est hébergé par OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. Les éventuelles données des journaux techniques, leurs finalités, leurs destinataires et leurs durées de conservation restent à confirmer.</p>
   <h2>Le contact par email</h2>
@@ -40,6 +45,6 @@ export function privacyPage() {
   <h2>Réclamation auprès de la CNIL</h2>
   <p>Si vous estimez que le traitement de vos données ne respecte pas la réglementation, vous pouvez introduire une réclamation auprès de la Commission nationale de l’informatique et des libertés (CNIL), via <a href="https://www.cnil.fr/fr/plaintes">son service de réclamation</a>.</p>
   <h2>Évolutions du site</h2>
-  <p>La mise en place d’un formulaire, d’une mesure d’audience ou d’un contenu intégré nécessitera une mise à jour de cette page et, si nécessaire, une gestion des choix de confidentialité.</p>
+  <p>Toute évolution des traitements, notamment un formulaire ou un contenu intégré, nécessitera une mise à jour de cette page et, si nécessaire, une gestion des choix de confidentialité.</p>
 </div>`;
 }
