@@ -1,3 +1,4 @@
+import './consent-ui.js';
 import { initializeContact } from './contact.js';
 
 document.documentElement.classList.add('js');
