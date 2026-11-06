@@ -1,6 +1,7 @@
+import { privacyConfig } from '../src/data/privacy-config.mjs';
 import { accompanimentsPage } from '../src/pages/accompaniments.mjs';
 import { pageHero } from '../src/components/page-hero.mjs';
-import { mkdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,8 @@ if (process.argv.includes('--production') && !site.productionReady) {
   throw new Error('Publication bloquée : renseigner les validations dans docs/validation-production.md, puis activer productionReady.');
 }
 // Une nouvelle URL invalide aussi les anciens caches qui ignoraient no-cache.
-const browserScripts = await Promise.all(['main.js', 'contact.js'].map(name => readFile(resolve(root, 'src/scripts', name), 'utf8')));
+const scriptNames = ['main.js', 'contact.js', ...(await readdir(resolve(root, 'src/scripts'))).filter(name => name.endsWith('.js') && !['main.js', 'contact.js'].includes(name)).sort()];
+const browserScripts = await Promise.all(scriptNames.map(name => readFile(resolve(root, 'src/scripts', name), 'utf8')));
 const css = await Promise.all(['tokens', 'base', 'components', 'pages', 'responsive', 'hero', 'page-hero', 'navigation'].map(name => readFile(resolve(root, `src/styles/${name}.css`), 'utf8')));
 const assetVersion = createHash('sha256').update(JSON.stringify([...browserScripts, ...css])).digest('hex').slice(0, 16);
 const pages = [
@@ -36,6 +38,11 @@ const pages = [
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(resolve(root, 'public'), dist, { recursive: true });
+if (privacyConfig(process.env, site.productionReady || process.argv.includes('--production') || process.env.NODE_ENV === 'production').id) {
+  const apache = await readFile(resolve(dist, '.htaccess'), 'utf8');
+  await writeFile(resolve(dist, '.htaccess'), apache.replace("script-src 'self'", "script-src 'self' https://www.googletagmanager.com").replace("connect-src 'none'", "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com"));
+}
+
 for (const page of pages) {
   const directory = resolve(dist, `.${page.path}`);
   await mkdir(directory, { recursive: true });
@@ -45,7 +52,9 @@ await writeFile(resolve(dist, '404.html'), layout({ assetVersion, path: '/404/',
 await mkdir(resolve(dist, 'styles'), { recursive: true });
 await writeFile(resolve(dist, 'styles/site.css'), css.join('\n'));
 await cp(resolve(root, 'src/scripts'), resolve(dist, 'scripts'), { recursive: true });
-await writeFile(resolve(dist, 'scripts/main.js'), browserScripts[0].replace("'./contact.js'", `'./contact.js?v=${assetVersion}'`));
+for (let index = 0; index < scriptNames.length; index++) {
+  await writeFile(resolve(dist, 'scripts', scriptNames[index]), browserScripts[index].replace(/(['"])\.\/([a-z-]+\.js)\1/g, (_, quote, name) => `${quote}./${name}?v=${assetVersion}${quote}`));
+}
 await writeFile(resolve(dist, 'robots.txt'), site.productionReady ? `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
 await writeFile(resolve(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(({path})=>`<url><loc>${site.domain}${path}</loc></url>`).join('')}</urlset>\n`);
 console.log(`${pages.length} pages + page 404 générées dans dist/ — ${site.productionReady ? 'production' : 'présentation non indexable'}.`);
