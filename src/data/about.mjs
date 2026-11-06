@@ -2,6 +2,7 @@
 export default {
   "slug": "a-propos",
   "title": "Comprendre les parcours, accompagner les transitions, cultiver l'équilibre.",
+  "heroLines": ["Comprendre les parcours", "Accompagner les transitions", "Cultiver l’équilibre"],
   "eyebrow": "À propos",
   "summary": "Une expérience du monde professionnel, une attention à la personne dans sa globalité.",
   "heroParagraphs": [
