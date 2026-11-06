@@ -28,5 +28,5 @@ export function accompanimentsPage() {
   return `${pageHero('accompagnements', '<h1>Votre parcours est unique.<br><em>Votre accompagnement aussi.</em></h1><p class="lede">Une approche intégrative, personnalisée et sur mesure, qui relie santé, travail et équilibre de vie pour accompagner vos transitions, développer vos ressources et ouvrir de nouvelles perspectives.</p>')}<section class="container section editorial-section"><p class="eyebrow">Quatre accompagnements</p><h2>Quel nouvel élan souhaitez-vous donner à vos projets ?</h2></section>${offers.map((offer, index) => {
     const preview = previews[offer.slug];
     return `<section class="section${index % 2 ? ' tinted' : ''}"><div class="container editorial-section"><p class="eyebrow">0${index + 1}</p><h2>${escape(preview?.title || offer.title)}</h2>${preview ? `<h3>${escape(preview.heading)}</h3>` : ''}<div class="detail-grid"><div>${pageImage(offer.slug, { card: true })}</div><div>${(preview?.paragraphs || [offer.summary]).map(text => `<p>${escape(text)}</p>`).join('')}${button('Découvrir cet accompagnement', offerPath(offer), 'button-outline')}</div></div></div></section>`;
-  }).join('')}${closing()}`;
+  }).join('')}`;
 }
