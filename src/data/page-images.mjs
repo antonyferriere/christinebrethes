@@ -3,11 +3,11 @@ export const pageImages = {
     [
       480,
       800,
-      1440
+      1254
     ],
-    1448,
-    1086,
-    "seance-individuelle"
+    1254,
+    1254,
+    "coaching-bilan-professionnel-en-duo"
   ],
   "coaching-professionnel": [
     [
