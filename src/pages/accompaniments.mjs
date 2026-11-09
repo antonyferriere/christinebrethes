@@ -6,7 +6,7 @@ import { closing } from '../components/sections.mjs';
 
 const previews = {
   'coaching-professionnel': {
-    title: 'Coaching professionnel & transitions de carrière',
+    title: 'Coaching & transitions de carrière',
     heading: 'Redonner une direction à votre parcours',
     paragraphs: [
       'Une recherche d’emploi qui se prolonge, une envie de reconversion, un poste dans lequel vous ne vous reconnaissez plus…',
