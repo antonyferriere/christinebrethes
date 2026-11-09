@@ -17,4 +17,5 @@ export function offerPage(offer) {
   <section class="container section faq-section">${sectionHeading('Vos questions', 'Quelques repères avant de commencer.')}${faq(offer.faq)}</section>
   ${health || meditation ? `<aside class="container care-note">L’accompagnement proposé ne remplace pas un suivi médical ou psychologique. Il s’inscrit, lorsque cela est pertinent, en complément du parcours de soins.</aside>` : business ? `<aside class="container care-note">Les ressources individuelles complètent les actions sur l’organisation et les conditions de travail. Elles ne se substituent pas à une démarche de prévention des risques professionnels.</aside>` : ''}
   ${closing()}`;
+  <section class="container section related">${sectionHeading('Explorer aussi', 'D’autres points d’appui.')}${offerCards(offer.slug)}</section>`;
 }
