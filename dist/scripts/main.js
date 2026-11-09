@@ -1,4 +1,6 @@
-import { initializeContact } from './contact.js?v=d4fe3474d05db15f';
+import './consent-ui.js?v=91891a25b54af33a';
+import './analytics.js?v=91891a25b54af33a';
+import { initializeContact } from './contact.js?v=91891a25b54af33a';
 
 document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
@@ -60,6 +62,8 @@ if (hero) {
   const slides = [...hero.querySelectorAll('.hero-scene')];
   const controls = hero.querySelector('.hero-controls');
   const dots = [...controls.querySelectorAll('[data-slide]')];
+  const pause = controls.querySelector('.hero-pause');
+  let paused = false, hovered = false, focused = false;
   let index = 0, timer, visible = true, request = 0;
   const load = async (i) => {
     const img = slides[i].querySelector('img');
@@ -72,7 +76,7 @@ if (hero) {
   };
   const schedule = () => {
     clearTimeout(timer);
-    if (visible && !document.hidden) timer = setTimeout(() => show((index + 1) % slides.length), 7500);
+    if (visible && !document.hidden && !motion.matches && !paused && !hovered && !focused) timer = setTimeout(() => show((index + 1) % slides.length), 7500);
   };
   const show = async (next) => {
     const token = ++request;
@@ -85,6 +89,17 @@ if (hero) {
     dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
     schedule();
   };
+  pause.addEventListener('click', () => {
+    paused = !paused;
+    pause.setAttribute('aria-pressed', String(paused));
+    pause.textContent = paused ? 'Reprendre le diaporama' : 'Mettre le diaporama en pause';
+    schedule();
+  });
+  hero.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+  hero.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+  hero.addEventListener('focusin', () => { focused = true; schedule(); });
+  hero.addEventListener('focusout', event => { focused = hero.contains(event.relatedTarget); schedule(); });
+  motion.addEventListener('change', () => { ++request; schedule(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
   document.addEventListener('visibilitychange', schedule);
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; schedule(); }).observe(hero);
@@ -93,13 +108,13 @@ if (hero) {
 }
 
 // A single animation frame per scroll; reduced motion keeps every image still.
-const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .photo-depth img, .offer-image img')];
+const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img')];
 let depthFrame = 0;
 function paintDepth() {
   depthFrame = 0;
   depthLayers.forEach(layer => {
     const rect = layer.parentElement.getBoundingClientRect();
-    const contentPhoto = layer.matches(".photo-depth img, .offer-image img");
+    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth");
     const distance = contentPhoto || layer.matches(".landscape-depth") ? (window.innerHeight - rect.height) / 2 - rect.top : -rect.top;
     const limit = contentPhoto ? 18 : 36;
     const offset = motion.matches ? 0 : Math.min(limit, Math.max(-limit, distance * .09));
@@ -122,3 +137,4 @@ measureSiteHeader();
 const updateHeaderSurface = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 16);
 window.addEventListener('scroll', updateHeaderSurface, { passive: true });
 updateHeaderSurface();
+
