@@ -111,6 +111,5 @@ textarea { resize: vertical; }
 @media (min-width: 700px) { .landscape-depth { background-image: url('/assets/soleil-tablette-1000.webp'); } }
 @media (min-width: 1200px) { .landscape-depth { background-image: url('/assets/soleil-large-2100.webp'); } }
 
-.home .places-photo img { object-position: center top; }
 
 .landscape-quote { color: var(--color-forest); }
