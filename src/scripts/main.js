@@ -1,3 +1,4 @@
+import './consent-ui.js';
 import './analytics.js';
 import { initializeContact } from './contact.js';
 

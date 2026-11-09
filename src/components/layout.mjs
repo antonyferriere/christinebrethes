@@ -19,7 +19,7 @@ function footer() {
   return `<footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="/">Christine Brethes</a><p>Coach santé-travail<br>Instructrice méditation de pleine conscience</p><p class="signature">${site.tagline}</p></div>
   <div><h2>Vous accompagner</h2><ul>${offers.map((o) => `<li><a href="${offerPath(o)}">${escape(o.title)}</a></li>`).join('')}</ul></div>
   <div><h2>Restons en lien</h2>${contactDetails()}</div></div>
-  <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Christine BRETHES</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a></div></div></footer>`;
+  <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Christine BRETHES</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><button type="button" class="cookie-settings" data-cookie-settings>Gestion des cookies</button></div></div></footer>`;
 }
 export function layout({ title, description, path, body, home = false, assetVersion = '' }) {
   const privacy = privacyConfig(process.env, site.productionReady || process.argv.includes('--production') || process.env.NODE_ENV === 'production');
