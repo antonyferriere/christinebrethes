@@ -91,8 +91,8 @@ if (hero) {
   };
   pause.addEventListener('click', () => {
     paused = !paused;
-    pause.setAttribute('aria-pressed', String(paused));
-    pause.textContent = paused ? 'Reprendre le diaporama' : 'Mettre le diaporama en pause';
+    pause.classList.toggle('is-paused', paused);
+    pause.setAttribute('aria-label', paused ? 'Reprendre le diaporama' : 'Mettre le diaporama en pause');
     schedule();
   });
   hero.addEventListener('mouseenter', () => { hovered = true; schedule(); });
