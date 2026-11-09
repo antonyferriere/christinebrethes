@@ -1,0 +1,5 @@
+import { escape } from './ui.mjs';
+import { scientificReferences } from '../data/scientific-references.mjs';
+export function scientificReferencesSection() {
+ return `<section class="section container scientific-references"><p class="eyebrow">Des repères pour comprendre</p><h2>Ce que nous apprend la recherche</h2><p>Ces publications éclairent les possibilités et les limites des programmes de pleine conscience. Elles ne constituent ni une promesse de résultat individuel ni une validation clinique de tous les accompagnements proposés.</p><ol>${scientificReferences.map(r=>`<li><article><h3 lang="en">${escape(r.title)}</h3><p>${escape(r.authors)} · ${r.year} · <cite>${escape(r.journal)}</cite></p><p>${escape(r.summary)}</p><a class="text-link" href="https://doi.org/${r.doi}">Consulter la publication <span class="sr-only"> : ${escape(r.title)}</span> ↗</a></article></li>`).join('')}</ol><p class="care-note">La pleine conscience ne remplace pas un suivi médical ou psychologique. Les résultats cités ne permettent pas de promettre une guérison, une transformation du cerveau ou un renforcement général de l’immunité.</p></section>`;
+}

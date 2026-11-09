@@ -1,3 +1,4 @@
+import { scientificReferencesSection } from '../components/scientific-references.mjs';
 import { pageHero } from '../components/page-hero.mjs';
 import { escape, button, list, faq } from '../components/ui.mjs';
 import { site } from '../data/site.mjs';
