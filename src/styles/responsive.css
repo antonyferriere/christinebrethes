@@ -48,9 +48,6 @@
   .reveal-ready { opacity: 1; transform: none; }
 }
 
-@media (min-width: 840px) {
-  .home .places-photo { align-self: start; aspect-ratio: 5 / 3; }
-}
 @media (max-width: 839px) {
   .home .places-photo { aspect-ratio: 5 / 3; }
   .home .introduction { grid-template-columns: 1fr .85fr; }
