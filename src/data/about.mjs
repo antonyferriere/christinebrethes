@@ -6,7 +6,7 @@ export default {
   "eyebrow": "À propos",
   "summary": "Une expérience du monde professionnel, une attention à la personne dans sa globalité.",
   "heroParagraphs": [
-    "Je suis Christine Brethes, coach professionnelle certifiée, consultante en transition professionnelle et instructrice certifiée en méditation de pleine conscience."
+    "Je suis Christine Brethes, coach professionnelle certifiée, consultante en transition professionnelle et instructrice certifiée méditation de pleine conscience."
   ],
   "heroActions": [
     {
@@ -59,7 +59,7 @@ export default {
             "Mon parcours m'a également conduite à explorer les liens entre santé, travail, stress et équilibre de vie.",
             "Comment continuer à avancer lorsque la santé ou l'épuisement modifient nos repères ? Comment retrouver une capacité d'action sans s'imposer de nouvelles exigences de performance ?",
             "Ces questionnements ont nourri mon intérêt pour la méditation de pleine conscience, les neurosciences et les mécanismes du stress.",
-            "J'ai ainsi obtenu ma certification d'instructrice en méditation de pleine conscience auprès d'Umenity.",
+            "J'ai ainsi obtenu ma certification d'instructrice méditation de pleine conscience auprès d'Umenity.",
             "Également responsable des groupes de parole et Coach accompagnatrice des patients au sein d’une association dans la recherche médicale-ESPOIRS, je réalise des accompagnements sur l’axe santé travail.",
             "Cette approche vient aujourd'hui enrichir mes accompagnements, en portant une attention particulière aux dimensions physiques, émotionnelles et professionnelles de l'expérience humaine."
           ]
@@ -116,7 +116,7 @@ export default {
           ]
         },
         {
-          "title": "Instructrice certifiée en méditation de pleine conscience — Umenity",
+          "title": "Instructrice certifiée méditation de pleine conscience — Umenity",
           "paragraphs": [
             "Formation et certification à l'animation de pratiques et d'ateliers de méditation de pleine conscience."
           ]
