@@ -123,36 +123,3 @@ const updateHeaderSurface = () => siteHeader.classList.toggle('is-scrolled', win
 window.addEventListener('scroll', updateHeaderSurface, { passive: true });
 updateHeaderSurface();
 
-// Temporary two-image preview for the approach section.
-const gallery = document.querySelector('.approach-visual');
-if (gallery) {
-  const button = document.createElement('button');
-  button.className = 'button button-outline';
-  button.type = 'button';
-  button.textContent = 'Voir l’autre illustration';
-  gallery.append(button);
-  let timer;
-  let inView = false;
-  let manual = false;
-  function advance() {
-    const books = gallery.toggleAttribute('data-books');
-    button.setAttribute('aria-label', books ? 'Afficher le vase de fleurs séchées' : 'Afficher les livres et les fleurs séchées');
-  }
-  function scheduleGallery() {
-    clearInterval(timer);
-    if (inView && !document.hidden && !motion.matches && !manual) {
-      timer = setInterval(advance, 7500);
-    }
-  }
-  button.addEventListener('click', () => {
-    manual = true;
-    scheduleGallery();
-    advance();
-  });
-  new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting;
-    scheduleGallery();
-  }).observe(gallery);
-  document.addEventListener('visibilitychange', scheduleGallery);
-  motion.addEventListener('change', scheduleGallery);
-}
