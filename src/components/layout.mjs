@@ -1,3 +1,4 @@
+import { closing } from './sections.mjs';
 import { externalLinks } from './external-links.mjs';
 import { contactDetails } from './contact-details.mjs';
 import { site, navigation, offerPath } from '../data/site.mjs';
@@ -24,5 +25,5 @@ export function layout({ title, description, path, body, home = false, assetVers
   return externalLinks(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | Christine BRETHES</title><meta name="description" content="${escape(description)}"><meta name="robots" content="${site.productionReady ? 'index, follow' : 'noindex, nofollow'}">${canonical}
   <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}">${site.productionReady ? `<meta property="og:url" content="${site.domain}${path}"><meta property="og:image" content="${site.domain}/assets/christine-800.webp">` : ''}
   <meta name="theme-color" content="#f3ebe0"><link rel="icon" href="/assets/favicon.png"><link rel="preload" href="/fonts/lora-400.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/source-sans-3-400.woff" as="font" type="font/woff" crossorigin><link rel="stylesheet" href="/styles/site.css?v=${escape(assetVersion)}"><script type="module" src="/scripts/main.js?v=${escape(assetVersion)}"></script><script type="application/ld+json">${JSON.stringify(schema)}</script></head>
-  <body class="${home ? 'home ' : ''}${home || body.includes('immersive-page-hero') ? 'has-immersive-hero' : 'standard-page'}">${header(path)}<main id="contenu" tabindex="-1">${body}</main>${footer()}</body></html>`, site.domain);
+  <body class="${home ? 'home ' : ''}${home || body.includes('immersive-page-hero') ? 'has-immersive-hero' : 'standard-page'}">${header(path)}<main id="contenu" tabindex="-1">${body}${path === "/contact/" ? "" : closing()}</main>${footer()}</body></html>`, site.domain);
 }
