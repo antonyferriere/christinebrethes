@@ -23,7 +23,7 @@ export default {
         "Charge mentale, transformations organisationnelles, nouvelles attentes des collaborateurs, évolution des pratiques managériales…",
         "Les défis du monde professionnel invitent à repenser notre rapport au travail, aux autres et à nous-mêmes.",
         "Je suis convaincue qu'une organisation attentive aux personnes, aux relations et aux conditions de travail favorise un environnement plus sain, plus coopératif et durable.",
-        "Coach professionnelle certifiée, consultante en accompagnement des carrières et instructrice en méditation de pleine conscience, je propose une approche qui associe connaissance du monde de l'entreprise, compréhension des mécanismes humains et outils concrets.",
+        "Coach professionnelle certifiée, consultante en accompagnement des carrières et instructrice méditation de pleine conscience, je propose une approche qui associe connaissance du monde de l'entreprise, compréhension des mécanismes humains et outils concrets.",
         "Chaque intervention est construite avec vous, en fonction de vos enjeux, de votre culture et des besoins de vos équipes."
       ]
     },
@@ -93,7 +93,7 @@ export default {
           "paragraphs": [
             "Développer l'attention, la présence et la qualité des relations.",
             "La pleine conscience propose une autre manière d'aborder le quotidien professionnel : apprendre à porter attention à son expérience, mieux reconnaître les signaux de stress et développer une relation plus consciente à soi et aux autres.",
-            "Instructrice certifiée en méditation de pleine conscience, je propose des ateliers accessibles, associant apports scientifiques, échanges et expérimentations pratiques.",
+            "Instructrice certifiée méditation de pleine conscience, je propose des ateliers accessibles, associant apports scientifiques, échanges et expérimentations pratiques.",
             "Thématiques possibles :"
           ],
           "items": [
@@ -244,6 +244,7 @@ export default {
     },
     {
       "eyebrow": "Vos questions",
+      "enabled": false,
       "title": "Quelques repères avant de commencer.",
       "paragraphs": [],
       "faq": [

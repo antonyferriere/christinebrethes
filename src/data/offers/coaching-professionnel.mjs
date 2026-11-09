@@ -1,7 +1,7 @@
 // Texte fourni par Christine : Corrections autres onglets site internet.odt.
 export default {
   "slug": "coaching-professionnel",
-  "title": "Coaching professionnel & transitions de carrière",
+  "title": "Coaching & transitions de carrière",
   "eyebrow": "Votre parcours, votre prochain pas",
   "summary": "Clarifier votre projet, révéler vos compétences et construire la suite de votre vie professionnelle.",
   "heroParagraphs": [
