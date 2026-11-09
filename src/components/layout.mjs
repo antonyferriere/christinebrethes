@@ -1,3 +1,4 @@
+import { needsSection } from './sections.mjs';
 import { closing } from './sections.mjs';
 import { externalLinks } from './external-links.mjs';
 import { contactDetails } from './contact-details.mjs';
@@ -20,6 +21,12 @@ function footer() {
   <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Christine BRETHES</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a></div></div></footer>`;
 }
 export function layout({ title, description, path, body, home = false, assetVersion = '' }) {
+  if (path !== '/') {
+    // On branches with per-page closings, insert before it. After HOME-10,
+    // the layout appends the common closing after this body automatically.
+    const marker = '<section class="closing">';
+    body = body.includes(marker) ? body.replace(marker, needsSection() + marker) : body + needsSection();
+  }
   const canonical = site.productionReady ? `<link rel="canonical" href="${site.domain}${path}">` : '';
   const schema = { '@context': 'https://schema.org', '@type': 'Person', name: site.name, jobTitle: 'Coach santé-travail et instructrice méditation de pleine conscience', sameAs: [site.linkedin] };
   return externalLinks(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | Christine BRETHES</title><meta name="description" content="${escape(description)}"><meta name="robots" content="${site.productionReady ? 'index, follow' : 'noindex, nofollow'}">${canonical}
