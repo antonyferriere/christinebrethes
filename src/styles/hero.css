@@ -62,7 +62,4 @@
 }
 .hero-scene:first-child img { object-position: center 15%; }
 
-.hero-pause .play-icon, .hero-pause.is-paused .pause-icon { display: none; }
-.hero-pause.is-paused .play-icon { display: inline; }
-.hero-pause { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--color-outline); border-radius: var(--radius-pill); background: var(--color-paper); color: var(--color-ink); cursor: pointer; }
 .hero-controls { flex-wrap: wrap; max-width: calc(100% - 2rem); }
