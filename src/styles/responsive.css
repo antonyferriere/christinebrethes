@@ -53,4 +53,10 @@
 }
 @media (max-width: 839px) {
   .home .places-photo { aspect-ratio: 5 / 3; }
+  .home .introduction { grid-template-columns: 1fr .85fr; }
+  .home .introduction > .introduction-image { grid-column: 2; grid-row: 1; }
+  .home .introduction > div:last-child { grid-column: 1; grid-row: 1; }
+}
+@media (min-width: 1200px) {
+  .home .approach-grid { grid-template-columns: .8fr 1.2fr; gap: 3rem; }
 }
