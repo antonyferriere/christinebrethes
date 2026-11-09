@@ -35,6 +35,9 @@ jobs:
 
       # Le site n'a aucune dépendance npm : aucun npm ci ni cache npm nécessaires.
       - name: Build and test site
+        env:
+          GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+          NODE_ENV: production
         run: npm run check
 
       - name: Verify deployment files
