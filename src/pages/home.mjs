@@ -22,5 +22,5 @@ function heroSlides() {
   return `<div class="hero-scenes" aria-hidden="true">${heroScenes.map(([name, , width, height], i) => `<div class="hero-scene${i === 0 ? ' is-active' : ''}"><img ${i === 0 ? 'src' : 'data-src'}="/assets/hero/${name}-${width}.webp" ${i === 0 ? 'srcset' : 'data-srcset'}="/assets/hero/${name}-480.webp 480w, /assets/hero/${name}-800.webp 800w, /assets/hero/${name}-${width}.webp ${width}w" sizes="(max-width: 699px) 100vw, 65vw" width="${width}" height="${height}" alt="" ${i === 0 ? 'fetchpriority="high"' : ''} decoding="async"></div>`).join('')}</div>`;
 }
 function heroControls() {
-  return `<div class="hero-controls" hidden role="group" aria-label="Images d’ambiance"><div class="hero-dots">${heroScenes.map(([,label],i) => `<button type="button" class="hero-dot" aria-label="Image ${i+1} : ${label}" aria-pressed="${i===0}" data-slide="${i}"><span></span></button>`).join('')}</div></div>`;
+  return `<div class="hero-controls" hidden role="group" aria-label="Images d’ambiance"><button class="hero-pause" type="button" aria-pressed="false">Mettre le diaporama en pause</button><div class="hero-dots">${heroScenes.map(([,label],i) => `<button type="button" class="hero-dot" aria-label="Image ${i+1} : ${label}" aria-pressed="${i===0}" data-slide="${i}"><span></span></button>`).join('')}</div></div>`;
 }
