@@ -113,4 +113,4 @@ textarea { resize: vertical; }
 
 .home .places-photo img { object-position: center top; }
 
-.landscape-quote { background: var(--color-sage); color: var(--color-ink); padding: clamp(1.25rem, 3vw, 2rem); border-radius: var(--radius-card); border-inline-start: .25rem solid var(--color-forest); }
+.landscape-quote { color: var(--color-forest); }
