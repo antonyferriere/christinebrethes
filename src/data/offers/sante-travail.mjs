@@ -22,7 +22,7 @@ export default {
         "La maladie, la fatigue persistante ou l'épuisement professionnel ne touchent pas seulement le corps. Ils peuvent aussi modifier notre identité professionnelle, notre confiance, nos priorités et notre façon d'envisager l'avenir.",
         "Parfois, il devient difficile de retrouver ses repères. On aimerait reprendre comme avant, mais quelque chose a changé. Ou l'on continue à travailler, au prix d'efforts devenus trop importants.",
         "Et si l'enjeu n'était pas de retrouver à tout prix son fonctionnement d'avant, mais de construire un nouvel équilibre ?",
-        "Coach professionnelle certifiée et instructrice en méditation de pleine conscience, je propose un accompagnement qui prend en compte la personne dans sa globalité : son parcours, sa santé, son environnement professionnel, ses ressources et ses aspirations.",
+        "Coach professionnelle certifiée et instructrice méditation de pleine conscience, je propose un accompagnement qui prend en compte la personne dans sa globalité : son parcours, sa santé, son environnement professionnel, ses ressources et ses aspirations.",
         "Un espace d'écoute, de réflexion et d'action pour retrouver progressivement confiance et capacité à faire des choix."
       ]
     },
