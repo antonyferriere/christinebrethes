@@ -1,3 +1,4 @@
+import { privacyConfig } from '../src/data/privacy-config.mjs';
 import { accompanimentsPage } from '../src/pages/accompaniments.mjs';
 import { pageHero } from '../src/components/page-hero.mjs';
 import { mkdir, readdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
@@ -37,6 +38,11 @@ const pages = [
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(resolve(root, 'public'), dist, { recursive: true });
+if (privacyConfig(process.env, site.productionReady || process.argv.includes('--production') || process.env.NODE_ENV === 'production').id) {
+  const apache = await readFile(resolve(dist, '.htaccess'), 'utf8');
+  await writeFile(resolve(dist, '.htaccess'), apache.replace("script-src 'self'", "script-src 'self' https://www.googletagmanager.com").replace("connect-src 'none'", "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com"));
+}
+
 for (const page of pages) {
   const directory = resolve(dist, `.${page.path}`);
   await mkdir(directory, { recursive: true });

@@ -1,10 +1,16 @@
+import { referencesSection } from '../components/references.mjs';
 import { editorialPage } from './editorial.mjs';
 import { site } from '../data/site.mjs';
 import { pageHero } from '../components/page-hero.mjs';
 import { escape, photo, button, list, faq, sectionHeading } from '../components/ui.mjs';
 import { closing, offerCards } from '../components/sections.mjs';
 export function offerPage(offer) {
-  if (offer.sections) return editorialPage(offer);
+  if (offer.sections) {
+    const body = editorialPage(offer);
+    if (offer.slug !== 'entreprises-organisations') return body;
+    const marker = '<section class="closing">';
+    return body.includes(marker) ? body.replace(marker, referencesSection() + marker) : body + referencesSection();
+  }
   const business = offer.slug === 'entreprises-organisations';
   const meditation = offer.slug === 'pleine-conscience';
   const health = offer.slug === 'sante-travail';
@@ -16,5 +22,6 @@ export function offerPage(offer) {
   ${meditation ? `<section class="container reading-section"><h2>Une pratique laïque, accessible et progressive</h2><p>Il ne s’agit pas de faire le vide ou de réussir un exercice. Les séances permettent d’explorer l’attention portée à l’expérience présente, puis d’intégrer des pratiques simples au quotidien.</p><h3>En individuel ou en groupe</h3><p>Les séances individuelles associent échange, pratique guidée et retour sur l’expérience. Les ateliers collectifs alternent pratiques et échanges dans le respect de chacun. Les formats proposés comprennent des ateliers découverte, des cycles d’initiation et des groupes de pratique.</p></section>` : ''}
   <section class="container section faq-section">${sectionHeading('Vos questions', 'Quelques repères avant de commencer.')}${faq(offer.faq)}</section>
   ${health || meditation ? `<aside class="container care-note">L’accompagnement proposé ne remplace pas un suivi médical ou psychologique. Il s’inscrit, lorsque cela est pertinent, en complément du parcours de soins.</aside>` : business ? `<aside class="container care-note">Les ressources individuelles complètent les actions sur l’organisation et les conditions de travail. Elles ne se substituent pas à une démarche de prévention des risques professionnels.</aside>` : ''}
-  <section class="container section related">${sectionHeading('Explorer aussi', 'D’autres points d’appui.')}${offerCards(offer.slug)}</section>${closing()}`;
+  ${closing()}`;
+  <section class="container section related">${sectionHeading('Explorer aussi', 'D’autres points d’appui.')}${offerCards(offer.slug)}</section>`;
 }
