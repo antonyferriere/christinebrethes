@@ -244,6 +244,7 @@ export default {
     },
     {
       "eyebrow": "Vos questions",
+      "enabled": false,
       "title": "Quelques repères avant de commencer.",
       "paragraphs": [],
       "faq": [
