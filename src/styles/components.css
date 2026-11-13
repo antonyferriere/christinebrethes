@@ -23,7 +23,7 @@
 .offer-content .eyebrow { font-size: .65rem; margin-bottom: 1rem; }
 .offer-content h3 { font-size: 1.45rem; }
 .offer-content h3 a { text-decoration: none; }
-.offer-content p:not(.eyebrow) { color: var(--color-muted); font-size: 1rem; }
+.offer-content p:not(.eyebrow), .review blockquote p { color: var(--color-muted); font-size: 1rem; }
 .offer-content .text-link { margin-top: auto; justify-content: space-between; border-top: 1px solid var(--color-outline); padding-top: 1rem; }
 .closing { padding-block: 4.5rem; background: var(--color-sand); border-top: 1px solid #947b6729; }
 .closing-grid { display: grid; gap: 2rem; }
@@ -62,9 +62,7 @@
 .testimonials .review { padding: clamp(1.25rem, 2vw, 2rem); background: var(--color-paper); }
 .review-person { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-outline); }
 .review-person img { flex: none; border-radius: 50%; object-fit: cover; }
-.review-person a { font: 600 1.2rem var(--font-display); color: var(--color-ink); text-underline-offset: .2em; }
-.review-person span span, .review-person small { display: block; color: var(--color-muted); }
-.review-person small { margin-top: .25rem; }
+.review-person span span { display: block; color: var(--color-muted); }
 .review blockquote { margin: 1.25rem 0 0; line-height: 1.65; }
 .review blockquote p:last-child { margin-bottom: 0; }
 .review-link { display: flex; justify-content: flex-end; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
