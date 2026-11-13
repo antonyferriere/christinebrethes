@@ -58,7 +58,17 @@
 .notice { border-left: 3px solid var(--color-primary); background: var(--color-ivory); padding: 1.3rem; }
 .review-grid, .post-grid { display: grid; gap: 1.5rem; }
 .review, .post { margin: 0; padding: 2rem; background: var(--color-ivory); border-radius: var(--radius-card); }
-.review blockquote { margin: 0 0 1rem; font-family: var(--font-display); }
+.testimonials .review-grid { gap: 1.25rem; }
+.testimonials .review { padding: clamp(1.25rem, 2vw, 2rem); background: var(--color-paper); }
+.review-person { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-outline); }
+.review-person img { flex: none; border-radius: 50%; object-fit: cover; }
+.review-person a { font: 600 1.2rem var(--font-display); color: var(--color-ink); text-underline-offset: .2em; }
+.review-person span span, .review-person small { display: block; color: var(--color-muted); }
+.review-person small { margin-top: .25rem; }
+.review blockquote { margin: 1.25rem 0 0; line-height: 1.65; }
+.review blockquote p:last-child { margin-bottom: 0; }
+.review-link { display: flex; justify-content: flex-end; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+.review-link .button { text-align: center; }
 
 .photo-depth { display: block; position: relative; overflow: hidden; height: 100%; border-radius: inherit; }
 .photo-depth img, .offer-image img { transform: translate3d(0, var(--depth-y, 0px), 0) scale(1.18); }

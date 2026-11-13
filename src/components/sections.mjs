@@ -15,7 +15,21 @@ export function places() {
 export function linkedinSections(settings = linkedinSettings, reviewsData = recommendations, postsData = publications) {
   const reviews = settings.recommendations ? reviewsData.filter((r) => r.visible && r.authorized) : [];
   const posts = settings.publications ? postsData.filter((p) => p.visible) : [];
-  return `${reviews.length ? `<section class="container section">${sectionHeading('Regards partagés', 'Ils témoignent de mon accompagnement')}<div class="review-grid">${reviews.map((r) => `<figure class="review"><blockquote>${r.text.split(/\n\n/).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote><figcaption><a href="${escape(r.source)}">${escape(r.author)}</a>${r.role ? ` · ${escape(r.role)}` : ''}${r.date ? `<br>${escape(r.date)}` : ''}</figcaption></figure>`).join('')}</div><a class="text-link" href="${site.linkedin}">Voir le profil LinkedIn de Christine ↗</a></section>` : ''}${posts.length ? `<section class="container section">${sectionHeading('Au fil des idées', 'Actualités & réflexions')}<div class="post-grid">${posts.map((p) => `<article class="post">${p.image ? `<img src="${escape(p.image)}" alt="" loading="lazy" width="600" height="400">` : ''}<p class="eyebrow">${escape(p.topic)} · <time datetime="${escape(p.date)}">${escape(p.date)}</time></p><h3>${escape(p.title)}</h3><p>${escape(p.excerpt)}</p><a class="text-link" href="${escape(p.url)}">Lire sur LinkedIn ↗</a></article>`).join('')}</div></section>` : ''}`;
+  const cards = reviews.map(r => `<figure class="offer-card review">
+    <figcaption class="review-person">
+      ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}
+      <span><a href="${escape(r.source)}">${escape(r.author)}</a>
+        ${r.role ? `<span>${escape(r.role)}</span>` : ''}
+        ${r.date ? `<small>${escape(r.date)}</small>` : ''}
+      </span>
+    </figcaption>
+    <blockquote>${r.text.split(/\n\n/).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote>
+  </figure>`).join('');
+  return `${reviews.length ? `<section class="section tinted testimonials"><div class="container">
+    ${sectionHeading('Regards partagés', 'Ils témoignent de mon accompagnement')}
+    <div class="review-grid">${cards}</div>
+    <div class="review-link"><a class="button button-outline" href="${site.linkedin}">Voir le profil LinkedIn de Christine ↗</a></div>
+  </div></section>` : ''}${posts.length ? `<section class="container section">${sectionHeading('Au fil des idées', 'Actualités & réflexions')}<div class="post-grid">${posts.map((p) => `<article class="post">${p.image ? `<img src="${escape(p.image)}" alt="" loading="lazy" width="600" height="400">` : ''}<p class="eyebrow">${escape(p.topic)} · <time datetime="${escape(p.date)}">${escape(p.date)}</time></p><h3>${escape(p.title)}</h3><p>${escape(p.excerpt)}</p><a class="text-link" href="${escape(p.url)}">Lire sur LinkedIn ↗</a></article>`).join('')}</div></section>` : ''}`;
 }
 
 export function needsSection() {
