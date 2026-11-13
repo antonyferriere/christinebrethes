@@ -18,7 +18,7 @@ export function linkedinSections(settings = linkedinSettings, reviewsData = reco
   const cards = reviews.map(r => `<figure class="offer-card review">
     <figcaption class="review-person">
       <a class="text-link review-profile" href="${escape(r.source)}">
-        ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}
+        ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="45" height="45" loading="lazy" decoding="async">` : ''}
         <span class="review-identity"><span>${escape(r.author)}</span>${r.role ? `<span class="review-role">${escape(r.role)}</span>` : ''}</span>
       </a>
     </figcaption>
