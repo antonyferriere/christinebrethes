@@ -5,7 +5,6 @@ import { resolve, extname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { prepareEmail } from '../src/scripts/contact.js';
 import { linkedinSections } from '../src/components/sections.mjs';
-import { recommendations, publications, linkedinSettings } from '../src/data/linkedin.mjs';
 import { site } from '../src/data/site.mjs';
 function filesIn(directory) {
   return readdirSync(directory).flatMap((name) => {
@@ -80,18 +79,22 @@ test('aucune réservation disponible ni faux envoi ne sont annoncés', () => {
 });
 
 test('LinkedIn : sections indépendantes, vides masquées, données échappées', () => {
-  assert.equal(linkedinSections(), '');
+  const linkedinSettings = { recommendations: false, publications: false };
+  const recommendations = [];
+  const publications = [];
+  const render = () => linkedinSections(linkedinSettings, recommendations, publications);
+  assert.equal(render(), '');
   linkedinSettings.recommendations = true;
   recommendations.push({author:'Test',role:'',text:'<script>test</script>',source:'https://www.linkedin.com/',visible:true,authorized:false});
-  assert.equal(linkedinSections(), '');
+  assert.equal(render(), '');
   recommendations[0].authorized = true;
-  assert.match(linkedinSections(), /&lt;script&gt;/);
-  assert.doesNotMatch(linkedinSections(), /<script>/);
+  assert.match(render(), /&lt;script&gt;/);
+  assert.doesNotMatch(render(), /<script>/);
   linkedinSettings.recommendations = false;
   linkedinSettings.publications = true;
-  assert.equal(linkedinSections(), '');
+  assert.equal(render(), '');
   publications.push({title:'Test',excerpt:'Texte',date:'2026-10-13',topic:'Travail',url:'https://www.linkedin.com/',visible:true});
-  assert.match(linkedinSections(), /Actualités & réflexions/);
+  assert.match(render(), /Actualités & réflexions/);
   recommendations.length = 0;
   publications.length = 0;
   linkedinSettings.publications = false;
