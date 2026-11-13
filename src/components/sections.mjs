@@ -17,10 +17,10 @@ export function linkedinSections(settings = linkedinSettings, reviewsData = reco
   const posts = settings.publications ? postsData.filter((p) => p.visible) : [];
   const cards = reviews.map(r => `<figure class="offer-card review">
     <figcaption class="review-person">
-      ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}
-      <span><a class="text-link" href="${escape(r.source)}">${escape(r.author)}</a>
-        ${r.role ? `<span>${escape(r.role)}</span>` : ''}
-      </span>
+      <a class="text-link review-profile" href="${escape(r.source)}">
+        ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="64" height="64" loading="lazy" decoding="async">` : ''}
+        <span class="review-identity"><span>${escape(r.author)}</span>${r.role ? `<span class="review-role">${escape(r.role)}</span>` : ''}</span>
+      </a>
     </figcaption>
     <blockquote>${r.text.split(/\n\n/).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote>
   </figure>`).join('');
