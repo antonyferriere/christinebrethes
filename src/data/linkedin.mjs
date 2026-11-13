@@ -22,9 +22,9 @@ export const recommendations = [
   },
   {
     "author": "Marie V.",
-    "role": "Patiente partenaire",
+    "role": "Formation et innovation en santé publique",
     "date": "29 janvier 2023",
-    "text": "Grâce à elle j’ai pu préciser mes besoins, recibler mes objectifs et mettre en œuvre pas à pas des pistes solides et concrètes pour améliorer mon quotidien et mon projet pro.\n\nTrès à l’écoute, chaleureuse et encourageante, elle a su créer un cadre sécurisant pour que je puisse réfléchir et envisager des pistes d’action réalistes.\n\nJ’ai pu voir mes progrès dès les premières séances et je me sens maintenant plus confiante pour continuer à avancer. Merci, Christine, pour ce joli coup de boost !",
+    "text": "J'ai pu suivre un cycle de \"coaching solidaire\" offert par Christine au profit de l'association Espoirs du Pr Salmon Ceron qui soutient les patients Covid Long. Et ça m'a fait un bien fou !\n\nGrâce à elle j'ai pu préciser mes besoins, recibler mes objectifs et mettre en œuvre pas à pas des pistes solides et concrètes pour améliorer mon quotidien et mon projet pro.\n\nTrès à l'écoute, chaleureuse et encourageante, elle a su créer un cadre sécurisant pour que je puisse réfléchir et envisager des pistes d'action réalistes.\n\nJ'ai pu voir mes progrès dès les premières séances et je me sens maintenant plus confiante pour continuer à avancer.\n\nTrès heureuse de contribuer au passage à soutenir l'association Espoirs: avec 2 millions de patients COVID long en France et encore des retards incompréhensibles de diagnostic et prise en charge sur le terrain, il y a encore beaucoup à faire!\n\nMerci, Christine, pour ce joli coup de boost! ✨\n\nMV",
     "source": "https://www.linkedin.com/in/marie-v-22459418/",
     "visible": true,
     "authorized": true
