@@ -60,9 +60,11 @@
 .review, .post { margin: 0; padding: 2rem; background: var(--color-ivory); border-radius: var(--radius-card); }
 .testimonials .review-grid { gap: 1.25rem; }
 .testimonials .review { padding: clamp(1.25rem, 2vw, 2rem); background: var(--color-paper); }
-.review-person { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-outline); }
+.review-person { padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-outline); }
 .review-person img { flex: none; border-radius: 50%; object-fit: cover; }
-.review-person span span { display: block; color: var(--color-muted); }
+.review-profile { display: flex; gap: 1rem; }
+.review-identity { display: grid; gap: 0; line-height: 1.25; }
+.review-role { font-size: .875rem; font-weight: 400; color: var(--color-muted); }
 .review blockquote { margin: 1.25rem 0 0; line-height: 1.65; }
 .review blockquote p:last-child { margin-bottom: 0; }
 .review-link { display: flex; justify-content: flex-end; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
