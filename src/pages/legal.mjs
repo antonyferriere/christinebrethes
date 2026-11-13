@@ -4,18 +4,19 @@ import { site } from '../data/site.mjs';
 export function legalPage() {
   return `<section class="container page-hero compact"><p class="eyebrow">Informations du site</p><h1>Mentions légales</h1></section>
 <div class="container reading-section legal">
-  <p class="notice">Version de présentation : les informations administratives encore manquantes doivent être complétées et validées avant toute publication.</p>
   <h2>Édition du site</h2>
-  <p>Christine BRETHES — Coaching santé-travail et méditation de pleine conscience.</p>
+  <p>Christine BRETHES, entrepreneure individuelle (EI) au régime de la micro-entreprise.<br>Coaching santé-travail et méditation de pleine conscience.</p>
   <p>Responsable de publication : Christine BRETHES.</p>
   <p>Email : <a href="mailto:${site.email}">${site.email}</a><br>Téléphone : <a href="tel:${site.phoneLink}">${site.phone}</a>.</p>
-  <p>Statut de l’activité, raison sociale éventuelle, adresse professionnelle, numéro d’immatriculation et mentions applicables : à confirmer avec l’éditrice.</p>
+  <p>Domiciliation professionnelle : 16 rue Liancourt, 75014 Paris, France.<br>SIREN : 847 560 489<br>SIRET : 847 560 489 00019</p>
   <h2>Hébergement</h2>
-  <p>OVH SAS<br>2 rue Kellermann<br>59100 Roubaix<br>France</p>
+  <p>OVH SAS<br>2 rue Kellermann<br>59100 Roubaix, France<br>Téléphone : <a href="tel:1007">1007</a> depuis la France ou <a href="tel:+33972101007">+33 9 72 10 10 07</a> depuis l’étranger.</p>
   <h2>Propriété intellectuelle</h2>
   <p>Les textes, photographies et éléments graphiques sont utilisés pour la présentation de l’activité de Christine BRETHES. Toute réutilisation doit faire l’objet d’une autorisation des titulaires des droits concernés.</p>
   <h2>Cadre des accompagnements</h2>
-  <p>Les accompagnements présentés ne remplacent pas un suivi médical ou psychologique. Un contrat individuel de coaching peut préciser l’objectif de l’accompagnement, le rythme des séances et les modalités du bilan. Pour connaître le tarif et les conditions de paiement, de report ou d’annulation applicables à votre accompagnement, contactez Christine avant de vous engager. Les coordonnées du médiateur restent à compléter avant publication.</p>
+  <p>Les accompagnements présentés ne remplacent pas un suivi médical ou psychologique. Un contrat individuel de coaching peut préciser l’objectif de l’accompagnement, le rythme des séances et les modalités du bilan. Pour connaître le tarif et les conditions de paiement, de report ou d’annulation applicables à votre accompagnement, contactez Christine avant de vous engager.</p>
+  <h2>Réclamation et médiation de la consommation</h2>
+  <p>Pour toute réclamation concernant un accompagnement, vous pouvez écrire à Christine BRETHES à <a href="mailto:${site.email}">${site.email}</a> ou à son adresse professionnelle. Christine BRETHES n’a pas encore adhéré à un dispositif de médiation de la consommation.</p>
 </div>`;
 }
 
