@@ -31,7 +31,7 @@ const pages = [
   { path: '/accompagnements/', title: 'Les accompagnements', description: 'Une approche intégrative qui relie santé, travail et équilibre de vie pour accompagner vos transitions.', body: accompanimentsPage() },
   { path: '/a-propos/', title: 'À propos de Christine Brethes', description: 'Découvrez le parcours et l’approche intégrative de Christine Brethes, coach professionnelle certifiée et instructrice en pleine conscience.', body: aboutPage() },
   { path: '/contact/', title: 'Contacter Christine', description: 'Contactez Christine Brethes pour un accompagnement à Paris, Chartres ou en visio, une intervention ou un partenariat.', body: contactPage() },
-  { path: '/mentions-legales/', title: 'Mentions légales', description: 'Informations légales du site de Christine Brethes. Version de présentation à compléter avant publication.', body: legalPage() },
+  { path: '/mentions-legales/', title: 'Mentions légales', description: 'Édition du site, coordonnées professionnelles de Christine Brethes, hébergement et réclamations.', body: legalPage() },
   { path: '/confidentialite/', title: 'Confidentialité', description: 'Informations sur la confidentialité, vos droits sur vos données et le contact dédié du site de Christine Brethes.', body: privacyPage() },
   ...offers.map((offer) => ({ path: offerPath(offer), title: offer.title, description: offer.summary, body: offerPage(offer) })),
 ];
