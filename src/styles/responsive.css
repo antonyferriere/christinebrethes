@@ -49,7 +49,7 @@
 }
 
 @media (max-width: 839px) {
-  .home .places-photo { aspect-ratio: 5 / 3; }
+  .home .places-photo { aspect-ratio: 1; }
   .home .introduction { grid-template-columns: 1fr .85fr; }
   .home .introduction > .introduction-image { grid-column: 2; grid-row: 1; }
   .home .introduction > div:last-child { grid-column: 1; grid-row: 1; }
