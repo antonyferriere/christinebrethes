@@ -23,7 +23,11 @@ export const references = [
     "id": "lhh",
     "organization": "LHH",
     "relationship": "Consultante partenaire en gestion de carrière, j’accompagne des parcours d’outplacement et je réalise des bilans de compétences individuels.",
-    "contentApproved": true
+    "contentApproved": true,
+    "logo": "/assets/organisations/lhh.svg",
+    "width": 70,
+    "height": 30,
+    "logoAuthorized": true
   },
   {
     "id": "espoirs",
