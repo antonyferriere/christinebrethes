@@ -6,7 +6,8 @@ const paths = {
  linkedin: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.1M11 17v-7M11 13c0-4 6-4 6 0v4"/>',
  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3"/>',
 };
-export function contactDetails() {
- const entries = [['location', 'Paris & Chartres · Visio', ''], ['email', site.email, `mailto:${site.email}`], ['phone', site.phone, `tel:${site.phoneLink}`], ['linkedin', 'Retrouver Christine sur LinkedIn', site.linkedin], ['calendar', 'Prendre rendez-vous avec Christine', site.booking.url]];
+export function contactDetails({ includeBooking = true } = {}) {
+ const entries = [['location', 'Paris & Chartres · Visio', ''], ['email', site.email, `mailto:${site.email}`], ['phone', site.phone, `tel:${site.phoneLink}`], ['linkedin', 'Retrouver Christine sur LinkedIn', site.linkedin]];
+ if (includeBooking) entries.push(['calendar', 'Prendre rendez-vous avec Christine', site.booking.url]);
  return `<ul class="contact-details">${entries.map(([icon,label,url]) => `<li><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${paths[icon]}</svg>${url ? `<a href="${url}">${label}</a>` : `<span>${label}</span>`}</li>`).join('')}</ul>`;
 }
