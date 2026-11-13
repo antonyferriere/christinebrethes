@@ -15,7 +15,7 @@ export function legalPage() {
   <h2>Propriété intellectuelle</h2>
   <p>Les textes, photographies et éléments graphiques sont utilisés pour la présentation de l’activité de Christine BRETHES. Toute réutilisation doit faire l’objet d’une autorisation des titulaires des droits concernés.</p>
   <h2>Cadre des accompagnements</h2>
-  <p>Les accompagnements présentés ne remplacent pas un suivi médical ou psychologique. Les modalités contractuelles, tarifs, conditions d’annulation et informations relatives à la médiation de la consommation seront précisés avant la mise en production.</p>
+  <p>Les accompagnements présentés ne remplacent pas un suivi médical ou psychologique. Un contrat individuel de coaching peut préciser l’objectif de l’accompagnement, le rythme des séances et les modalités du bilan. Pour connaître le tarif et les conditions de paiement, de report ou d’annulation applicables à votre accompagnement, contactez Christine avant de vous engager. Les coordonnées du médiateur restent à compléter avant publication.</p>
 </div>`;
 }
 
