@@ -34,7 +34,7 @@ export function privacyPage() {
   <h2>Le contact par email</h2>
   <p>Vous pouvez écrire à <a href="mailto:${site.email}">${site.email}</a>. Les liens email ouvrent votre messagerie ; l’envoi intervient lorsque vous le confirmez dans celle-ci. Cette version du site ne propose pas de formulaire de contact et ne transmet aucun message au serveur du site. Ne transmettez pas d’informations médicales détaillées.</p>
   <h2>Les services externes</h2>
-  <p>Si vous suivez un lien vers Crenolibre ou LinkedIn, leurs propres conditions et politiques de confidentialité s’appliquent.</p>
+  <p>Crenolibre est la seule plateforme prévue pour la prise de rendez-vous en ligne. Si vous suivez un lien vers Crenolibre ou LinkedIn, les conditions et la politique de confidentialité du service concerné s’appliquent.</p>
   <h2>Vos échanges avec Christine</h2>
   <p>Pour toute question relative à vos données, contactez Christine BRETHES à <a href="mailto:${site.email}">${site.email}</a> ou au <a href="tel:${site.phoneLink}">${site.phone}</a>.</p>
   <p>L’identité du responsable du traitement, les données concernées, les finalités, les bases légales, les durées de conservation, les destinataires et prestataires de messagerie, ainsi que les éventuels transferts hors de l’Union européenne restent à confirmer avec Christine.</p>
