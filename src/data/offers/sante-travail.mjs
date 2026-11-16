@@ -16,6 +16,7 @@ export default {
   ],
   "sections": [
     {
+      "presentation": {"layout": "split", "image": "jardin", "emphasis": 2},
       "eyebrow": "Un espace pour avancer",
       "title": "Quand la santé vient bousculer le travail.",
       "paragraphs": [
@@ -27,6 +28,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "features", "tone": "sage"},
       "eyebrow": "Vous reconnaître",
       "title": "Cet accompagnement peut vous correspondre.",
       "paragraphs": [],
@@ -44,6 +46,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "cards"},
       "eyebrow": "Ce que nous travaillons ensemble",
       "title": "Retrouver des ressources, construire de nouveaux repères.",
       "paragraphs": [],
@@ -81,6 +84,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "narrative", "tone": "ivory"},
       "eyebrow": "Une approche intégrative",
       "title": "Le coaching, la pleine conscience et une attention à la personne dans sa globalité.",
       "paragraphs": [
@@ -112,6 +116,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "journey"},
       "eyebrow": "Concrètement",
       "title": "Un chemin construit ensemble.",
       "paragraphs": [],
@@ -140,6 +145,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "frame", "tone": "sage"},
       "eyebrow": "Le cadre",
       "title": "Un accompagnement personnalisé, respectueux de votre rythme.",
       "paragraphs": [
@@ -157,6 +163,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "faq"},
       "eyebrow": "Vos questions",
       "title": "Quelques repères avant de commencer.",
       "paragraphs": [],
