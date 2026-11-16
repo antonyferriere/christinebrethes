@@ -137,7 +137,6 @@ textarea { resize: vertical; }
 .editorial-blocks { display: grid; gap: var(--space-6); }
 .editorial-after { margin-top: var(--space-8);}
 .editorial-after p { color: var(--color-muted); font-size: .95rem;}
-.editorial-composition .check-list { margin-block: 0; }
 .editorial-composition .check-list li { padding-block: var(--space-4); }
 .editorial-cards .editorial-block, .editorial-features .check-list > li {
   padding: var(--editorial-padding); background: var(--color-paper);
@@ -192,7 +191,6 @@ textarea { resize: vertical; }
   aspect-ratio: auto;
   transform: translate3d(0, var(--depth-y, 0px), 0);
 }
-.editorial-frame .editorial-heading > p:not(.eyebrow) { color: var(--color-muted); }
 .editorial-frame .editorial-heading > p:last-child { margin-bottom: 0; }
 .editorial-title-primary, .editorial-title-secondary { display: block; }
 .editorial-title-primary { color: var(--color-primary); }
