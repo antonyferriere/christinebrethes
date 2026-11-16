@@ -14,6 +14,7 @@ export default {
   ],
   "sections": [
     {
+      "presentation": {"layout": "split", "image": "vase-fleurs", "emphasis": 2},
       "title": "Et si vous vous accordiez un temps pour vous ?",
       "paragraphs": [
         "Dans un quotidien souvent rythmé par les exigences professionnelles, les responsabilités personnelles et les imprévus de la vie, nous avançons parfois en pilote automatique, sans prendre le temps d'écouter nos besoins.",
@@ -23,6 +24,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "reading", "tone": "sage", "emphasis": 2},
       "title": "Qu'est-ce que la méditation de pleine conscience ?",
       "paragraphs": [
         "La pleine conscience, ou mindfulness, consiste à porter intentionnellement son attention sur l'expérience du moment présent, avec curiosité, ouverture et sans jugement.",
@@ -32,6 +34,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "features"},
       "title": "Les bienfaits de la pleine conscience",
       "paragraphs": [
         "La pratique régulière de la méditation peut contribuer à :"
@@ -49,6 +52,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "split", "tone": "ivory", "image": "livres-fleurs", "emphasis": 3},
       "title": "La pleine conscience à la lumière des neurosciences",
       "paragraphs": [
         "Depuis plusieurs décennies, la méditation fait l'objet de recherches en psychologie, en médecine et en neurosciences.",
@@ -58,6 +62,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "narrative"},
       "title": "À qui s'adresse mon accompagnement ?",
       "paragraphs": [],
       "blocks": [
@@ -88,6 +93,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "cards", "tone": "sage"},
       "title": "Des formats adaptés à vos besoins",
       "paragraphs": [],
       "blocks": [
@@ -118,6 +124,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "reading", "emphasis": 3},
       "title": "Mon approche : une pleine conscience accessible, humaine et intégrative",
       "paragraphs": [
         "Coach professionnelle et praticienne certifiée en méditation de pleine conscience, je privilégie une approche globale qui relie le corps, les émotions, la santé et la vie professionnelle.",

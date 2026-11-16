@@ -17,6 +17,7 @@ export default {
   ],
   "sections": [
     {
+      "presentation": {"layout": "split", "image": "salon-accueil", "emphasis": 4},
       "eyebrow": "Agir ensemble",
       "title": "Cultiver l'équilibre au cœur des organisations.",
       "paragraphs": [
@@ -28,6 +29,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vos enjeux",
       "title": "Quels besoins dans votre organisation ?",
       "paragraphs": [],
@@ -46,6 +48,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "domains", "notes": [1, 4]},
       "eyebrow": "Mes domaines d'intervention",
       "title": "Des accompagnements concrets, adaptés à vos équipes.",
       "paragraphs": [],
@@ -135,6 +138,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "journey", "tone": "sage"},
       "eyebrow": "Mon approche",
       "title": "Une vision globale de la personne au travail.",
       "paragraphs": [
@@ -165,6 +169,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "cards"},
       "eyebrow": "Concrètement",
       "title": "Des formats adaptés à votre réalité.",
       "paragraphs": [],
@@ -202,6 +207,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "journey", "tone": "ivory"},
       "eyebrow": "Un chemin construit ensemble",
       "title": "Une intervention qui part de vos besoins.",
       "paragraphs": [],
@@ -227,6 +233,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "frame"},
       "eyebrow": "Le cadre",
       "title": "Des interventions souples et sur mesure.",
       "paragraphs": [],

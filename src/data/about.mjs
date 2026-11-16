@@ -16,6 +16,7 @@ export default {
   ],
   "sections": [
     {
+      "presentation": {"layout": "split", "image": "livres-fleurs", "emphasis": 1},
       "title": "Une approche attentive à la personne dans sa globalité",
       "paragraphs": [
         "Mon parcours s'est construit à la croisée de plusieurs univers : le recrutement international, le conseil en ressources humaines, l'outplacement, le coaching professionnel et la pleine conscience.",
@@ -24,6 +25,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "narrative", "tone": "ivory"},
       "title": "Mon parcours",
       "paragraphs": [],
       "blocks": [
@@ -67,6 +69,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "cards"},
       "eyebrow": "Mes expériences & réalisations",
       "title": "Accompagner, transmettre et faire émerger les ressources",
       "paragraphs": [],
