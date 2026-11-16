@@ -160,8 +160,7 @@ textarea { resize: vertical; }
 .editorial-composition .faq summary { min-height: 52px; }
 .editorial-composition .faq summary:focus-visible { outline-offset: 2px; }
 @media (min-width: 600px) {
-  .editorial-features .check-list, .editorial-cards .editorial-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .editorial-cards .editorial-block:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .editorial-features .check-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 840px) {
   .editorial-split.editorial-has-image .editorial-composition-inner,
@@ -169,8 +168,6 @@ textarea { resize: vertical; }
   .editorial-journey .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--editorial-gap); }
   .editorial-narrative .editorial-block { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: var(--editorial-gap); }
   .editorial-narrative .editorial-block h3 { max-width: 24ch; }
-  .editorial-domains .editorial-block:not(.editorial-note) { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: var(--editorial-gap); }
-  .editorial-domains .editorial-note { margin-left: 20%; }
 }
 
 /* The image follows the copy in reading order and fills the desktop column. */
@@ -206,4 +203,30 @@ textarea { resize: vertical; }
 }
 @media (prefers-reduced-motion: reduce) {
   .editorial-split .editorial-illustration img { transform: none; }
+}
+
+/* Editorial cards use the same image/content rhythm as the offer cards. */
+.editorial-cards .editorial-image-card,
+.editorial-domains .editorial-domain-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+.editorial-card-image { aspect-ratio: 16 / 9; overflow: hidden; background: var(--color-ivory); }
+.editorial-card-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.editorial-card-body { padding: var(--editorial-padding); }
+.editorial-card-body > :last-child { margin-bottom: 0; }
+.editorial-card-footer {
+  margin-top: auto;
+  padding: var(--editorial-padding);
+  border-top: 1px solid var(--color-outline);
+  background: var(--color-sage);
+}
+.editorial-card-footer h3 { font-size: 1.15rem; }
+.editorial-card-footer p { margin-bottom: 0; }
+.editorial-domains .editorial-card-body > p:first-of-type { color: var(--color-primary); }
+@media (min-width: 768px) {
+  .editorial-cards .editorial-blocks,
+  .editorial-domains .editorial-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
