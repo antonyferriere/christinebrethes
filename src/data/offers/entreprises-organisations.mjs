@@ -19,7 +19,7 @@ export default {
     {
       "presentation": {"layout": "split", "image": "salon-accueil", "emphasis": 4},
       "eyebrow": "Agir ensemble",
-      "title": "Cultiver l'équilibre au cœur des organisations.",
+      "title": "Cultiver l'équilibre au cœur des organisations",
       "paragraphs": [
         "Charge mentale, transformations organisationnelles, nouvelles attentes des collaborateurs, évolution des pratiques managériales…",
         "Les défis du monde professionnel invitent à repenser notre rapport au travail, aux autres et à nous-mêmes.",
@@ -50,11 +50,11 @@ export default {
     {
       "presentation": {"layout": "domains", "notes": [1, 4]},
       "eyebrow": "Mes domaines d'intervention",
-      "title": "Des accompagnements concrets, adaptés à vos équipes.",
+      "title": "Des accompagnements concrets, adaptés à vos équipes",
       "paragraphs": [],
       "blocks": [
         {
-          "title": "01 — Santé mentale, prévention & QVCT",
+          "title": "Santé mentale, prévention & QVCT",
           "paragraphs": [
             "Comprendre, sensibiliser, prévenir.",
             "J'interviens auprès des équipes et des managers pour ouvrir le dialogue sur la santé mentale et mieux comprendre les facteurs de stress et d'épuisement au travail.",
@@ -75,7 +75,7 @@ export default {
           ]
         },
         {
-          "title": "02 — Coaching professionnel & accompagnement du changement",
+          "title": "Coaching professionnel & accompagnement du changement",
           "paragraphs": [
             "Accompagner les personnes dans leurs évolutions.",
             "Les transformations professionnelles mobilisent autant les compétences que les ressources humaines et relationnelles.",
@@ -92,7 +92,7 @@ export default {
           ]
         },
         {
-          "title": "03 — Pleine conscience & compétences psychosociales",
+          "title": "Pleine conscience & compétences psychosociales",
           "paragraphs": [
             "Développer l'attention, la présence et la qualité des relations.",
             "La pleine conscience propose une autre manière d'aborder le quotidien professionnel : apprendre à porter attention à son expérience, mieux reconnaître les signaux de stress et développer une relation plus consciente à soi et aux autres.",
@@ -115,7 +115,7 @@ export default {
           ]
         },
         {
-          "title": "04 — Carrières, employabilité & transitions professionnelles",
+          "title": "Carrières, employabilité & transitions professionnelles",
           "paragraphs": [
             "Valoriser les talents, accompagner les parcours.",
             "Forte d'une expérience en recrutement international et en chasse de tête, j'accompagne également les transitions professionnelles et le développement de l'employabilité.",
@@ -140,7 +140,7 @@ export default {
     {
       "presentation": {"layout": "journey", "tone": "sage"},
       "eyebrow": "Mon approche",
-      "title": "Une vision globale de la personne au travail.",
+      "title": "Une vision globale de la personne au travail",
       "paragraphs": [
         "Je m'appuie sur trois expertises complémentaires."
       ],
@@ -213,19 +213,19 @@ export default {
       "paragraphs": [],
       "blocks": [
         {
-          "title": "01 — Comprendre vos enjeux",
+          "title": "Comprendre vos enjeux",
           "paragraphs": [
             "Nous échangeons sur votre organisation, votre contexte, les publics concernés et les objectifs de votre projet."
           ]
         },
         {
-          "title": "02 — Concevoir une intervention adaptée",
+          "title": "Concevoir une intervention adaptée",
           "paragraphs": [
             "Nous définissons ensemble le contenu, le format, la durée et les modalités d'accompagnement."
           ]
         },
         {
-          "title": "03 — Expérimenter et faire évoluer",
+          "title": "Expérimenter et faire évoluer",
           "paragraphs": [
             "Les interventions associent, selon les besoins, apports théoriques, échanges, exercices pratiques et pistes d'action transférables au quotidien."
           ]
@@ -235,7 +235,7 @@ export default {
     {
       "presentation": {"layout": "frame"},
       "eyebrow": "Le cadre",
-      "title": "Des interventions souples et sur mesure.",
+      "title": "Des interventions souples et sur mesure",
       "paragraphs": [],
       "items": [
         "Entreprises, PME, grandes organisations et institutions.",
@@ -252,7 +252,7 @@ export default {
     {
       "eyebrow": "Vos questions",
       "enabled": false,
-      "title": "Quelques repères avant de commencer.",
+      "title": "Quelques repères avant de commencer",
       "paragraphs": [],
       "faq": [
         {

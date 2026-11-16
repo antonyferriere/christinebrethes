@@ -18,7 +18,7 @@ export default {
     {
       "presentation": {"layout": "split", "image": "jardin", "emphasis": 2},
       "eyebrow": "Un espace pour avancer",
-      "title": "Quand la santé vient bousculer le travail.",
+      "title": "Quand la santé vient bousculer le travail",
       "paragraphs": [
         "La maladie, la fatigue persistante ou l'épuisement professionnel ne touchent pas seulement le corps. Ils peuvent aussi modifier notre identité professionnelle, notre confiance, nos priorités et notre façon d'envisager l'avenir.",
         "Parfois, il devient difficile de retrouver ses repères. On aimerait reprendre comme avant, mais quelque chose a changé. Ou l'on continue à travailler, au prix d'efforts devenus trop importants.",
@@ -28,9 +28,9 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "features", "tone": "sage"},
+      "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vous reconnaître",
-      "title": "Cet accompagnement peut vous correspondre.",
+      "title": "Cet accompagnement peut vous correspondre",
       "paragraphs": [],
       "items": [
         "Vous vivez avec une maladie chronique, ou un handicap invisible.",
@@ -48,7 +48,7 @@ export default {
     {
       "presentation": {"layout": "cards"},
       "eyebrow": "Ce que nous travaillons ensemble",
-      "title": "Retrouver des ressources, construire de nouveaux repères.",
+      "title": "Retrouver des ressources, construire de nouveaux repères",
       "paragraphs": [],
       "blocks": [
         {
@@ -86,7 +86,7 @@ export default {
     {
       "presentation": {"layout": "narrative", "tone": "ivory"},
       "eyebrow": "Une approche intégrative",
-      "title": "Le coaching, la pleine conscience et une attention à la personne dans sa globalité.",
+      "title": "Le coaching, la pleine conscience et une attention à la personne dans sa globalité",
       "paragraphs": [
         "Mon accompagnement repose sur une conviction : on ne peut pas dissocier totalement la vie professionnelle de la santé physique, mentale et émotionnelle.",
         "J'associe trois dimensions complémentaires :"
@@ -118,23 +118,23 @@ export default {
     {
       "presentation": {"layout": "journey"},
       "eyebrow": "Concrètement",
-      "title": "Un chemin construit ensemble.",
+      "title": "Un chemin construit ensemble",
       "paragraphs": [],
       "blocks": [
         {
-          "title": "01 — Accueillir votre réalité",
+          "title": "Accueillir votre réalité",
           "paragraphs": [
             "Nous prenons le temps de comprendre votre situation, vos besoins et votre rapport actuel au travail. Sans jugement, sans pression et sans objectif de performance imposé."
           ]
         },
         {
-          "title": "02 — Identifier vos ressources et vos priorités",
+          "title": "Identifier vos ressources et vos priorités",
           "paragraphs": [
             "Nous explorons vos compétences, vos points d'appui, vos aspirations et les conditions nécessaires à un meilleur équilibre."
           ]
         },
         {
-          "title": "03 — Construire la suite à votre rythme",
+          "title": "Construire la suite à votre rythme",
           "paragraphs": [
             "Nous définissons ensemble des pistes et des étapes réalistes : préparer une reprise, envisager des ajustements, clarifier un projet professionnel ou simplement retrouver des repères."
           ]
@@ -147,7 +147,7 @@ export default {
     {
       "presentation": {"layout": "frame", "tone": "sage"},
       "eyebrow": "Le cadre",
-      "title": "Un accompagnement personnalisé, respectueux de votre rythme.",
+      "title": "Un accompagnement personnalisé, respectueux de votre rythme",
       "paragraphs": [
         "Chaque situation est singulière. L'accompagnement est adapté à vos besoins, à vos possibilités et à votre contexte."
       ],
@@ -165,7 +165,7 @@ export default {
     {
       "presentation": {"layout": "faq"},
       "eyebrow": "Vos questions",
-      "title": "Quelques repères avant de commencer.",
+      "title": "Quelques repères avant de commencer",
       "paragraphs": [],
       "faq": [
         {

@@ -1,7 +1,7 @@
-import './organization-carousel.js?v=912497b8e0a61294';
-import './consent-ui.js?v=912497b8e0a61294';
-import './analytics.js?v=912497b8e0a61294';
-import { initializeContact } from './contact.js?v=912497b8e0a61294';
+import './organization-carousel.js?v=8a50e73f923c14e6';
+import './consent-ui.js?v=8a50e73f923c14e6';
+import './analytics.js?v=8a50e73f923c14e6';
+import { initializeContact } from './contact.js?v=8a50e73f923c14e6';
 
 document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
@@ -102,13 +102,13 @@ if (hero) {
 }
 
 // A single animation frame per scroll; reduced motion keeps every image still.
-const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img')];
+const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img, .editorial-split .editorial-illustration img')];
 let depthFrame = 0;
 function paintDepth() {
   depthFrame = 0;
   depthLayers.forEach(layer => {
     const rect = layer.parentElement.getBoundingClientRect();
-    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth");
+    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth, .editorial-split .editorial-illustration img");
     const distance = contentPhoto || layer.matches(".landscape-depth") ? (window.innerHeight - rect.height) / 2 - rect.top : -rect.top;
     const limit = contentPhoto ? 18 : 36;
     const offset = motion.matches ? 0 : Math.min(limit, Math.max(-limit, distance * .09));

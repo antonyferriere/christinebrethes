@@ -16,7 +16,7 @@ export default {
     {
       "presentation": {"layout": "split", "image": "livres-fleurs", "emphasis": 4},
       "eyebrow": "Un espace pour avancer",
-      "title": "Donner une nouvelle direction à votre parcours.",
+      "title": "Donner une nouvelle direction à votre parcours",
       "paragraphs": [
         "Nos parcours professionnels ne sont pas toujours linéaires.",
         "Une recherche d'emploi qui se prolonge, une envie de reconversion, une perte de sens, un changement imposé ou simplement le besoin d'évoluer…",
@@ -28,7 +28,7 @@ export default {
     {
       "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vous reconnaître",
-      "title": "Cet accompagnement peut vous correspondre.",
+      "title": "Cet accompagnement peut vous correspondre",
       "paragraphs": [],
       "items": [
         "Vous recherchez un emploi et souhaitez donner un nouvel élan à vos démarches.",
@@ -42,7 +42,7 @@ export default {
     {
       "presentation": {"layout": "cards"},
       "eyebrow": "Ce que nous travaillons ensemble",
-      "title": "De la réflexion à l'action.",
+      "title": "De la réflexion à l'action",
       "paragraphs": [],
       "blocks": [
         {
@@ -92,19 +92,19 @@ export default {
     {
       "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Cabinets d'outplacement & partenaires RH",
-      "title": "Une expertise complémentaire pour vos accompagnements.",
+      "title": "Une expertise complémentaire pour vos accompagnements",
       "paragraphs": [
         "J'interviens en tant que coach et consultante indépendante, en collaboration avec des cabinets d'outplacement, de conseil RH et d'accompagnement des mobilités professionnelles.",
         "Mon expérience en chasse de tête internationale, associée à ma pratique du coaching professionnel, me permet d'apporter une double lecture : celle du candidat et celle du recruteur.",
         "Domaines d'intervention :"
       ],
       "items": [
-        "Accompagnement individuel des transitions professionnelles.",
-        "Outplacement et repositionnement de carrière.",
-        "Bilans de parcours et valorisation des compétences.",
-        "Stratégie de recherche d'emploi, CV, LinkedIn et entretiens.",
-        "Ateliers collectifs de dynamisation et d'employabilité.",
-        "Information et conseil dans le cadre de dispositifs de mobilité, notamment RCC et Points Information Conseil (PIC), selon les besoins des missions."
+        "Accompagnement individuel des transitions professionnelles",
+        "Outplacement et repositionnement de carrière",
+        "Bilans de parcours et valorisation des compétences",
+        "Stratégie de recherche d'emploi, CV, LinkedIn et entretiens",
+        "Ateliers collectifs de dynamisation et d'employabilité",
+        "Information et conseil dans le cadre de dispositifs de mobilité, notamment RCC et Points Information Conseil (PIC), selon les besoins des missions"
       ],
       "after": [
         "J'accorde une attention particulière à la qualité de la relation, à la confidentialité, à l'autonomie des personnes accompagnées et à la construction de perspectives professionnelles durables.",
@@ -120,23 +120,23 @@ export default {
     {
       "presentation": {"layout": "journey"},
       "eyebrow": "Concrètement",
-      "title": "Un chemin construit ensemble.",
+      "title": "Un chemin construit ensemble",
       "paragraphs": [],
       "blocks": [
         {
-          "title": "01 — Faire le point",
+          "title": "Faire le point",
           "paragraphs": [
             "Comprendre votre situation, explorer vos attentes et identifier les ressources sur lesquelles vous appuyer."
           ]
         },
         {
-          "title": "02 — Clarifier et valoriser",
+          "title": "Clarifier et valoriser",
           "paragraphs": [
             "Définir vos objectifs, mettre en lumière vos compétences et construire votre positionnement professionnel."
           ]
         },
         {
-          "title": "03 — Passer à l'action",
+          "title": "Passer à l'action",
           "paragraphs": [
             "Déployer une stratégie adaptée, préparer vos démarches et avancer avec des objectifs concrets et progressifs."
           ]
@@ -146,15 +146,15 @@ export default {
     {
       "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Le cadre",
-      "title": "Un accompagnement adapté à votre situation.",
+      "title": "Un accompagnement adapté à votre situation",
       "paragraphs": [
         "Chaque parcours est singulier. L'accompagnement se construit selon vos besoins, vos objectifs et votre contexte professionnel."
       ],
       "items": [
-        "Séances individuelles et personnalisées.",
-        "Accompagnements ponctuels ou parcours de plusieurs séances.",
-        "Interventions auprès des particuliers et en partenariat avec des cabinets.",
-        "En présentiel à Paris ou Chartres, et en visioconférence."
+        "Séances individuelles et personnalisées",
+        "Accompagnements ponctuels ou parcours de plusieurs séances",
+        "Interventions auprès des particuliers et en partenariat avec des cabinets",
+        "En présentiel à Paris ou Chartres, et en visioconférence"
       ],
       "after": [
         "Les modalités, le rythme et les tarifs sont définis selon la nature de l'accompagnement."
