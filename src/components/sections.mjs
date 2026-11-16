@@ -15,15 +15,26 @@ export function places() {
 export function linkedinSections(settings = linkedinSettings, reviewsData = recommendations, postsData = publications) {
   const reviews = settings.recommendations ? reviewsData.filter((r) => r.visible && r.authorized) : [];
   const posts = settings.publications ? postsData.filter((p) => p.visible) : [];
-  const cards = reviews.map(r => `<figure class="offer-card review">
-    <figcaption class="review-person">
-      <a class="text-link review-profile" href="${escape(r.source)}">
-        ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="45" height="45" loading="lazy" decoding="async">` : ''}
-        <span class="review-identity"><span>${escape(r.author)}</span>${r.role ? `<span class="review-role">${escape(r.role)}</span>` : ''}</span>
-      </a>
-    </figcaption>
-    <blockquote>${r.text.split(/\n\n/).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote>
-  </figure>`).join('');
+  const cards = reviews.map(r => {
+    const paragraphs = r.text.split(/\n\n/);
+    const quote = `<blockquote>${paragraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote>`;
+    // Native disclosure: a brief excerpt is visible; the full quotation remains in the document.
+    const content = r.text.length > 240
+      ? `<details class="review-disclosure">
+          <summary><span class="review-preview">${escape(paragraphs[0])}</span><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span></summary>
+          ${quote}
+        </details>`
+      : quote;
+    return `<figure class="offer-card review">
+      <figcaption class="review-person">
+        <a class="text-link review-profile" href="${escape(r.source)}">
+          ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="45" height="45" loading="lazy" decoding="async">` : ''}
+          <span class="review-identity"><span>${escape(r.author)}</span>${r.role ? `<span class="review-role">${escape(r.role)}</span>` : ''}</span>
+        </a>
+      </figcaption>
+      ${content}
+    </figure>`;
+  }).join('');
   return `${reviews.length ? `<section class="section tinted testimonials"><div class="container">
     ${sectionHeading('Regards partagés', 'Ils témoignent de mon accompagnement')}
     <div class="review-grid">${cards}</div>
