@@ -8,7 +8,7 @@ test('L’image précède le texte de présentation dans le DOM mobile', () => {
   const section = html.match(/<section class="section container introduction">([\s\S]*?)<\/section>/)?.[1];
   assert.ok(section, 'La section de présentation doit exister');
   assert.ok(section.indexOf('class="introduction-image"') < section.indexOf('Faisons connaissance'));
-  assert.match(section, /Mon parcours & mes valeurs/);
+  assert.match(section, /Mon parcours &amp; mes valeurs/);
 });
 
 test('Une seule colonne sous 840px et image à droite sur deux colonnes', () => {
