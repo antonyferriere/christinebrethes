@@ -14,6 +14,7 @@ export default {
   ],
   "sections": [
     {
+      "presentation": {"layout": "split", "image": "livres-fleurs", "emphasis": 4},
       "eyebrow": "Un espace pour avancer",
       "title": "Donner une nouvelle direction à votre parcours.",
       "paragraphs": [
@@ -25,6 +26,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vous reconnaître",
       "title": "Cet accompagnement peut vous correspondre.",
       "paragraphs": [],
@@ -38,6 +40,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "cards"},
       "eyebrow": "Ce que nous travaillons ensemble",
       "title": "De la réflexion à l'action.",
       "paragraphs": [],
@@ -75,6 +78,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "split", "tone": "sage", "image": "allee", "emphasis": 1},
       "eyebrow": "Outplacement & mobilité professionnelle",
       "title": "Accompagner les transitions, ouvrir de nouvelles perspectives.",
       "paragraphs": [
@@ -86,6 +90,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Cabinets d'outplacement & partenaires RH",
       "title": "Une expertise complémentaire pour vos accompagnements.",
       "paragraphs": [
@@ -113,6 +118,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "journey"},
       "eyebrow": "Concrètement",
       "title": "Un chemin construit ensemble.",
       "paragraphs": [],
@@ -138,6 +144,7 @@ export default {
       ]
     },
     {
+      "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Le cadre",
       "title": "Un accompagnement adapté à votre situation.",
       "paragraphs": [
