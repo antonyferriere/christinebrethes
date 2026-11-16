@@ -10,3 +10,13 @@ test('certifications : aucune attribution ni logo sans double validation',()=>{
  assert.match(certificationsSection([item]), /&lt;validation de test&gt;/);
  item.title='';assert.equal(certificationsSection([item]),'');
 });
+
+test('certifications : ordre antichronologique sans modifier la source', () => {
+  const input = [...certifications].reverse();
+  const snapshot = JSON.stringify(input);
+  const html = certificationsSection(input);
+  const years = [...html.matchAll(/class="certification-date">([^<]*)/g)].map(match => match[1]);
+  assert.deepEqual(years, ['2026', '2022', '2019', '2007', '2006']);
+  assert.equal(JSON.stringify(input), snapshot);
+  assert.doesNotMatch(html, /data-carousel|organization-controls/);
+});

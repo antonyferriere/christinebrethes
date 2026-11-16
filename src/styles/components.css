@@ -101,6 +101,31 @@
 .consent-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .consent-actions .button { width: 100%; justify-content: center; white-space: normal; }
 @media (max-width: 420px) { .consent-actions { grid-template-columns: 1fr; } }
+.certifications-section { background: var(--color-ivory); }
+.certifications-section .container { max-width: 1100px; }
+.certification-timeline { list-style: none; margin: var(--space-12) 0 0; padding: 0; }
+.certification-timeline > li { position: relative; padding: 0 0 var(--space-8) var(--space-8); border-left: 1px solid var(--color-outline); }
+.certification-timeline > li::before {
+  content: ''; position: absolute; left: -.3rem; top: .65rem;
+  width: .55rem; height: .55rem; border-radius: 50%; background: var(--color-primary);
+}
+.certification-timeline > li:last-child { padding-bottom: 0; }
+.certification-date { font: 1.5rem/1.3 var(--font-display); color: var(--color-primary); margin-bottom: var(--space-4); }
+.certification-entry { display: grid; gap: var(--space-6); padding: var(--space-6); background: var(--color-paper); border-radius: var(--radius-card); }
+.certification-entry .organization-logo { height: 6rem; border-radius: var(--radius-small); }
+.certification-copy { min-width: 0; align-self: center; }
+.certification-copy h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); margin-bottom: var(--space-3); }
+.certification-copy p { color: var(--color-muted); margin: 0; }
+@media (min-width: 600px) {
+  .certification-timeline > li { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: var(--space-6); }
+  .certification-date { padding-top: var(--space-6); margin: 0; }
+  .certification-timeline > li::before { top: 2.1rem; }
+  .certification-entry { grid-template-columns: 8rem minmax(0, 1fr); }
+}
+@media print {
+  .certification-timeline > li { break-inside: avoid; }
+}
+
 .organization-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
 .organization-heading h2 { margin: 0; }
 .organization-track { --gap: 1.25rem; display: flex; gap: var(--gap); overflow-x: auto; list-style: none; padding: .5rem 0 1rem; margin: 0; scrollbar-width: thin; }
