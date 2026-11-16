@@ -93,7 +93,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards", "tone": "sage"},
+      "presentation": {"layout": "cards", "tone": "sage", "images": ["pages/seance-individuelle","hero/espace-atelier","hero/pleine-conscience","pages/entreprises-organisations"]},
       "title": "Des formats adaptés à vos besoins",
       "paragraphs": [],
       "blocks": [

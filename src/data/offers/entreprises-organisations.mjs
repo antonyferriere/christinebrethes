@@ -169,7 +169,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards"},
+      "presentation": {"layout": "cards", "images": ["livres-fleurs","hero/espace-atelier","pages/seance-individuelle","hero/pleine-conscience","pages/entreprises-organisations"]},
       "eyebrow": "Concrètement",
       "title": "Des formats adaptés à votre réalité.",
       "paragraphs": [],
