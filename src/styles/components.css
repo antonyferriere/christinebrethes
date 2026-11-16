@@ -74,6 +74,9 @@
 .review-preview { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; color: var(--color-muted); font-size: 1rem; font-style: italic; line-height: 1.65; }
 .review-toggle { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; margin-top: .5rem; color: var(--color-primary); font-size: .95rem; font-style: normal; font-weight: 600; }
 .review-toggle .review-less, .review-disclosure[open] .review-preview, .review-disclosure[open] .review-more { display: none; }
+/* Keep the native summary first in the DOM, but show "Réduire" below the full review. */
+.review-disclosure[open] { display: flex; flex-direction: column; }
+.review-disclosure[open] > summary { order: 1; align-self: flex-start; }
 .review-disclosure[open] .review-less { display: inline; }
 .review-disclosure[open] .review-toggle [aria-hidden] { transform: rotate(180deg); }
 .review-disclosure[open] blockquote { margin-top: .75rem; }
