@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { linkedinSections } from '../src/components/sections.mjs';
+import { escape } from '../src/components/ui.mjs';
 import { recommendations } from '../src/data/linkedin.mjs';
 
 test('Les témoignages longs sont repliés par défaut avec une ouverture native accessible', () => {
@@ -12,7 +13,7 @@ test('Les témoignages longs sont repliés par défaut avec une ouverture native
   assert.equal((html.match(/class="review-less">Réduire/g) || []).length, 3);
   for (const review of recommendations) {
     assert.ok(html.includes(review.author));
-    assert.ok(html.includes(review.text.split(/\n\n/)[0].slice(0, 28)));
+    assert.ok(html.includes(escape(review.text.split(/\n\n/)[0].slice(0, 28))));
   }
 });
 
