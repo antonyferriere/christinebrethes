@@ -103,9 +103,6 @@
 @media (max-width: 420px) { .consent-actions { grid-template-columns: 1fr; } }
 .organization-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
 .organization-heading h2 { margin: 0; }
-.organization-controls:not([hidden]) { display: flex; gap: .5rem; }
-.organization-controls button { width: 44px; height: 44px; background: var(--color-paper); border: 1px solid var(--color-outline); border-radius: 50%; color: var(--color-primary); font-size: 1.2rem; cursor: pointer; }
-.organization-controls button:hover { border-color: currentColor; }
 .organization-track { --gap: 1.25rem; display: flex; gap: var(--gap); overflow-x: auto; list-style: none; padding: .5rem 0 1rem; margin: 0; scrollbar-width: thin; }
 .organization-track > li { flex: 0 0 86%; display: flex; min-width: 0; }
 .organization-track .offer-card { width: 100%; background: var(--color-paper); }
@@ -122,3 +119,20 @@
 .scientific-references ol { padding-inline-start: 1.5rem; }
 .scientific-references li { padding: 1.5rem 0; border-top: 1px solid var(--color-outline); }
 .scientific-references h3 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); overflow-wrap: anywhere; }
+
+.scientific-references-section { background: var(--color-ivory); }
+.organization-viewport { position: relative; }
+.organization-viewport::before, .organization-viewport::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  width: clamp(1.25rem, 3vw, 3rem);
+  z-index: 1;
+  pointer-events: none;
+}
+.organization-viewport::before { left: 0; background: linear-gradient(to right, var(--color-ivory), transparent); }
+.organization-viewport::after { right: 0; background: linear-gradient(to left, var(--color-ivory), transparent); }
+.organization-viewport .organization-track { padding-inline: clamp(1.25rem, 3vw, 3rem); }
+.organization-viewport .organization-track:focus-visible { outline-offset: 3px; }
+
+@media print { .organization-viewport::before, .organization-viewport::after { display: none; } }

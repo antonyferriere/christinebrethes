@@ -1,9 +1,8 @@
 for (const section of document.querySelectorAll('[data-carousel]')) {
   const track = section.querySelector('.organization-track');
   const items = Array.from(track.children);
-  const controls = section.querySelector('.organization-controls');
-  const play = controls.querySelector('[data-play]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let interrupted = false;
   let playing = !motion.matches;
   let visible = false;
   let frame = 0;
@@ -55,8 +54,6 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
     cancelAnimationFrame(frame);
     frame = 0;
     last = 0;
-    play.textContent = playing ? 'Ⅱ' : '▶';
-    play.setAttribute('aria-label', playing ? 'Mettre le défilement en pause' : 'Démarrer le défilement');
     if (visible && playing && !document.hidden && !hovering && !touching && !dragging && document.activeElement !== track) {
       position = track.scrollLeft;
       frame = requestAnimationFrame(tick);
@@ -64,20 +61,19 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
   }
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }).observe(section);
   document.addEventListener('visibilitychange', sync);
-  motion.addEventListener('change', () => { playing = !motion.matches; sync(); });
-  play.addEventListener('click', () => { playing = !playing; sync(); });
-  for (const [selector, direction] of [['[data-prev]', -1], ['[data-next]', 1]]) {
-    controls.querySelector(selector).addEventListener('click', () => {
-      playing = false;
-      sync();
-      track.scrollBy({ left: direction * period / items.length, behavior: motion.matches ? 'instant' : 'smooth' });
-    });
+  motion.addEventListener('change', () => { playing = !motion.matches && !interrupted; sync(); });
+  function pauseOnInteraction() {
+    interrupted = true;
+    playing = false;
+    sync();
   }
-  track.addEventListener('focus', sync);
+  track.addEventListener('focus', pauseOnInteraction);
+  track.addEventListener('keydown', pauseOnInteraction);
   track.addEventListener('blur', () => requestAnimationFrame(sync));
   track.addEventListener('pointerenter', event => { hovering = event.pointerType === 'mouse'; sync(); });
   track.addEventListener('pointerleave', () => { hovering = false; sync(); });
   track.addEventListener('pointerdown', event => {
+    pauseOnInteraction();
     if (event.pointerType !== 'mouse') { touching = true; sync(); return; }
     if (event.button !== 0) return;
     dragging = { x: event.clientX, left: track.scrollLeft };
@@ -102,6 +98,5 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
   track.addEventListener('pointerup', release);
   track.addEventListener('pointercancel', release);
   track.addEventListener('lostpointercapture', release);
-  controls.hidden = false;
   sync();
 }
