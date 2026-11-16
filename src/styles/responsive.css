@@ -6,7 +6,9 @@
 }
 @media (min-width: 840px) {
   .approach-grid, .introduction, .places, .detail-grid, .modalities, .booking-grid, .page-hero.split { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 7vw, 7rem); }
-  .introduction { grid-template-columns: .85fr 1fr; }
+  .introduction { grid-template-columns: 1fr .85fr; }
+  .home .introduction > .introduction-image { grid-column: 2; grid-row: 1; }
+  .home .introduction > div:last-child { grid-column: 1; grid-row: 1; }
   .places { grid-template-columns: .8fr 1fr; }
   .places-photo { max-height: 600px; }
   /* Text defines homepage row heights; photos fill the available column. */
@@ -50,9 +52,10 @@
 
 @media (max-width: 839px) {
   .home .places-photo { aspect-ratio: 1; }
-  .home .introduction { grid-template-columns: 1fr .85fr; }
-  .home .introduction > .introduction-image { grid-column: 2; grid-row: 1; }
-  .home .introduction > div:last-child { grid-column: 1; grid-row: 1; }
+  /* One column on phones/tablets: image precedes the readable text. */
+  .home .introduction { grid-template-columns: minmax(0, 1fr); }
+  .home .introduction > .introduction-image,
+  .home .introduction > div:last-child { grid-column: auto; grid-row: auto; }
 }
 @media (min-width: 1200px) {
   .home .approach-grid { grid-template-columns: .8fr 1.2fr; gap: 3rem; }
