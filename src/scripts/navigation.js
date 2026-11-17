@@ -9,7 +9,8 @@ export function initializeSubmenu(navigation) {
   let open = false, timer;
   function setOpen(value) {
     clearTimeout(timer);
-    open = value;
+    // Mobile offers are always available; only desktop is a disclosure.
+    open = !desktop.matches || value;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Masquer les offres Accompagnements' : 'Afficher les offres Accompagnements');
     item.classList.toggle('is-expanded', open);
@@ -34,7 +35,7 @@ export function initializeSubmenu(navigation) {
     }
   });
   item.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && open) {
+    if (desktop.matches && event.key === 'Escape' && open) {
       event.preventDefault();
       event.stopPropagation();
       setOpen(false);
@@ -43,7 +44,7 @@ export function initializeSubmenu(navigation) {
   });
   document.addEventListener('keydown', (event) => {
     // A hover-open panel must also close when focus is elsewhere on the page.
-    if (event.key === 'Escape' && open) setOpen(false);
+    if (desktop.matches && event.key === 'Escape' && open) setOpen(false);
   });
   document.addEventListener('click', (event) => {
     if (!item.contains(event.target)) setOpen(false);

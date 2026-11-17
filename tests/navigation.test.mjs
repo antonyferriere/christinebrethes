@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initializeSubmenu } from '../src/scripts/navigation.js';
 
-function fixture() {
+function fixture(isDesktop = true) {
   class Element {
     constructor() { this.handlers = {}; this.attrs = {}; this.classes = new Set(); this.classList = { toggle: (name, value) => value ? this.classes.add(name) : this.classes.delete(name) }; }
     addEventListener(name, handler) { (this.handlers[name] ||= []).push(handler); }
@@ -13,7 +13,8 @@ function fixture() {
   }
   const item = new Element(), toggle = new Element(), panel = new Element(), link = new Element();
   const doc = new Element(), win = new Element(), desktop = new Element(), hover = new Element();
-  desktop.matches = hover.matches = true;
+  desktop.matches = isDesktop;
+  hover.matches = true;
   item.children = [toggle, panel, link];
   item.querySelector = selector => selector === '.submenu-toggle' ? toggle : panel;
   panel.querySelector = () => link;
@@ -54,7 +55,7 @@ test('ArrowDown reaches first offer; leaving focus and outside click close it', 
   assert.equal(f.expanded(), 'false');
 });
 
-test('desktop mouse hover opens; touch and mobile hover do not', () => {
+test('desktop mouse hover opens; switching to mobile keeps offers expanded', () => {
   const f = fixture();
   f.item.emit('pointerenter', { pointerType: 'touch' });
   assert.equal(f.expanded(), 'false');
@@ -63,10 +64,12 @@ test('desktop mouse hover opens; touch and mobile hover do not', () => {
   f.desktop.matches = false;
   f.desktop.emit('change');
   f.item.emit('pointerenter', { pointerType: 'mouse' });
-  assert.equal(f.expanded(), 'false');
-  f.toggle.emit('click');
   assert.equal(f.expanded(), 'true');
   f.close();
+  assert.equal(f.panel.inert, false);
+  f.desktop.matches = true;
+  f.desktop.emit('change');
+  assert.equal(f.expanded(), 'false');
   assert.equal(f.panel.inert, true);
 });
 
@@ -97,4 +100,26 @@ test('Escape also dismisses a hover-open panel while focus is outside', () => {
   f.doc.emit('keydown', { key: 'Escape' });
   assert.equal(f.expanded(), 'false');
   assert.equal(f.panel.inert, true);
+});
+
+test('mobile offers stay accessible after focus leaves, menu closes and page restores', () => {
+  const f = fixture(false);
+  assert.equal(f.expanded(), 'true');
+  assert.equal(f.panel.inert, false);
+  f.toggle.emit('click');
+  f.item.emit('focusout', { relatedTarget: {} });
+  f.doc.emit('click', { target: {} });
+  f.close();
+  f.win.emit('pageshow');
+  assert.equal(f.expanded(), 'true');
+  assert.equal(f.panel.inert, false);
+});
+
+test('mobile Escape bubbles to close the main navigation without focusing its hidden toggle', () => {
+  const f = fixture(false);
+  f.link.focus();
+  f.item.emit('keydown', { key: 'Escape', preventDefault() { assert.fail('Escape must reach the main menu'); }, stopPropagation() { assert.fail('Escape must bubble'); } });
+  f.doc.emit('keydown', { key: 'Escape' });
+  assert.equal(f.doc.activeElement, f.link);
+  assert.equal(f.panel.inert, false);
 });
