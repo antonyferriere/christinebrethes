@@ -12,8 +12,24 @@ function blockTitle(title, presentation) {
 }
 
 function sectionContent(section, presentation) {
-  const blocks = (section.blocks || []).map((block, index) => `<article${presentation ? ` class="editorial-block${presentation.notes?.includes(index) ? ' editorial-note' : ''}"` : ''}><h3>${blockTitle(block.title, presentation)}</h3>${presentation ? '<div>' : ''}${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}${presentation ? '</div>' : ''}</article>`).join('');
+  const renderBody = block => `${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}`;
+  const blocks = (section.blocks || []).map((block, index, all) => {
+    if (presentation?.layout === 'domains') {
+      if (presentation.notes?.includes(index)) return '';
+      const note = presentation.notes?.includes(index + 1) ? all[index + 1] : null;
+      return `<article class="editorial-block editorial-domain-card"><div class="editorial-card-body"><h3>${escape(block.title)}</h3>${renderBody(block)}</div>${note ? `<footer class="editorial-card-footer"><h3>${escape(note.title)}</h3>${renderBody(note)}</footer>` : ''}</article>`;
+    }
+    if (presentation?.layout === 'cards') {
+      const image = presentation.images?.[index];
+      return `<article class="editorial-block editorial-image-card">${image ? cardImage(image) : ''}<div class="editorial-card-body"><h3>${blockTitle(block.title, presentation)}</h3>${renderBody(block)}</div></article>`;
+    }
+    return `<article${presentation ? ' class="editorial-block"' : ''}><h3>${blockTitle(block.title, presentation)}</h3>${presentation ? '<div>' : ''}${renderBody(block)}${presentation ? '</div>' : ''}</article>`;
+  }).join('');
   return `${paragraphs(section.paragraphs, presentation?.emphasis)}${section.items ? list(section.items) : ''}${blocks ? (presentation ? `<div class="editorial-blocks">${blocks}</div>` : blocks) : ''}${section.faq ? faq(section.faq) : ''}${section.after ? (presentation ? `<div class="editorial-after">${paragraphs(section.after)}</div>` : paragraphs(section.after)) : ''}${actions(section.actions, presentation?.layout === 'frame' ? 'button-outline' : '')}`;
+}
+
+function cardImage(name) {
+  return `<div class="editorial-card-image"><img src="/assets/${escape(name)}-800.webp" srcset="/assets/${escape(name)}-480.webp 480w, /assets/${escape(name)}-800.webp 800w" sizes="(min-width: 1440px) 600px, (min-width: 768px) 46vw, 92vw" width="800" height="450" alt="" loading="lazy" decoding="async"></div>`;
 }
 
 function illustration(name) {

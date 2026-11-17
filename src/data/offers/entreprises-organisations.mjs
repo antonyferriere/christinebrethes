@@ -169,7 +169,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards"},
+      "presentation": {"layout": "cards", "images": ["livres-fleurs","hero/espace-atelier","salon-accueil","hero/pleine-conscience","pages/bureau-ordinateur"]},
       "eyebrow": "Concrètement",
       "title": "Des formats adaptés à votre réalité.",
       "paragraphs": [],

@@ -199,7 +199,20 @@ ul { padding-left: 1.25rem; }
 .certification-timeline > li:last-child { padding-bottom: 0; }
 .certification-date { font: 1.5rem/1.3 var(--font-display); color: var(--color-primary); margin-bottom: var(--space-4); }
 .certification-entry { display: grid; gap: var(--space-6); padding: var(--space-6); background: var(--color-paper); border-radius: var(--radius-card); }
-.certification-entry .organization-logo { height: 6rem; border-radius: var(--radius-small); }
+.certification-entry .organization-logo {
+  height: 6rem;
+  width: 8rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  align-self: center;
+}
+.certification-entry .organization-logo img {
+  max-width: 100%;
+  max-height: 5.5rem;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
 .certification-copy { min-width: 0; align-self: center; }
 .certification-copy h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); margin-bottom: var(--space-3); }
 .certification-copy p { color: var(--color-muted); margin: 0; }
@@ -411,8 +424,7 @@ textarea { resize: vertical; }
 .editorial-composition .faq summary { min-height: 52px; }
 .editorial-composition .faq summary:focus-visible { outline-offset: 2px; }
 @media (min-width: 600px) {
-  .editorial-features .check-list, .editorial-cards .editorial-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .editorial-cards .editorial-block:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .editorial-features .check-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 840px) {
   .editorial-split.editorial-has-image .editorial-composition-inner,
@@ -420,8 +432,6 @@ textarea { resize: vertical; }
   .editorial-journey .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--editorial-gap); }
   .editorial-narrative .editorial-block { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: var(--editorial-gap); }
   .editorial-narrative .editorial-block h3 { max-width: 24ch; }
-  .editorial-domains .editorial-block:not(.editorial-note) { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: var(--editorial-gap); }
-  .editorial-domains .editorial-note { margin-left: 20%; }
 }
 
 /* The image follows the copy in reading order and fills the desktop column. */
@@ -457,6 +467,32 @@ textarea { resize: vertical; }
 }
 @media (prefers-reduced-motion: reduce) {
   .editorial-split .editorial-illustration img { transform: none; }
+}
+
+/* Editorial cards use the same image/content rhythm as the offer cards. */
+.editorial-cards .editorial-image-card,
+.editorial-domains .editorial-domain-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+.editorial-card-image { aspect-ratio: 16 / 9; overflow: hidden; background: var(--color-ivory); }
+.editorial-card-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.editorial-card-body { padding: var(--editorial-padding); }
+.editorial-card-body > :last-child { margin-bottom: 0; }
+.editorial-card-footer {
+  margin-top: auto;
+  padding: var(--editorial-padding);
+  border-top: 1px solid var(--color-outline);
+  background: var(--color-sage);
+}
+.editorial-card-footer h3 { font-size: 1.15rem; }
+.editorial-card-footer p { margin-bottom: 0; }
+.editorial-domains .editorial-card-body > p:first-of-type { color: var(--color-primary); }
+@media (min-width: 768px) {
+  .editorial-cards .editorial-blocks,
+  .editorial-domains .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 600px) {
@@ -638,8 +674,8 @@ textarea { resize: vertical; }
 .site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transition: box-shadow 350ms ease; }
 /* A separate surface keeps the header from becoming a backdrop root for its dropdown. */
 .site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: transparent; transition: background 350ms ease; }
-.site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
-.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
+.header-scrolled .site-header::before, .site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
+.header-scrolled .site-header, .site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
 .header-inner { flex-wrap: nowrap; gap: .75rem; min-height: 90px; padding-block: .65rem; }
 .brand, .home .brand { width: 235px; flex: 0 1 235px; min-width: 0; margin-right: auto; }
 .menu-toggle { order: 3; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; background: #faf7f244; }
@@ -690,3 +726,50 @@ textarea { resize: vertical; }
 .menu-toggle[aria-expanded='true'] span::after { transform: rotate(-45deg); }
 
 @media (max-width: 699px) { .brand, .home .brand { width: 64px; flex: 0 0 64px; } .brand img { height: 64px; object-fit: contain; } }
+
+/* Shared navigation rhythm: stable geometry across hover, focus and current page. */
+#navigation > ul { align-items: stretch; }
+#navigation li a { min-height: 44px; display: flex; align-items: center; padding: .6rem .7rem; border-radius: var(--radius-small); color: var(--color-ink); line-height: 1.4; transition: color var(--duration-fast), background-color var(--duration-fast); }
+#navigation a:hover { color: var(--color-primary-hover); background: var(--color-sage); }
+#navigation a[aria-current], #navigation a.is-current-section { color: var(--color-primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .35em; }
+#navigation a:focus-visible, .submenu-toggle:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+@media (min-width: 1200px) {
+ #navigation > ul, .js #navigation > ul { align-items: center; flex-wrap: nowrap; gap: .15rem; }
+ #navigation > ul > li > a { white-space: nowrap; }
+}
+
+/* Without JavaScript the offer links remain available. */
+.nav-disclosure { position: relative; }
+.nav-disclosure-heading { display: flex; align-items: center; }
+.nav-disclosure-heading > a { flex: 1; }
+.submenu-toggle { display: none; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-small); color: var(--color-forest); background: transparent; cursor: pointer; }
+.js .submenu-toggle { display: inline-flex; }
+.submenu-toggle:hover, .submenu-toggle[aria-expanded="true"] { background: var(--color-sage); color: var(--color-primary); }
+.submenu-toggle svg { transition: transform var(--duration-fast) var(--ease-standard); }
+.submenu-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+#navigation .nav-submenu, .js #navigation .nav-submenu { flex-direction: column; align-items: stretch; gap: .25rem; width: auto; margin: .3rem 0 .5rem 1rem; padding-left: .75rem; border-left: 1px solid var(--color-outline); }
+.js #navigation .nav-submenu { display: none; }
+.js #navigation .is-expanded > .nav-submenu { display: flex; }
+#navigation .nav-submenu a { font-size: .95rem; }
+@media (min-width: 1200px) {
+ #navigation .nav-submenu, .js #navigation .nav-submenu { position: absolute; top: 100%; left: 0; width: 320px; margin: 0; padding: .65rem; border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: rgb(250 247 242 / 96%); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); box-shadow: var(--shadow-raised); }
+ .js #navigation .nav-submenu { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast), visibility var(--duration-fast); }
+ .js #navigation .is-expanded > .nav-submenu { visibility: visible; opacity: 1; pointer-events: auto; }
+ .nav-disclosure-heading > a { white-space: nowrap; }
+}
+
+/* Native document transitions retain the static site's navigation semantics.
+   Keep the header separate from the page crossfade, without fading its text. */
+@media (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
+ @view-transition { navigation: auto; }
+ .site-header { view-transition-name: site-header; }
+ ::view-transition-group(site-header) { animation-duration: 0s; }
+ ::view-transition-old(site-header) { display: none; }
+ ::view-transition-new(site-header) { animation: none; mix-blend-mode: normal; }
+ ::view-transition-group(root) { animation-duration: 180ms; }
+}
+
+@media (max-width: 1199px) {
+ .nav-disclosure, .nav-disclosure-heading { width: 100%; }
+ #navigation .nav-submenu a { overflow-wrap: anywhere; }
+}

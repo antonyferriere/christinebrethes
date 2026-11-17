@@ -69,7 +69,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards"},
+      "presentation": {"layout": "cards", "images": ["pages/bureau-ordinateur","pages/papeterie-creative","salon-accueil","livres-fleurs","hero/pleine-conscience"]},
       "eyebrow": "Mes expériences & réalisations",
       "title": "Accompagner, transmettre et faire émerger les ressources",
       "paragraphs": [],
