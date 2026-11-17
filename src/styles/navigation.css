@@ -2,8 +2,8 @@
 .site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transition: box-shadow 350ms ease; }
 /* A separate surface keeps the header from becoming a backdrop root for its dropdown. */
 .site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: transparent; transition: background 350ms ease; }
-.site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
-.site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
+.header-scrolled .site-header::before, .site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
+.header-scrolled .site-header, .site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
 .header-inner { flex-wrap: nowrap; gap: .75rem; min-height: 90px; padding-block: .65rem; }
 .brand, .home .brand { width: 235px; flex: 0 1 235px; min-width: 0; margin-right: auto; }
 .menu-toggle { order: 3; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; background: #faf7f244; }
@@ -84,4 +84,15 @@
  .js #navigation .nav-submenu { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast), visibility var(--duration-fast); }
  .js #navigation .is-expanded > .nav-submenu { visibility: visible; opacity: 1; pointer-events: auto; }
  .nav-disclosure-heading > a { white-space: nowrap; }
+}
+
+/* Native document transitions retain the static site's navigation semantics.
+   Keep the header separate from the page crossfade, without fading its text. */
+@media (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
+ @view-transition { navigation: auto; }
+ .site-header { view-transition-name: site-header; }
+ ::view-transition-group(site-header) { animation-duration: 0s; }
+ ::view-transition-old(site-header) { display: none; }
+ ::view-transition-new(site-header) { animation: none; mix-blend-mode: normal; }
+ ::view-transition-group(root) { animation-duration: 180ms; }
 }

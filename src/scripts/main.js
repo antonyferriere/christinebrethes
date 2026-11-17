@@ -4,7 +4,6 @@ import './consent-ui.js';
 import './analytics.js';
 import { initializeContact } from './contact.js';
 
-document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 const closeSubmenu = initializeSubmenu(navigation);
@@ -131,7 +130,12 @@ const siteHeader = document.querySelector('.site-header');
 const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
 new ResizeObserver(measureSiteHeader).observe(siteHeader);
 measureSiteHeader();
-const updateHeaderSurface = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 16);
+const updateHeaderSurface = () => {
+  const scrolled = window.scrollY > 16;
+  siteHeader.classList.toggle('is-scrolled', scrolled);
+  document.documentElement.classList.toggle('header-scrolled', scrolled);
+};
 window.addEventListener('scroll', updateHeaderSurface, { passive: true });
 updateHeaderSurface();
+window.addEventListener('pageshow', updateHeaderSurface);
 
