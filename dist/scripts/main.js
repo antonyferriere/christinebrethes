@@ -1,8 +1,8 @@
-import { initializeSubmenu } from './navigation.js?v=fa7724222e058aec';
-import './organization-carousel.js?v=fa7724222e058aec';
-import './consent-ui.js?v=fa7724222e058aec';
-import './analytics.js?v=fa7724222e058aec';
-import { initializeContact } from './contact.js?v=fa7724222e058aec';
+import { initializeSubmenu } from './navigation.js?v=4dbd0c25844ac3a9';
+import './organization-carousel.js?v=4dbd0c25844ac3a9';
+import './consent-ui.js?v=4dbd0c25844ac3a9';
+import './analytics.js?v=4dbd0c25844ac3a9';
+import { initializeContact } from './contact.js?v=4dbd0c25844ac3a9';
 
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
