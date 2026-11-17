@@ -1,12 +1,14 @@
-import './organization-carousel.js?v=5f76eccae6722124';
-import './consent-ui.js?v=5f76eccae6722124';
-import './analytics.js?v=5f76eccae6722124';
-import { initializeContact } from './contact.js?v=5f76eccae6722124';
+import { initializeSubmenu } from './navigation.js?v=34dcb15705b9e384';
+import './organization-carousel.js?v=34dcb15705b9e384';
+import './consent-ui.js?v=34dcb15705b9e384';
+import './analytics.js?v=34dcb15705b9e384';
+import { initializeContact } from './contact.js?v=34dcb15705b9e384';
 
-document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
+const closeSubmenu = initializeSubmenu(navigation);
 function closeMenu() {
+  closeSubmenu();
   menu.setAttribute('aria-expanded', 'false');
   menu.setAttribute('aria-label', 'Ouvrir le menu');
   navigation.classList.remove('is-open');
@@ -16,6 +18,7 @@ menu.addEventListener('click', () => {
   menu.setAttribute('aria-expanded', String(open));
   menu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
   navigation.classList.toggle('is-open', open);
+  if (!open) closeSubmenu();
 });
 navigation.addEventListener('click', (event) => {
   if (event.target.closest('a')) closeMenu();
@@ -128,7 +131,12 @@ const siteHeader = document.querySelector('.site-header');
 const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
 new ResizeObserver(measureSiteHeader).observe(siteHeader);
 measureSiteHeader();
-const updateHeaderSurface = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 16);
+const updateHeaderSurface = () => {
+  const scrolled = window.scrollY > 16;
+  siteHeader.classList.toggle('is-scrolled', scrolled);
+  document.documentElement.classList.toggle('header-scrolled', scrolled);
+};
 window.addEventListener('scroll', updateHeaderSurface, { passive: true });
 updateHeaderSurface();
+window.addEventListener('pageshow', updateHeaderSurface);
 
