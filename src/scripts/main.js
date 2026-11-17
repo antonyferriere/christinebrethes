@@ -18,6 +18,7 @@ menu.addEventListener('click', () => {
   menu.setAttribute('aria-expanded', String(open));
   menu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
   navigation.classList.toggle('is-open', open);
+  if (!open) closeSubmenu();
 });
 navigation.addEventListener('click', (event) => {
   if (event.target.closest('a')) closeMenu();

@@ -90,3 +90,11 @@ test('hover bridge delay and focus protect the open panel', async () => {
   f.win.emit('pageshow');
   assert.equal(f.expanded(), 'false');
 });
+
+test('Escape also dismisses a hover-open panel while focus is outside', () => {
+  const f = fixture();
+  f.item.emit('pointerenter', { pointerType: 'mouse' });
+  f.doc.emit('keydown', { key: 'Escape' });
+  assert.equal(f.expanded(), 'false');
+  assert.equal(f.panel.inert, true);
+});

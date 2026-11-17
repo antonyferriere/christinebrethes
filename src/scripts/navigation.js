@@ -41,6 +41,10 @@ export function initializeSubmenu(navigation) {
       toggle.focus();
     }
   });
+  document.addEventListener('keydown', (event) => {
+    // A hover-open panel must also close when focus is elsewhere on the page.
+    if (event.key === 'Escape' && open) setOpen(false);
+  });
   document.addEventListener('click', (event) => {
     if (!item.contains(event.target)) setOpen(false);
   });
