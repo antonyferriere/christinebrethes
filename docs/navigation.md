@@ -29,7 +29,7 @@ Pas de nouvelle dépendance. Les pages, textes éditoriaux et illustrations ne s
 
 La CI de PR exécute node --check, npm run build et node --test tests/*.test.mjs. Premier passage CI réussi : syntaxe, génération et suite de tests ; le résultat du dernier commit est indiqué dans la PR. Les tests de contrôleur utilisent une simulation DOM : ils ne remplacent pas une recette navigateur.
 
-L'aperçu local existant a été consulté avant modification. Aucun serveur de la branche modifiée ne peut être lancé dans la session sans terminal ; pas de capture après ni de validation visuelle revendiquée. Les PDF de synthèse et questionnaire joints ne sont pas lisibles ici sans accès aux fichiers ; les choix s'appuient sur le brief fourni, docs/sources-et-design.md, les tokens et les assets existants.
+Reprise du 17 novembre 2026 : build local et 52 tests réussis ; les PDF de synthèse et questionnaire ont été consultés et confirment la palette naturelle, Source Sans 3 pour la lisibilité et une sophistication discrète. Le serveur de prévisualisation démarre, mais Chromium local est bloqué par une restriction système (socket interdit) et le navigateur distant ne peut pas joindre localhost. Aucun test visuel du nouveau build ni capture après n'est donc revendiqué. Les tests avec DOM simulé ne remplacent pas une recette réelle. Les derniers changements de dev sont intégrés à la branche de PR, sans fusion de la PR dans dev.
 
 À vérifier sur le build de cette branche :
 - 320, 375, 390, 430, 768, 1024, 1280, 1440 et 1920 px, et la frontière 1199/1200.
