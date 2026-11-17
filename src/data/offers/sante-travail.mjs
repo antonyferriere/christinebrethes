@@ -31,7 +31,9 @@ export default {
       "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vous reconnaître",
       "title": "Cet accompagnement peut vous correspondre",
-      "paragraphs": [],
+      "paragraphs": [
+        "Il n'est pas nécessaire d'attendre une situation de rupture pour commencer à prendre soin de son équilibre professionnel."
+      ],
       "items": [
         "Vous vivez avec une maladie chronique, ou un handicap invisible.",
         "Vous traversez une période de fatigue persistante ou de fragilité liée à votre santé.",
@@ -41,9 +43,7 @@ export default {
         "Vous avez perdu confiance dans vos capacités professionnelles.",
         "Vous souhaitez repenser votre activité, vos priorités ou votre équilibre de vie."
       ],
-      "after": [
-        "Il n'est pas nécessaire d'attendre une situation de rupture pour commencer à prendre soin de son équilibre professionnel."
-      ]
+      "after": []
     },
     {
       "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","jardin"]},
