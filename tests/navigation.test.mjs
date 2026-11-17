@@ -25,6 +25,8 @@ function fixture(isDesktop = true) {
   header.style = { setProperty: (name, value) => { header.attrs[name] = value; } };
   header.querySelector = () => headerRow;
   panel.bottom = 240;
+  panel.marginBottom = '0px';
+  globalThis.getComputedStyle = element => ({ marginBottom: element.marginBottom });
   panel.getBoundingClientRect = () => ({ bottom: panel.bottom });
   headerRow.getBoundingClientRect = () => ({ bottom: 98 });
   const observers = [];
@@ -149,4 +151,17 @@ test('header extension follows submenu content size and resets on mobile', () =>
   f.desktop.emit('change');
   assert.equal(f.header.attrs['--submenu-extension'], '186px');
   assert.equal(f.expanded(), 'false');
+});
+
+test('header leaves the computed bottom margin below the submenu border', () => {
+  const f = fixture();
+  f.panel.marginBottom = '9.6px';
+  f.toggle.emit('click');
+  assert.equal(f.header.attrs['--submenu-extension'], '152px');
+  f.panel.marginBottom = '20px';
+  f.observers[0].callback();
+  assert.equal(f.header.attrs['--submenu-extension'], '162px');
+  f.desktop.matches = false;
+  f.desktop.emit('change');
+  assert.equal(f.header.attrs['--submenu-extension'], '0px');
 });

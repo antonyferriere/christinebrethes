@@ -10,8 +10,10 @@ export function initializeSubmenu(navigation) {
   const headerRow = header.querySelector('.header-inner');
   let open = false, timer;
   function measureExtension() {
+    // The border box excludes margins; reserve the space below the left border too.
+    const marginBottom = parseFloat(getComputedStyle(panel).marginBottom) || 0;
     const extension = desktop.matches
-      ? Math.max(0, panel.getBoundingClientRect().bottom - headerRow.getBoundingClientRect().bottom)
+      ? Math.max(0, panel.getBoundingClientRect().bottom + marginBottom - headerRow.getBoundingClientRect().bottom)
       : 0;
     header.style.setProperty('--submenu-extension', `${Math.ceil(extension)}px`);
   }
