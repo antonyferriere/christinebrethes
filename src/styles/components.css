@@ -55,7 +55,7 @@
 .place-list > div > span { color: var(--color-primary); font-size: .8rem; padding-top: .25rem; }
 .place-list h3 { font-size: 1.35rem; margin-bottom: .5rem; }
 .place-list p { font-size: 1rem; color: var(--color-muted); }
-.care-note, .editorial-after p { border-left: 2px solid var(--color-olive); padding: 1rem 1.5rem; background: var(--color-sage); font-size: 1rem; }
+.care-note{ border-left: 2px solid var(--color-olive); padding: 1rem 1.5rem; background: var(--color-sage); font-size: 1rem; }
 .notice { border-left: 3px solid var(--color-primary); background: var(--color-ivory); padding: 1.3rem; }
 .review-grid, .post-grid { display: grid; gap: 1.5rem; }
 .review, .post { margin: 0; padding: 2rem; background: var(--color-ivory); border-radius: var(--radius-card); }
