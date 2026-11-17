@@ -7,12 +7,27 @@ import { site, navigation, offerPath } from '../data/site.mjs';
 import { offers } from '../data/offers.mjs';
 import { escape, button } from './ui.mjs';
 
+function navigationItem(url, label, path) {
+  const current = path === url ? ' aria-current="page"' : '';
+  if (url !== '/accompagnements/') return `<li><a href="${url}"${current}>${label}</a></li>`;
+  const section = path.startsWith(url) && path !== url ? ' class="is-current-section"' : '';
+  const links = [
+    ['coaching-professionnel', 'Coaching & transitions de carrière'],
+    ['sante-travail', 'Santé & Travail'],
+    ['pleine-conscience', 'Méditation de pleine conscience'],
+  ];
+  return `<li class="nav-disclosure"><div class="nav-disclosure-heading"><a href="${url}"${current}${section}>${label}</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="accompagnements-submenu" aria-label="Afficher les offres Accompagnements"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button></div><ul id="accompagnements-submenu" class="nav-submenu">${links.map(([slug, title]) => {
+    const href = `${url}${slug}/`;
+    return `<li><a href="${href}"${path === href ? ' aria-current="page"' : ''}>${escape(title)}</a></li>`;
+  }).join('')}</ul></li>`;
+}
+
 function header(path) {
   return `<a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/" aria-label="Christine BRETHES — Accueil"><picture><source media="(max-width: 699px)" srcset="/assets/monogramme.webp"><img src="/assets/logo.webp" width="300" height="91" alt="Christine BRETHES, coaching, santé et travail, pleine conscience"></picture></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu"><span aria-hidden="true"></span></button>
-    <nav id="navigation" aria-label="Navigation principale"><ul>${navigation.map(([url, label]) => `<li><a href="${url}"${path === url || (url === '/accompagnements/' && path.startsWith(url)) ? ' aria-current="page"' : ''}>${label}</a></li>`).join('')}</ul></nav><a class="button button-small header-booking" href="${site.booking.url || '/contact/'}" aria-label="Prendre rendez-vous"><svg class="calendar-icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3M7 18h3"/></svg><span>Prendre rendez-vous</span></a>
+    <nav id="navigation" aria-label="Navigation principale"><ul>${navigation.map(([url, label]) => navigationItem(url, label, path)).join('')}</ul></nav><a class="button button-small header-booking" href="${site.booking.url || '/contact/'}" aria-label="Prendre rendez-vous"><svg class="calendar-icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3M7 18h3"/></svg><span>Prendre rendez-vous</span></a>
   </div></header>`;
 }
 function footer() {

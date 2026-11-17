@@ -65,3 +65,23 @@
  #navigation > ul, .js #navigation > ul { align-items: center; flex-wrap: nowrap; gap: .15rem; }
  #navigation > ul > li > a { white-space: nowrap; }
 }
+
+/* Without JavaScript the offer links remain available. */
+.nav-disclosure { position: relative; }
+.nav-disclosure-heading { display: flex; align-items: center; }
+.nav-disclosure-heading > a { flex: 1; }
+.submenu-toggle { display: none; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-small); color: var(--color-forest); background: transparent; cursor: pointer; }
+.js .submenu-toggle { display: inline-flex; }
+.submenu-toggle:hover, .submenu-toggle[aria-expanded="true"] { background: var(--color-sage); color: var(--color-primary); }
+.submenu-toggle svg { transition: transform var(--duration-fast) var(--ease-standard); }
+.submenu-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+#navigation .nav-submenu, .js #navigation .nav-submenu { flex-direction: column; align-items: stretch; gap: .25rem; width: auto; margin: .3rem 0 .5rem 1rem; padding-left: .75rem; border-left: 1px solid var(--color-outline); }
+.js #navigation .nav-submenu { display: none; }
+.js #navigation .is-expanded > .nav-submenu { display: flex; }
+#navigation .nav-submenu a { font-size: .95rem; }
+@media (min-width: 1200px) {
+ #navigation .nav-submenu, .js #navigation .nav-submenu { position: absolute; top: 100%; left: 0; width: 320px; margin: 0; padding: .65rem; border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: rgb(250 247 242 / 96%); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); box-shadow: var(--shadow-raised); }
+ .js #navigation .nav-submenu { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast), visibility var(--duration-fast); }
+ .js #navigation .is-expanded > .nav-submenu { visibility: visible; opacity: 1; pointer-events: auto; }
+ .nav-disclosure-heading > a { white-space: nowrap; }
+}

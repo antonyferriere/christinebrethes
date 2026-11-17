@@ -1,3 +1,4 @@
+import { initializeSubmenu } from './navigation.js';
 import './organization-carousel.js';
 import './consent-ui.js';
 import './analytics.js';
@@ -6,7 +7,9 @@ import { initializeContact } from './contact.js';
 document.documentElement.classList.add('js');
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
+const closeSubmenu = initializeSubmenu(navigation);
 function closeMenu() {
+  closeSubmenu();
   menu.setAttribute('aria-expanded', 'false');
   menu.setAttribute('aria-label', 'Ouvrir le menu');
   navigation.classList.remove('is-open');
