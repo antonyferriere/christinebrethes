@@ -249,6 +249,11 @@ textarea { resize: vertical; }
 .editorial-domains .editorial-card-body { padding: 1.5rem; }
 .domain-trigger { width: 100%; text-align: left; background: none; border: 0; border-radius: 0; font: inherit; color: var(--color-primary); cursor: pointer; gap: .75rem; min-height: 48px; }
 .domain-trigger svg { flex-shrink: 0; }
+.domain-title-trigger, .domain-image-trigger { display: block; width: 100%; padding: 0; border: 0; border-radius: 0; background: none; color: inherit; font: inherit; text-align: inherit; cursor: pointer; text-decoration: none; }
+.domain-title-trigger:hover, .domain-title-trigger:focus-visible { color: var(--color-primary); text-decoration: none; }
+.domain-title-trigger:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+.domain-image-trigger:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -4px; }
+
 .domain-disclosure { margin-top: auto; }
 .domain-disclosure summary { cursor: pointer; min-height: 48px; }
 .domain-disclosure .domain-detail { margin-top: 1.5rem; }
