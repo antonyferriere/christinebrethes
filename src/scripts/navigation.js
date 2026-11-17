@@ -11,6 +11,7 @@ export function initializeSubmenu(navigation) {
   let open = false, timer;
   function setOpen(value) {
     clearTimeout(timer);
+    if (!value && open && panel.contains(document.activeElement)) toggle.focus();
     open = value;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Masquer les offres Accompagnements' : 'Afficher les offres Accompagnements');

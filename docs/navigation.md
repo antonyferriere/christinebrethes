@@ -27,7 +27,7 @@ Pas de nouvelle dépendance. Les pages, textes éditoriaux et illustrations ne s
 
 ## Vérification
 
-La CI de PR exécute node --check, npm run build et node --test tests/*.test.mjs. Le résultat effectif est indiqué dans la PR. Les tests de contrôleur utilisent une simulation DOM : ils ne remplacent pas une recette navigateur.
+La CI de PR exécute node --check, npm run build et node --test tests/*.test.mjs. Premier passage CI réussi : syntaxe, génération et suite de tests ; le résultat du dernier commit est indiqué dans la PR. Les tests de contrôleur utilisent une simulation DOM : ils ne remplacent pas une recette navigateur.
 
 L'aperçu local existant a été consulté avant modification. Aucun serveur de la branche modifiée ne peut être lancé dans la session sans terminal ; pas de capture après ni de validation visuelle revendiquée. Les PDF de synthèse et questionnaire joints ne sont pas lisibles ici sans accès aux fichiers ; les choix s'appuient sur le brief fourni, docs/sources-et-design.md, les tokens et les assets existants.
 

@@ -98,3 +98,14 @@ test('Escape also dismisses a hover-open panel while focus is outside', () => {
   assert.equal(f.expanded(), 'false');
   assert.equal(f.panel.inert, true);
 });
+
+test('closing a focused submenu never leaves focus in an inert panel', () => {
+  const f = fixture();
+  f.panel.children = [f.link];
+  f.toggle.emit('click');
+  f.link.focus();
+  f.close();
+  assert.equal(f.doc.activeElement, f.toggle);
+  assert.equal(f.panel.inert, true);
+  f.close.destroy();
+});
