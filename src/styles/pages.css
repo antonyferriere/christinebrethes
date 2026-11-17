@@ -263,15 +263,17 @@ textarea { resize: vertical; }
 }
 .domain-dialog::backdrop { background: rgb(30 40 32 / .65); }
 .domain-dialog-close {
-  display: block; position: sticky; top: 0; margin: 0 0 1rem auto;
-  min-height: 44px; padding: .5rem 1rem; border: 1px solid var(--color-outline);
-  border-radius: var(--radius-small); background: var(--color-paper);
+  display: grid; place-items: center; position: sticky; top: 0; margin: 0 0 1rem auto;
+  width: 44px; height: 44px; padding: 0; border: 0;
+  border-radius: 0; background: transparent;
   color: var(--color-forest); font: inherit; cursor: pointer;
 }
 .domain-detail h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); }
 .domain-detail p { color: var(--color-muted); }
 .domain-detail > p:first-of-type { color: var(--color-primary); }
-.domain-detail .editorial-card-footer { margin-top: 1.5rem; padding: 1.25rem; }
+.domain-detail .care-note { margin-top: 1.5rem; }
+.domain-detail .care-note h3 { font-size: 1.15rem; }
+.domain-detail .care-note p:last-child { margin-bottom: 0; }
 .domain-dialog :focus-visible, .domain-trigger:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
   .editorial-domains .offer-card { transition: none; }

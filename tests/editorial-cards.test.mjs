@@ -25,7 +25,7 @@ test('les notes des domaines sont rattachées au pied des cartes correspondantes
   const html = editorialSection(section, 0);
   const cards = [...html.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)].map(match => match[0]);
   assert.equal(cards.length, 4);
-  assert.match(cards[0], /<footer class="editorial-card-footer"><h3>Prévention et organisation du travail<\/h3>/);
-  assert.match(cards[2], /<footer class="editorial-card-footer"><h3>Une pratique respectueuse de chacun<\/h3>/);
-  assert.equal((html.match(/class="editorial-card-footer"/g) || []).length, 2);
+  assert.match(cards[0], /<footer class="care-note"><h3>Prévention et organisation du travail<\/h3>/);
+  assert.match(cards[2], /<footer class="care-note"><h3>Une pratique respectueuse de chacun<\/h3>/);
+  assert.equal((html.match(/class="care-note"/g) || []).length, 2);
 });

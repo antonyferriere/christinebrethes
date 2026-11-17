@@ -13,7 +13,8 @@ document.querySelectorAll('.domain-disclosure').forEach((disclosure, index) => {
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'domain-dialog-close';
-  close.textContent = 'Fermer ×';
+  close.setAttribute('aria-label', 'Fermer la modale');
+  close.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg>';
   const trigger = document.createElement('button');
   trigger.type = 'button';
   trigger.className = 'text-link domain-trigger';
