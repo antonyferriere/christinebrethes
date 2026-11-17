@@ -54,3 +54,14 @@
 .menu-toggle[aria-expanded='true'] span::after { transform: rotate(-45deg); }
 
 @media (max-width: 699px) { .brand, .home .brand { width: 64px; flex: 0 0 64px; } .brand img { height: 64px; object-fit: contain; } }
+
+/* Shared navigation rhythm: stable geometry across hover, focus and current page. */
+#navigation > ul { align-items: stretch; }
+#navigation li a { min-height: 44px; display: flex; align-items: center; padding: .6rem .7rem; border-radius: var(--radius-small); color: var(--color-ink); line-height: 1.4; transition: color var(--duration-fast), background-color var(--duration-fast); }
+#navigation a:hover { color: var(--color-primary-hover); background: var(--color-sage); }
+#navigation a[aria-current], #navigation a.is-current-section { color: var(--color-primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .35em; }
+#navigation a:focus-visible, .submenu-toggle:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+@media (min-width: 1200px) {
+ #navigation > ul, .js #navigation > ul { align-items: center; flex-wrap: nowrap; gap: .15rem; }
+ #navigation > ul > li > a { white-space: nowrap; }
+}
