@@ -46,7 +46,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","livres-fleurs","pages/bureau-ordinateur","jardin"]},
+      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","jardin"]},
       "eyebrow": "Ce que nous travaillons ensemble",
       "title": "Retrouver des ressources, construire de nouveaux repères",
       "paragraphs": [],
