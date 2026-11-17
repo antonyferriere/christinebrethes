@@ -1,3 +1,4 @@
+import './testimonials.js';
 import './domain-dialogs.js';
 import { initializeSubmenu } from './navigation.js';
 import './organization-carousel.js';
