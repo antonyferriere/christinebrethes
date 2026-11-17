@@ -1,6 +1,7 @@
 // Native details keep every topic accessible if JavaScript is unavailable.
 document.querySelectorAll('.domain-disclosure').forEach((disclosure, index) => {
   if (typeof HTMLDialogElement === 'undefined' || !HTMLDialogElement.prototype.showModal) return;
+  const card = disclosure.closest('.editorial-domain-card');
   const summary = disclosure.querySelector('summary');
   const content = disclosure.querySelector('.domain-detail');
   const dialog = document.createElement('dialog');
@@ -19,21 +20,42 @@ document.querySelectorAll('.domain-disclosure').forEach((disclosure, index) => {
   trigger.type = 'button';
   trigger.className = 'text-link domain-trigger';
   trigger.innerHTML = summary.innerHTML;
-  trigger.setAttribute('aria-haspopup', 'dialog');
-  trigger.setAttribute('aria-controls', dialog.id);
+  const triggers = [trigger];
+  const cardTitle = card.querySelector('.editorial-card-body > h3');
+  const titleTrigger = document.createElement('button');
+  titleTrigger.className = 'domain-title-trigger';
+  titleTrigger.append(...cardTitle.childNodes);
+  cardTitle.append(titleTrigger);
+  triggers.push(titleTrigger);
+  const image = card.querySelector('.editorial-card-image');
+  if (image) {
+    const imageTrigger = document.createElement('button');
+    imageTrigger.className = `${image.className} domain-image-trigger`;
+    imageTrigger.setAttribute('aria-label', `Découvrir : ${title.textContent}`);
+    imageTrigger.append(...image.childNodes);
+    image.replaceWith(imageTrigger);
+    triggers.push(imageTrigger);
+  }
   dialog.append(close, content);
   document.body.append(dialog);
   disclosure.replaceWith(trigger);
-  trigger.addEventListener('click', () => {
-    dialog.showModal();
-    title.focus();
-    document.documentElement.classList.add('domain-dialog-open');
+  let opener = trigger;
+  triggers.forEach(button => {
+    button.type = 'button';
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.setAttribute('aria-controls', dialog.id);
+    button.addEventListener('click', () => {
+      opener = button;
+      dialog.showModal();
+      title.focus();
+      document.documentElement.classList.add('domain-dialog-open');
+    });
   });
   close.addEventListener('click', () => dialog.close());
   // Escape and focus containment are provided by the native modal dialog.
   dialog.addEventListener('close', () => {
     document.documentElement.classList.remove('domain-dialog-open');
-    trigger.focus();
+    opener.focus();
   });
   let backdropPointer = false;
   const outside = event => {
