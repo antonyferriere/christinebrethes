@@ -96,3 +96,8 @@
  ::view-transition-new(site-header) { animation: none; mix-blend-mode: normal; }
  ::view-transition-group(root) { animation-duration: 180ms; }
 }
+
+@media (max-width: 1199px) {
+ .nav-disclosure, .nav-disclosure-heading { width: 100%; }
+ #navigation .nav-submenu a { overflow-wrap: anywhere; }
+}
