@@ -19,7 +19,7 @@ test('four domain cards expose only their title and first two paragraphs before 
     assert.ok(!preview.includes('<ul'));
     for (const paragraph of blocks[index].paragraphs) assert.ok(card.includes(escape(paragraph)));
     for (const item of blocks[index].items) assert.ok(card.includes(escape(item)));
-    assert.match(card, /Découvrir les thématiques possibles/);
+    assert.match(card, /<summary class="text-link">Découvrir /);
     assert.match(card, /loading="lazy"/);
   });
   for (const image of section.presentation.images.filter(Boolean)) {
