@@ -2,7 +2,6 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
   const track = section.querySelector('.organization-track');
   const items = Array.from(track.children);
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let interrupted = false;
   let playing = !motion.matches;
   let visible = false;
   let frame = 0;
@@ -12,6 +11,9 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
   let dragging = null;
   let hovering = false;
   let touching = false;
+  let interacting = false;
+  let resumeTimer = 0;
+  let keyboardFocus = false;
 
   function copies() {
     return items.map(item => {
@@ -40,7 +42,12 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
     else if (frame) return;
     position = track.scrollLeft;
   }
-  track.addEventListener('scroll', wrap, { passive: true });
+  track.addEventListener('scroll', () => {
+    // Native scrollbar movements may arrive without a pointer event on the track.
+    if (!keyboardFocus && Math.abs(track.scrollLeft - position) > 1) pauseOnInteraction();
+    wrap();
+    if (interacting) resumeAfterInteraction();
+  }, { passive: true });
   function tick(now) {
     const elapsed = last ? Math.min(now - last, 64) : 0;
     last = now;
@@ -54,28 +61,49 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
     cancelAnimationFrame(frame);
     frame = 0;
     last = 0;
-    if (visible && playing && !document.hidden && !hovering && !touching && !dragging && document.activeElement !== track) {
+    if (visible && playing && !document.hidden && !hovering && !touching && !dragging && !interacting && !keyboardFocus) {
       position = track.scrollLeft;
       frame = requestAnimationFrame(tick);
     }
   }
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }).observe(section);
   document.addEventListener('visibilitychange', sync);
-  motion.addEventListener('change', () => { playing = !motion.matches && !interrupted; sync(); });
-  function pauseOnInteraction() {
-    interrupted = true;
-    playing = false;
-    sync();
+  motion.addEventListener('change', () => { playing = !motion.matches; sync(); });
+  function resumeAfterInteraction() {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      if (dragging || touching) return;
+      interacting = false;
+      // Resume even if the pointer still rests on the card or scrollbar.
+      hovering = false;
+      sync();
+    }, 1500);
   }
-  track.addEventListener('focus', pauseOnInteraction);
-  track.addEventListener('keydown', pauseOnInteraction);
-  track.addEventListener('blur', () => requestAnimationFrame(sync));
+  function pauseOnInteraction() {
+    interacting = true;
+    sync();
+    resumeAfterInteraction();
+  }
+  track.addEventListener('focus', () => {
+    keyboardFocus = track.matches(':focus-visible');
+    sync();
+  });
+  track.addEventListener('keydown', () => { keyboardFocus = true; sync(); });
+  track.addEventListener('blur', () => { keyboardFocus = false; sync(); });
+  track.addEventListener('wheel', () => {
+    keyboardFocus = false;
+    pauseOnInteraction();
+  }, { passive: true });
   track.addEventListener('pointerenter', event => { hovering = event.pointerType === 'mouse'; sync(); });
   track.addEventListener('pointerleave', () => { hovering = false; sync(); });
   track.addEventListener('pointerdown', event => {
+    keyboardFocus = false;
     pauseOnInteraction();
     if (event.pointerType !== 'mouse') { touching = true; sync(); return; }
     if (event.button !== 0) return;
+    // Leave the native scrollbar in control when it is the pointer target.
+    const bounds = track.getBoundingClientRect();
+    if (event.clientY >= bounds.top + track.clientTop + track.clientHeight) return;
     dragging = { x: event.clientX, left: track.scrollLeft };
     track.setPointerCapture(event.pointerId);
     track.classList.add('dragging');
@@ -93,9 +121,10 @@ for (const section of document.querySelectorAll('[data-carousel]')) {
     dragging = null;
     touching = false;
     track.classList.remove('dragging');
+    if (interacting) resumeAfterInteraction();
     sync();
   }
-  track.addEventListener('pointerup', release);
+  window.addEventListener('pointerup', release);
   track.addEventListener('pointercancel', release);
   track.addEventListener('lostpointercapture', release);
   sync();

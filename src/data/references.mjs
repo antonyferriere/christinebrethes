@@ -33,7 +33,11 @@ export const references = [
     "id": "espoirs",
     "organization": "Association Espoirs",
     "relationship": "À titre bénévole, j’anime des groupes de parole et j’accompagne des patients en coaching au sein de cette association de recherche médicale.",
-    "contentApproved": true
+    "contentApproved": true,
+    "logo": "/assets/organisations/espoirs.png",
+    "width": 509,
+    "height": 251,
+    "logoAuthorized": true
   },
   {
     "id": "nextformation",
