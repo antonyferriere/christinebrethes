@@ -1,9 +1,9 @@
-import './domain-dialogs.js?v=cd93e45f8119113d';
-import { initializeSubmenu } from './navigation.js?v=cd93e45f8119113d';
-import './organization-carousel.js?v=cd93e45f8119113d';
-import './consent-ui.js?v=cd93e45f8119113d';
-import './analytics.js?v=cd93e45f8119113d';
-import { initializeContact } from './contact.js?v=cd93e45f8119113d';
+import './domain-dialogs.js?v=4c131fb887282536';
+import { initializeSubmenu } from './navigation.js?v=4c131fb887282536';
+import './organization-carousel.js?v=4c131fb887282536';
+import './consent-ui.js?v=4c131fb887282536';
+import './analytics.js?v=4c131fb887282536';
+import { initializeContact } from './contact.js?v=4c131fb887282536';
 
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
@@ -129,8 +129,10 @@ paintDepth();
 
 // The header overlays the hero at entry and becomes a paper surface on scroll.
 const siteHeader = document.querySelector('.site-header');
-const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
-new ResizeObserver(measureSiteHeader).observe(siteHeader);
+// Keep page offsets stable while the desktop submenu extends the header.
+const headerRow = siteHeader.querySelector('.header-inner');
+const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${headerRow.getBoundingClientRect().height}px`);
+new ResizeObserver(measureSiteHeader).observe(headerRow);
 measureSiteHeader();
 const updateHeaderSurface = () => {
   const scrolled = window.scrollY > 16;
