@@ -1,9 +1,9 @@
-import './domain-dialogs.js?v=ed80efab873dc88f';
-import { initializeSubmenu } from './navigation.js?v=ed80efab873dc88f';
-import './organization-carousel.js?v=ed80efab873dc88f';
-import './consent-ui.js?v=ed80efab873dc88f';
-import './analytics.js?v=ed80efab873dc88f';
-import { initializeContact } from './contact.js?v=ed80efab873dc88f';
+import './domain-dialogs.js?v=64587cab8e25ee9f';
+import { initializeSubmenu } from './navigation.js?v=64587cab8e25ee9f';
+import './organization-carousel.js?v=64587cab8e25ee9f';
+import './consent-ui.js?v=64587cab8e25ee9f';
+import './analytics.js?v=64587cab8e25ee9f';
+import { initializeContact } from './contact.js?v=64587cab8e25ee9f';
 
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
