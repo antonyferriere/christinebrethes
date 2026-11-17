@@ -1,8 +1,8 @@
 :root { --header-height: 98px; --header-surface: rgb(250 247 242 / 82%); --header-blur: blur(14px); }
-.site-header { position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transition: box-shadow 350ms ease; }
+.site-header { --navigation-surface: transparent; --navigation-blur: none; position: fixed; inset: 0 0 auto; background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; -webkit-backdrop-filter: none; transition: box-shadow 350ms ease; }
 /* A separate surface keeps the header from becoming a backdrop root for its dropdown. */
-.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: transparent; transition: background 350ms ease; }
-.header-scrolled .site-header::before, .site-header.is-scrolled::before, .standard-page .site-header::before, .site-header:has(.is-open)::before { background: var(--header-surface); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); }
+.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--navigation-surface); backdrop-filter: var(--navigation-blur); -webkit-backdrop-filter: var(--navigation-blur); transition: background 350ms ease; }
+.header-scrolled .site-header, .site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { --navigation-surface: var(--header-surface); --navigation-blur: var(--header-blur); }
 .header-scrolled .site-header, .site-header.is-scrolled, .standard-page .site-header, .site-header:has(.is-open) { border-color: #c7bdaf55; box-shadow: 0 4px 24px #3a2c2409; }
 .header-inner { flex-wrap: nowrap; gap: .75rem; min-height: 90px; padding-block: .65rem; }
 .brand, .home .brand { width: 235px; flex: 0 1 235px; min-width: 0; margin-right: auto; }
@@ -71,19 +71,25 @@
 .nav-disclosure-heading { display: flex; align-items: center; }
 .nav-disclosure-heading > a { flex: 1; }
 .submenu-toggle { display: none; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-small); color: var(--color-forest); background: transparent; cursor: pointer; }
-.js .submenu-toggle { display: inline-flex; }
+@media (min-width: 1200px) { .js .submenu-toggle { display: inline-flex; } }
 .submenu-toggle:hover, .submenu-toggle[aria-expanded="true"] { color: var(--color-primary); }
 .submenu-toggle svg { transition: transform var(--duration-fast) var(--ease-standard); }
 .submenu-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 #navigation .nav-submenu, .js #navigation .nav-submenu { flex-direction: column; align-items: stretch; gap: .25rem; width: auto; margin: .3rem 0 .5rem 1rem; padding-left: .75rem; border-left: 1px solid var(--color-outline); }
-.js #navigation .nav-submenu { display: none; }
+.js #navigation .nav-submenu { display: flex; }
 .js #navigation .is-expanded > .nav-submenu { display: flex; }
 #navigation .nav-submenu a { font-size: .95rem; }
 @media (min-width: 1200px) {
- #navigation .nav-submenu, .js #navigation .nav-submenu { position: absolute; top: 100%; left: 0; width: 320px; margin: 0; padding: .65rem; border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: rgb(250 247 242 / 96%); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); box-shadow: var(--shadow-raised); }
- .js #navigation .nav-submenu { display: flex; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity var(--duration-fast), visibility var(--duration-fast); }
- .js #navigation .is-expanded > .nav-submenu { visibility: visible; opacity: 1; pointer-events: auto; }
+ /* One continuous header surface, expanding below its stable first row. */
+ .js .site-header { padding-bottom: 0; overflow: clip; transition: padding-bottom 280ms var(--ease-standard), box-shadow 350ms ease; }
+ .js .site-header:has(.nav-disclosure.is-expanded) { padding-bottom: var(--submenu-extension, 0px); }
+ #navigation .nav-submenu, .js #navigation .nav-submenu { width: 320px; margin: 0 .7rem .7rem .7rem; padding: .65rem 0 .65rem .75rem; border-left: 1px solid var(--color-outline); border-radius: 0; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
+ .js #navigation .nav-submenu { position: absolute; top: 100%; left: 0; display: flex; visibility: hidden; clip-path: inset(0 0 100%); pointer-events: none; transition: clip-path 280ms var(--ease-standard), visibility 0s 280ms; }
+ .js #navigation .is-expanded > .nav-submenu { visibility: visible; clip-path: inset(0 0 0); pointer-events: auto; transition-delay: 0s; }
  .nav-disclosure-heading > a { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .js .site-header, .js #navigation .nav-submenu { transition: none; }
 }
 
 /* Native document transitions retain the static site's navigation semantics.

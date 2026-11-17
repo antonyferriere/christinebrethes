@@ -32,7 +32,9 @@ export default {
       "presentation": {"layout": "features", "tone": "ivory"},
       "eyebrow": "Vos enjeux",
       "title": "Quels besoins dans votre organisation ?",
-      "paragraphs": [],
+      "paragraphs": [
+        "Des enjeux différents, une même ambition : construire des environnements de travail plus respectueux des personnes."
+      ],
       "items": [
         "Sensibiliser vos collaborateurs à la santé mentale et au stress professionnel.",
         "Prévenir l'épuisement et contribuer à une démarche de prévention des risques psychosociaux (RPS).",
@@ -43,15 +45,15 @@ export default {
         "Soutenir le retour au travail après une maladie ou un arrêt prolongé.",
         "Développer les compétences psychosociales et les capacités d'attention."
       ],
-      "after": [
-        "Des enjeux différents, une même ambition : construire des environnements de travail plus respectueux des personnes."
-      ]
+      "after": []
     },
     {
       "presentation": {"layout": "domains", "notes": [1, 4], "images": ["pages/fauteuil-lecture", null, "pages/carnet-cafe", "hero/pleine-conscience", null, "pages/bureau-ordinateur"]},
       "eyebrow": "Mes domaines d'intervention",
       "title": "Des accompagnements concrets, adaptés à vos équipes",
-      "paragraphs": [],
+      "paragraphs": [
+        "Des interventions pour aider chacun à reconnaître ses ressources, clarifier ses perspectives et devenir acteur de son parcours."
+      ],
       "blocks": [
         {
           "title": "Santé mentale, prévention & QVCT",
@@ -133,15 +135,14 @@ export default {
           ]
         }
       ],
-      "after": [
-        "Des interventions pour aider chacun à reconnaître ses ressources, clarifier ses perspectives et devenir acteur de son parcours."
-      ]
+      "after": []
     },
     {
-      "presentation": {"layout": "journey", "tone": "sage"},
+      "presentation": {"layout": "journey", "tone": "ivory"},
       "eyebrow": "Mon approche",
       "title": "Une vision globale de la personne au travail",
       "paragraphs": [
+        "Mon approche vise à aider les collaborateurs à trouver des façons de travailler et d'évoluer plus conscientes, plus équilibrées et plus durables.",
         "Je m'appuie sur trois expertises complémentaires."
       ],
       "blocks": [
@@ -164,9 +165,7 @@ export default {
           ]
         }
       ],
-      "after": [
-        "Mon approche vise à aider les collaborateurs à trouver des façons de travailler et d'évoluer plus conscientes, plus équilibrées et plus durables."
-      ]
+      "after": []
     },
     {
       "presentation": {"layout": "cards", "images": ["livres-fleurs","hero/espace-atelier","salon-accueil","hero/pleine-conscience","pages/bureau-ordinateur"]},

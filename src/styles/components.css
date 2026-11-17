@@ -55,12 +55,13 @@
 .place-list > div > span { color: var(--color-primary); font-size: .8rem; padding-top: .25rem; }
 .place-list h3 { font-size: 1.35rem; margin-bottom: .5rem; }
 .place-list p { font-size: 1rem; color: var(--color-muted); }
-.care-note, .editorial-after p { border-left: 2px solid var(--color-olive); padding: 1rem 1.5rem; background: var(--color-sage); font-size: 1rem; }
+.care-note{ border-left: 2px solid var(--color-olive); padding: 1rem 1.5rem; background: var(--color-sage); font-size: 1rem; }
 .notice { border-left: 3px solid var(--color-primary); background: var(--color-ivory); padding: 1.3rem; }
 .review-grid, .post-grid { display: grid; gap: 1.5rem; }
 .review, .post { margin: 0; padding: 2rem; background: var(--color-ivory); border-radius: var(--radius-card); }
 .testimonials .review-grid { gap: 1.25rem; align-items: start; }
 .testimonials .review { padding: clamp(1.25rem, 2vw, 2rem); background: var(--color-paper); }
+.review-person { min-height: var(--review-person-height, 0px); }
 .review-person img { flex: none; border-radius: 50%; object-fit: cover; }
 .review-profile { display: flex; gap: 1rem; }
 .review-identity { display: grid; gap: 0; line-height: 1.25; }
@@ -71,7 +72,7 @@
 .review-disclosure { width: 100%; }
 .review-disclosure summary { list-style: none; cursor: pointer; }
 .review-disclosure summary::-webkit-details-marker { display: none; }
-.review-preview { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; color: var(--color-muted); font-size: 1rem; font-style: italic; line-height: 1.65; }
+.review-preview { min-height: 6.6em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; color: var(--color-muted); font-size: 1rem; font-style: italic; line-height: 1.65; }
 .review-toggle { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; margin-top: .5rem; color: var(--color-primary); font-size: .95rem; font-style: normal; font-weight: 600; }
 .review-toggle .review-less, .review-disclosure[open] .review-preview, .review-disclosure[open] .review-more { display: none; }
 /* Keep the native summary first in the DOM, but show "Réduire" below the full review. */
@@ -79,7 +80,7 @@
 .review-disclosure[open] > summary { order: 1; align-self: flex-start; }
 .review-disclosure[open] .review-less { display: inline; }
 .review-disclosure[open] .review-toggle [aria-hidden] { transform: rotate(180deg); }
-.review-disclosure[open] blockquote { margin-top: .75rem; }
+.review-disclosure[open] blockquote { margin-top: .75rem; cursor: pointer; }
 .review-link { display: flex; justify-content: flex-end; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .review-link .button { text-align: center; }
 
