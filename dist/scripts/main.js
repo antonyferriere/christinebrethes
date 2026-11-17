@@ -1,9 +1,9 @@
-import './domain-dialogs.js?v=d04efd656a1ae07a';
-import { initializeSubmenu } from './navigation.js?v=d04efd656a1ae07a';
-import './organization-carousel.js?v=d04efd656a1ae07a';
-import './consent-ui.js?v=d04efd656a1ae07a';
-import './analytics.js?v=d04efd656a1ae07a';
-import { initializeContact } from './contact.js?v=d04efd656a1ae07a';
+import './domain-dialogs.js?v=d810ead57bb95b81';
+import { initializeSubmenu } from './navigation.js?v=d810ead57bb95b81';
+import './organization-carousel.js?v=d810ead57bb95b81';
+import './consent-ui.js?v=d810ead57bb95b81';
+import './analytics.js?v=d810ead57bb95b81';
+import { initializeContact } from './contact.js?v=d810ead57bb95b81';
 
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
@@ -106,13 +106,13 @@ if (hero) {
 }
 
 // A single animation frame per scroll; reduced motion keeps every image still.
-const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img, .editorial-split .editorial-illustration img, .editorial-cards .editorial-card-image img')];
+const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img, .editorial-split .editorial-illustration img, .editorial-card-image img')];
 let depthFrame = 0;
 function paintDepth() {
   depthFrame = 0;
   depthLayers.forEach(layer => {
     const rect = layer.parentElement.getBoundingClientRect();
-    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth, .editorial-split .editorial-illustration img, .editorial-cards .editorial-card-image img");
+    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth, .editorial-split .editorial-illustration img, .editorial-card-image img");
     const distance = contentPhoto || layer.matches(".landscape-depth") ? (window.innerHeight - rect.height) / 2 - rect.top : -rect.top;
     const limit = contentPhoto ? 18 : 36;
     const offset = motion.matches ? 0 : Math.min(limit, Math.max(-limit, distance * .09));
