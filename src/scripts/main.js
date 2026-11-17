@@ -1,38 +1,10 @@
-import { initializeSubmenu } from './navigation.js';
+import { initializeNavigation } from './navigation.js';
 import './organization-carousel.js';
 import './consent-ui.js';
 import './analytics.js';
 import { initializeContact } from './contact.js';
 
-const menu = document.querySelector('.menu-toggle');
-const navigation = document.querySelector('#navigation');
-const closeSubmenu = initializeSubmenu(navigation);
-function closeMenu() {
-  closeSubmenu();
-  menu.setAttribute('aria-expanded', 'false');
-  menu.setAttribute('aria-label', 'Ouvrir le menu');
-  navigation.classList.remove('is-open');
-}
-menu.addEventListener('click', () => {
-  const open = menu.getAttribute('aria-expanded') !== 'true';
-  menu.setAttribute('aria-expanded', String(open));
-  menu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-  navigation.classList.toggle('is-open', open);
-  if (!open) closeSubmenu();
-});
-navigation.addEventListener('click', (event) => {
-  if (event.target.closest('a')) closeMenu();
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
-    closeMenu();
-    menu.focus();
-  }
-});
-document.addEventListener('click', (event) => {
-  if (!event.target.closest('.site-header')) closeMenu();
-});
-matchMedia('(min-width: 1200px)').addEventListener('change', closeMenu);
+initializeNavigation();
 
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 let observer;
@@ -125,18 +97,4 @@ window.addEventListener('scroll', requestDepth, { passive: true });
 window.addEventListener('resize', requestDepth, { passive: true });
 motion.addEventListener('change', requestDepth);
 paintDepth();
-
-// The header overlays the hero at entry and becomes a paper surface on scroll.
-const siteHeader = document.querySelector('.site-header');
-const measureSiteHeader = () => document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
-new ResizeObserver(measureSiteHeader).observe(siteHeader);
-measureSiteHeader();
-const updateHeaderSurface = () => {
-  const scrolled = window.scrollY > 16;
-  siteHeader.classList.toggle('is-scrolled', scrolled);
-  document.documentElement.classList.toggle('header-scrolled', scrolled);
-};
-window.addEventListener('scroll', updateHeaderSurface, { passive: true });
-updateHeaderSurface();
-window.addEventListener('pageshow', updateHeaderSurface);
 

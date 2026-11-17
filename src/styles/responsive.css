@@ -25,11 +25,6 @@
   .landscape-band { padding-top: 3rem; background-size: 100% auto; }
 }
 @media (min-width: 1200px) {
-  .header-inner { flex-wrap: nowrap; min-height: 96px; }
-  .brand { width: 280px; }
-  .js .menu-toggle { display: none; }
-  #navigation, .js #navigation, .js #navigation.is-open { width: auto; display: flex; padding: 0; flex-wrap: nowrap; }
-  .js #navigation ul { flex-direction: row; width: auto; gap: 1.3rem; }
   .offer-grid, .values-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .related .offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

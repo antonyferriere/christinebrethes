@@ -1,35 +1,13 @@
+import { siteHeader } from './site-header.mjs';
 import { privacyConfig } from '../data/privacy-config.mjs';
 import { needsSection } from './sections.mjs';
 import { closing } from './sections.mjs';
 import { externalLinks } from './external-links.mjs';
 import { contactDetails } from './contact-details.mjs';
-import { site, navigation, offerPath } from '../data/site.mjs';
+import { site, offerPath } from '../data/site.mjs';
 import { offers } from '../data/offers.mjs';
-import { escape, button } from './ui.mjs';
+import { escape } from './ui.mjs';
 
-function navigationItem(url, label, path) {
-  const current = path === url ? ' aria-current="page"' : '';
-  if (url !== '/accompagnements/') return `<li><a href="${url}"${current}>${label}</a></li>`;
-  const section = path.startsWith(url) && path !== url ? ' class="is-current-section"' : '';
-  const links = [
-    ['coaching-professionnel', 'Coaching & transitions de carrière'],
-    ['sante-travail', 'Santé & Travail'],
-    ['pleine-conscience', 'Méditation de pleine conscience'],
-  ];
-  return `<li class="nav-disclosure"><div class="nav-disclosure-heading"><a href="${url}"${current}${section}>${label}</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="accompagnements-submenu" aria-label="Afficher les offres Accompagnements"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button></div><ul id="accompagnements-submenu" class="nav-submenu">${links.map(([slug, title]) => {
-    const href = `${url}${slug}/`;
-    return `<li><a href="${href}"${path === href ? ' aria-current="page"' : ''}>${escape(title)}</a></li>`;
-  }).join('')}</ul></li>`;
-}
-
-function header(path) {
-  return `<a class="skip-link" href="#contenu">Aller au contenu</a>
-  <header class="site-header"><div class="header-inner">
-    <a class="brand" href="/" aria-label="Christine BRETHES — Accueil"><picture><source media="(max-width: 699px)" srcset="/assets/monogramme.webp"><img src="/assets/logo.webp" width="300" height="91" alt="Christine BRETHES, coaching, santé et travail, pleine conscience"></picture></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu"><span aria-hidden="true"></span></button>
-    <nav id="navigation" aria-label="Navigation principale"><ul>${navigation.map(([url, label]) => navigationItem(url, label, path)).join('')}</ul></nav><a class="button button-small header-booking" href="${site.booking.url || '/contact/'}" aria-label="Prendre rendez-vous"><svg class="calendar-icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3M7 18h3"/></svg><span>Prendre rendez-vous</span></a>
-  </div></header>`;
-}
 function footer() {
   return `<footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="/">Christine Brethes</a><p>Coach santé-travail<br>Instructrice méditation de pleine conscience</p><p class="signature">${site.tagline}</p></div>
   <div><h2>Vous accompagner</h2><ul>${offers.map((o) => `<li><a href="${offerPath(o)}">${escape(o.title)}</a></li>`).join('')}</ul></div>
@@ -46,5 +24,5 @@ export function layout({ title, description, path, body, home = false, assetVers
   return externalLinks(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | Christine BRETHES</title><meta name="description" content="${escape(description)}"><meta name="robots" content="${site.productionReady ? 'index, follow' : 'noindex, nofollow'}">${canonical}
   <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}">${site.productionReady ? `<meta property="og:url" content="${site.domain}${path}"><meta property="og:image" content="${site.domain}/assets/christine-800.webp">` : ''}
   <meta name="site-privacy" data-ga-id="${privacy.id}" data-preview="${privacy.preview}" data-debug="${privacy.debug}"><meta name="theme-color" content="#f3ebe0"><link rel="icon" href="/assets/favicon.png"><link rel="preload" href="/fonts/lora-400.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/source-sans-3-400.woff" as="font" type="font/woff" crossorigin><link rel="stylesheet" href="/styles/site.css?v=${escape(assetVersion)}"><script src="/scripts/navigation-init.js?v=${escape(assetVersion)}"></script><script type="module" src="/scripts/main.js?v=${escape(assetVersion)}"></script><script type="application/ld+json">${JSON.stringify(schema)}</script></head>
-  <body class="${home ? 'home ' : ''}${home || body.includes('immersive-page-hero') ? 'has-immersive-hero' : 'standard-page'}">${header(path)}<main id="contenu" tabindex="-1">${body}${path === "/contact/" ? "" : closing()}</main>${footer()}</body></html>`, site.domain);
+  <body class="${home ? 'home ' : ''}${home || body.includes('immersive-page-hero') ? 'has-immersive-hero' : 'standard-page'}">${siteHeader(path)}<main id="contenu" tabindex="-1">${body}${path === "/contact/" ? "" : closing()}</main>${footer()}</body></html>`, site.domain);
 }
