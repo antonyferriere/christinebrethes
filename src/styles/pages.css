@@ -240,5 +240,5 @@ textarea { resize: vertical; }
 .editorial-domains .editorial-card-body > p:first-of-type { color: var(--color-primary); }
 @media (min-width: 768px) {
   .editorial-cards .editorial-blocks,
-  .editorial-domains .editorial-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .editorial-domains .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

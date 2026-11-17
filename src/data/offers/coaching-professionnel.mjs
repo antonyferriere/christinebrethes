@@ -40,7 +40,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards", "images": ["livres-fleurs","pages/papeterie-creative","pages/bureau-ordinateur","pages/carnet-cafe","allee"]},
+      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/papeterie-creative","pages/bureau-ordinateur","livres-fleurs","hero/chemin-elan"]},
       "eyebrow": "Ce que nous travaillons ensemble",
       "title": "De la réflexion à l'action",
       "paragraphs": [],
