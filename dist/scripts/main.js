@@ -1,8 +1,8 @@
-import { initializeSubmenu } from './navigation.js?v=34dcb15705b9e384';
-import './organization-carousel.js?v=34dcb15705b9e384';
-import './consent-ui.js?v=34dcb15705b9e384';
-import './analytics.js?v=34dcb15705b9e384';
-import { initializeContact } from './contact.js?v=34dcb15705b9e384';
+import { initializeSubmenu } from './navigation.js?v=fa7724222e058aec';
+import './organization-carousel.js?v=fa7724222e058aec';
+import './consent-ui.js?v=fa7724222e058aec';
+import './analytics.js?v=fa7724222e058aec';
+import { initializeContact } from './contact.js?v=fa7724222e058aec';
 
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
@@ -105,13 +105,13 @@ if (hero) {
 }
 
 // A single animation frame per scroll; reduced motion keeps every image still.
-const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img, .editorial-split .editorial-illustration img')];
+const depthLayers = [...document.querySelectorAll('.hero-scenes, .page-hero-background, .landscape-depth, .approach-depth, .photo-depth img, .offer-image img, .editorial-split .editorial-illustration img, .editorial-cards .editorial-card-image img')];
 let depthFrame = 0;
 function paintDepth() {
   depthFrame = 0;
   depthLayers.forEach(layer => {
     const rect = layer.parentElement.getBoundingClientRect();
-    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth, .editorial-split .editorial-illustration img");
+    const contentPhoto = layer.matches(".photo-depth img, .offer-image img, .approach-depth, .editorial-split .editorial-illustration img, .editorial-cards .editorial-card-image img");
     const distance = contentPhoto || layer.matches(".landscape-depth") ? (window.innerHeight - rect.height) / 2 - rect.top : -rect.top;
     const limit = contentPhoto ? 18 : 36;
     const offset = motion.matches ? 0 : Math.min(limit, Math.max(-limit, distance * .09));
