@@ -19,7 +19,10 @@ test('four domain cards expose only their title and first two paragraphs before 
     assert.ok(!preview.includes('<ul'));
     for (const paragraph of blocks[index].paragraphs) assert.ok(card.includes(escape(paragraph)));
     for (const item of blocks[index].items) assert.ok(card.includes(escape(item)));
-    assert.match(card, /<summary class="text-link">Découvrir /);
+    const summary = card.match(/<summary class="text-link">([\s\S]*?)<\/summary>/)?.[1];
+    assert.ok(summary, 'Each card retains its disclosure link');
+    assert.match(summary, /^Découvrir\s*</);
+    assert.ok(summary.includes(`<span class="sr-only"> : ${escape(blocks[index].title)}</span>`));
     assert.match(card, /loading="lazy"/);
   });
   for (const image of section.presentation.images.filter(Boolean)) {
