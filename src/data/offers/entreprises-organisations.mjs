@@ -48,7 +48,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "domains", "notes": [1, 4]},
+      "presentation": {"layout": "domains", "notes": [1, 4], "images": ["pages/fauteuil-lecture", null, "pages/carnet-cafe", "hero/pleine-conscience", null, "pages/bureau-ordinateur"]},
       "eyebrow": "Mes domaines d'intervention",
       "title": "Des accompagnements concrets, adaptés à vos équipes",
       "paragraphs": [],

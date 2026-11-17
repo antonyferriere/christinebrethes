@@ -239,6 +239,43 @@ textarea { resize: vertical; }
 .editorial-card-footer p { margin-bottom: 0; }
 .editorial-domains .editorial-card-body > p:first-of-type { color: var(--color-primary); }
 @media (min-width: 768px) {
-  .editorial-cards .editorial-blocks,
-  .editorial-domains .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .editorial-cards .editorial-blocks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .editorial-domains .editorial-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+/* Organisation offers share the existing offer-card visual language. */
+.editorial-domains .editorial-domain-card { border: 0; background: var(--color-ivory); }
+.editorial-domains .editorial-card-body { padding: 1.5rem; }
+.domain-trigger { width: 100%; text-align: left; background: none; border: 0; border-radius: 0; font: inherit; color: var(--color-primary); cursor: pointer; gap: .75rem; min-height: 48px; }
+.domain-trigger svg { flex-shrink: 0; }
+.domain-disclosure { margin-top: auto; }
+.domain-disclosure summary { cursor: pointer; min-height: 48px; }
+.domain-disclosure .domain-detail { margin-top: 1.5rem; }
+.domain-dialog-open { overflow: hidden; }
+.domain-dialog {
+  width: min(46rem, calc(100% - 2rem)); max-width: none;
+  max-height: calc(100dvh - 2rem); margin: auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-outline); border-radius: var(--radius-card);
+  background: var(--color-paper); color: var(--color-ink);
+  box-shadow: var(--shadow-raised); overflow-y: auto; overscroll-behavior: contain;
+}
+.domain-dialog::backdrop { background: rgb(30 40 32 / .65); }
+.domain-dialog-close {
+  display: grid; place-items: center; position: sticky; top: 0; margin: 0 0 1rem auto;
+  width: 44px; height: 44px; padding: 0; border: 0;
+  border-radius: 0; background: transparent;
+  color: var(--color-forest); font: inherit; cursor: pointer;
+}
+.domain-detail h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); }
+.domain-detail p { color: var(--color-muted); }
+.domain-detail > p:first-of-type { color: var(--color-primary); }
+.domain-detail .care-note { margin-top: 1.5rem; }
+.domain-detail .care-note h3 { font-size: 1.15rem; }
+.domain-detail .care-note p:last-child { margin-bottom: 0; }
+.domain-dialog :focus-visible, .domain-trigger:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .editorial-domains .offer-card { transition: none; }
+  .editorial-domains .offer-card:hover { transform: none; }
 }
