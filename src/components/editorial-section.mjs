@@ -1,4 +1,4 @@
-import { escape, button, list, faq } from './ui.mjs';
+import { escape, button, list, faq, arrow } from './ui.mjs';
 import { site } from '../data/site.mjs';
 
 export const paragraphs = (items = [], emphasis) => items.map((text, index) =>
@@ -17,7 +17,8 @@ function sectionContent(section, presentation) {
     if (presentation?.layout === 'domains') {
       if (presentation.notes?.includes(index)) return '';
       const note = presentation.notes?.includes(index + 1) ? all[index + 1] : null;
-      return `<article class="editorial-block editorial-domain-card"><div class="editorial-card-body"><h3>${escape(block.title)}</h3>${renderBody(block)}</div>${note ? `<footer class="editorial-card-footer"><h3>${escape(note.title)}</h3>${renderBody(note)}</footer>` : ''}</article>`;
+      const image = presentation.images?.[index];
+      return `<article class="editorial-block editorial-domain-card offer-card">${image ? cardImage(image) : ''}<div class="editorial-card-body offer-content"><h3>${escape(block.title)}</h3>${paragraphs(block.paragraphs?.slice(0, 2))}<details class="domain-disclosure"><summary class="text-link">Découvrir les thématiques possibles ${arrow}<span class="sr-only"> : ${escape(block.title)}</span></summary><div class="domain-detail"><h3 data-domain-title>${escape(block.title)}</h3>${renderBody(block)}${note ? `<footer class="editorial-card-footer"><h3>${escape(note.title)}</h3>${renderBody(note)}</footer>` : ''}</div></details></div></article>`;
     }
     if (presentation?.layout === 'cards') {
       const image = presentation.images?.[index];

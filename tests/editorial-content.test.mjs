@@ -12,7 +12,8 @@ const links = html => [...html.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(match =
 test('les compositions conservent tous les textes, titres, liens et le hero', () => {
   for (const page of [...offers, about]) {
     const baseline = editorialPage(withoutPresentation(page));
-    const composed = editorialPage(page);
+    // Exclude the repeated preview and disclosure control; compare the complete detail text.
+    const composed = editorialPage(page).replace(/<div class="editorial-card-body offer-content"><h3>[\s\S]*?<div class="domain-detail">/g, '<div>');
     assert.equal(text(composed), text(baseline), page.slug);
     assert.deepEqual(links(composed), links(baseline), page.slug);
     assert.deepEqual(composed.match(/<h[123]\b[^>]*>[\s\S]*?<\/h[123]>/g).map(text), baseline.match(/<h[123]\b[^>]*>[\s\S]*?<\/h[123]>/g).map(text), page.slug);
