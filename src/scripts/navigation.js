@@ -6,7 +6,17 @@ export function initializeSubmenu(navigation) {
   const panel = item.querySelector('.nav-submenu');
   const desktop = matchMedia('(min-width: 1200px)');
   const hover = matchMedia('(hover: hover) and (pointer: fine)');
+  const header = navigation.closest('.site-header');
+  const headerRow = header.querySelector('.header-inner');
   let open = false, timer;
+  function measureExtension() {
+    const extension = desktop.matches
+      ? Math.max(0, panel.getBoundingClientRect().bottom - headerRow.getBoundingClientRect().bottom)
+      : 0;
+    header.style.setProperty('--submenu-extension', `${Math.ceil(extension)}px`);
+  }
+  new ResizeObserver(measureExtension).observe(panel);
+  new ResizeObserver(measureExtension).observe(headerRow);
   function setOpen(value) {
     clearTimeout(timer);
     // Mobile offers are always available; only desktop is a disclosure.
@@ -15,6 +25,7 @@ export function initializeSubmenu(navigation) {
     toggle.setAttribute('aria-label', open ? 'Masquer les offres Accompagnements' : 'Afficher les offres Accompagnements');
     item.classList.toggle('is-expanded', open);
     panel.inert = !open;
+    measureExtension();
   }
   toggle.addEventListener('click', () => setOpen(!open));
   item.addEventListener('pointerenter', (event) => {

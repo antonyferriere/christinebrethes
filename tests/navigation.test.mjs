@@ -21,9 +21,20 @@ function fixture(isDesktop = true) {
   globalThis.document = doc;
   globalThis.window = win;
   globalThis.matchMedia = query => query.includes('min-width') ? desktop : hover;
-  const close = initializeSubmenu({ querySelector: () => item });
+  const header = new Element(), headerRow = new Element();
+  header.style = { setProperty: (name, value) => { header.attrs[name] = value; } };
+  header.querySelector = () => headerRow;
+  panel.bottom = 240;
+  panel.getBoundingClientRect = () => ({ bottom: panel.bottom });
+  headerRow.getBoundingClientRect = () => ({ bottom: 98 });
+  const observers = [];
+  globalThis.ResizeObserver = class {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe() {}
+  };
+  const close = initializeSubmenu({ querySelector: () => item, closest: () => header });
   const expanded = () => toggle.attrs['aria-expanded'];
-  return { item, toggle, panel, link, doc, win, desktop, hover, close, expanded };
+  return { item, toggle, panel, link, doc, win, desktop, hover, close, expanded, header, observers };
 }
 
 test('disclosure opens independently, Escape returns focus and stops propagation', () => {
@@ -122,4 +133,20 @@ test('mobile Escape bubbles to close the main navigation without focusing its hi
   f.doc.emit('keydown', { key: 'Escape' });
   assert.equal(f.doc.activeElement, f.link);
   assert.equal(f.panel.inert, false);
+});
+
+test('header extension follows submenu content size and resets on mobile', () => {
+  const f = fixture();
+  f.toggle.emit('click');
+  assert.equal(f.header.attrs['--submenu-extension'], '142px');
+  f.panel.bottom = 284;
+  f.observers[0].callback();
+  assert.equal(f.header.attrs['--submenu-extension'], '186px');
+  f.desktop.matches = false;
+  f.desktop.emit('change');
+  assert.equal(f.header.attrs['--submenu-extension'], '0px');
+  f.desktop.matches = true;
+  f.desktop.emit('change');
+  assert.equal(f.header.attrs['--submenu-extension'], '186px');
+  assert.equal(f.expanded(), 'false');
 });
