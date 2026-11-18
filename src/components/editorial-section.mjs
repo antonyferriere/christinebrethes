@@ -40,11 +40,19 @@ function illustration(name) {
 
 function pricingCards(pricing) {
   return pricing.entries.map(entry => {
-    const amount = entry.price == null ? 'Offert' : `${escape(entry.price)} €`;
+    const ranged = entry.priceRange != null;
+    const amount = ranged
+      ? `${escape(entry.priceRange.min)}–${escape(entry.priceRange.max)} €`
+      : entry.price == null ? 'Offert' : `${escape(entry.price)} €`;
+    const formats = entry.formats?.length
+      ? `<ul class="pricing-format-list" aria-label="Tarifs par durée">${entry.formats.map(format =>
+          `<li><span>${escape(format.duration)}</span><span>${escape(format.price)} € TTC</span></li>`).join('')}</ul>`
+      : '';
     return `<article class="editorial-block editorial-price-card">
       <div><h3>${escape(entry.name)}</h3><p class="pricing-duration">${escape(entry.duration)}</p></div>
-      <p class="pricing-amount">${amount}${entry.price == null ? '' : '<span class="pricing-tax">TTC</span>'}</p>
+      <p class="pricing-amount">${amount}${ranged || entry.price != null ? '<span class="pricing-tax">TTC</span>' : ''}</p>
       <p class="pricing-description">${escape(entry.description)}</p>
+      ${formats}
     </article>`;
   }).join('');
 }

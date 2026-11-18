@@ -13,13 +13,16 @@ export const meditationSession = {
   name: 'Séance individuelle', duration: '1 heure', price: 60,
   description: 'Échanges et pratiques guidées pour découvrir, approfondir ou adapter la pleine conscience à votre quotidien.',
 };
+// Deux formats à choisir, tous deux possibles en présentiel ou en visioconférence.
 export const meditationWorkshop = {
-  name: 'Atelier collectif', duration: '1 heure · par personne', price: 25,
-  description: 'Une séance en petit groupe pour découvrir et pratiquer la méditation de pleine conscience.',
-};
-export const meditationLongWorkshop = {
-  name: 'Atelier collectif', duration: '1 h 30 · par personne', price: 35,
-  description: 'Un temps de pratique plus approfondi en petit groupe, adapté aux débutants comme aux pratiquants réguliers.',
+  name: 'Ateliers collectifs',
+  duration: '1 h ou 1 h 30 · par personne',
+  priceRange: { min: 25, max: 35 },
+  formats: [
+    { duration: '1 h', price: 25 },
+    { duration: '1 h 30', price: 35 },
+  ],
+  description: 'En présentiel ou en visioconférence, en petit groupe. Deux formats pour choisir une durée et un tarif adaptés à votre situation.',
 };
 export const hybridPrograms = {
   eyebrow: 'Programmes sur mesure',
@@ -41,7 +44,7 @@ export const offerPrices = {
   'pleine-conscience': {
     eyebrow: 'Pleine conscience', title: 'Séances et ateliers de méditation',
     introduction: 'Un accompagnement individuel ou collectif, accessible et adapté à votre expérience.',
-    entries: [meditationSession, meditationWorkshop, meditationLongWorkshop],
+    entries: [meditationSession, meditationWorkshop],
   },
   'coaching-professionnel': {
     eyebrow: 'Coaching individuel', title: 'Tarifs du coaching individuel',
@@ -57,7 +60,7 @@ export const offerPrices = {
 export const pricingTerms = [
   {
     title: 'Lieux et visioconférence',
-    text: 'Les séances individuelles sont proposées en présentiel à Paris et à Champhol, près de Chartres, ainsi qu’à distance en visioconférence.',
+    text: 'Les séances individuelles sont proposées en présentiel à Paris et à Champhol, près de Chartres, ainsi qu’à distance en visioconférence. Les ateliers collectifs de méditation sont accessibles en présentiel ou en visioconférence, en formats de 1 h et 1 h 30.',
   },
   {
     title: 'Règlement',

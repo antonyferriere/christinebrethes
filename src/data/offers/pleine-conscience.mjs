@@ -106,7 +106,7 @@ export default {
         {
           "title": "Ateliers collectifs",
           "paragraphs": [
-            "Des expériences guidées associant pratiques de pleine conscience, échanges et exercices simples à réinvestir dans le quotidien."
+            "Des expériences guidées associant pratiques de pleine conscience, échanges et exercices simples à réinvestir dans le quotidien. Deux formats au choix, 1 h ou 1 h 30, proposés en présentiel ou en visioconférence."
           ]
         },
         {
