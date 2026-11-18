@@ -1,7 +1,7 @@
 // Tarifs finaux TTC confirmés dans les échanges avec Christine, novembre 2026.
 // Les futurs programmes hybrides Santé & Travail ne sont pas définis ni tarifés.
 export const discovery = {
-  name: 'Premier échange découverte',
+  name: 'Premier échange',
   duration: '30 minutes',
   price: null,
   description: 'Un temps offert, sans engagement, pour faire connaissance, comprendre vos attentes et vérifier si l’accompagnement vous convient.',

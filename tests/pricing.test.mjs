@@ -71,7 +71,7 @@ test('page Coaching : prix et descriptions des trois programmes dans les composi
   const pricing = page.match(/<section id="tarifs-coaching-professionnel"[\s\S]*?<\/section>/)?.[0];
   assert.ok(pricing, 'La grille Coaching individuel est présente');
   assert.deepEqual([...pricing.matchAll(/<article class="editorial-block editorial-price-card[^"]*">\s*<div><h3>([^<]+)<\/h3>/g)].map(match => match[1]),
-    ['Premier échange découverte', 'Séance individuelle', 'Coaching Déclic', 'Coaching Élan', 'Coaching Transformation']);
+    ['Premier échange', 'Séance individuelle', 'Coaching Déclic', 'Coaching Élan', 'Coaching Transformation']);
 });
 
 test('page Pleine conscience : ateliers en une carte, tarifs et visio explicites', () => {
