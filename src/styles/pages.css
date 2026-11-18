@@ -298,6 +298,10 @@ textarea { resize: vertical; }
   border-radius: var(--radius-card);
 }
 .editorial-tone-paper.editorial-pricing .editorial-price-card { background: var(--color-ivory); }
+.editorial-pricing .editorial-price-card.is-featured {
+  border-color: var(--color-olive);
+  box-shadow: var(--shadow-low);
+}
 .editorial-pricing .editorial-price-card h3 { margin: 0 0 .35rem; }
 .editorial-pricing .pricing-duration { color: var(--color-muted); margin: 0; }
 .editorial-pricing .pricing-amount {

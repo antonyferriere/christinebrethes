@@ -1,4 +1,4 @@
-import { offerPrices, hybridPrograms, pricingTerms, careInformation } from '../data/pricing.mjs';
+import { offerPrices, coachingPrograms, pricingTerms, careInformation } from '../data/pricing.mjs';
 import { editorialSection } from './editorial-section.mjs';
 import { site } from '../data/site.mjs';
 import { escape } from './ui.mjs';
@@ -33,10 +33,12 @@ export function pricingSection(slug, { compact = true } = {}) {
   });
 }
 
-export function pricingProgramsSection({ compact = true } = {}) {
-  return editorialPriceBlock(hybridPrograms, 'programmes-integratifs', {
+export function coachingProgramsSection({ compact = true } = {}) {
+  return editorialPriceBlock(coachingPrograms, 'programmes-coaching', {
     compact, tone: compact ? 'paper' : 'sage',
-    secondary: compact ? { text: 'Découvrir tous les tarifs', href: '/tarifs/#programmes-integratifs' } : null,
+    secondary: compact
+      ? { text: 'Voir les tarifs et modalités', href: '/tarifs/#programmes-coaching' }
+      : { text: 'Découvrir le coaching professionnel', href: '/accompagnements/coaching-professionnel/' },
   });
 }
 

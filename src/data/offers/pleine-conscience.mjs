@@ -93,7 +93,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "cards", "tone": "ivory", "images": ["pages/fauteuil-lecture","hero/espace-atelier","hero/pleine-conscience","pages/bureau-ordinateur"]},
+      "presentation": {"layout": "cards", "tone": "ivory", "images": ["pages/fauteuil-lecture","hero/espace-atelier","pages/bureau-ordinateur"]},
       "title": "Des formats adaptés à vos besoins",
       "paragraphs": [],
       "blocks": [
@@ -107,12 +107,6 @@ export default {
           "title": "Ateliers collectifs",
           "paragraphs": [
             "Des expériences guidées associant pratiques de pleine conscience, échanges et exercices simples à réinvestir dans le quotidien. Deux formats au choix, 1 h ou 1 h 30, proposés en présentiel ou en visioconférence."
-          ]
-        },
-        {
-          "title": "Programmes sur mesure",
-          "paragraphs": [
-            "Des parcours progressifs pour installer durablement la pratique, proposés aux particuliers, aux groupes et aux organisations."
           ]
         },
         {
