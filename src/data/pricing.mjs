@@ -21,6 +21,7 @@ export const coachingPrograms = {
   entries: [
     {
       name: 'Coaching Déclic',
+      startNewRow: true,
       duration: '3 séances · 2 mois',
       price: 210,
       description: 'Prendre du recul, débloquer une situation et retrouver la clarté nécessaire pour passer à l’action.',
@@ -65,8 +66,8 @@ export const offerPrices = {
   'pleine-conscience': {
     eyebrow: 'Pleine conscience',
     title: 'Séances et ateliers de méditation',
-    introduction: 'Les ateliers collectifs pour découvrir et pratiquer, ainsi que des séances individuelles ponctuelles.',
-    entries: [meditationWorkshop, meditationSession],
+    introduction: 'Des séances individuelles ponctuelles pour découvrir la pleine conscience, ainsi que des ateliers collectifs pour pratiquer ensemble.',
+    entries: [meditationSession, meditationWorkshop],
   },
   'coaching-professionnel': {
     eyebrow: 'Coaching & transitions',

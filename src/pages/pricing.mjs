@@ -9,8 +9,8 @@ export function pricingPage() {
     '<p class="eyebrow">En toute transparence</p><h1>Tarifs &amp; <em>modalités</em></h1><p class="lede">Un accompagnement à votre rythme, avec des tarifs clairs pour avancer sereinement.</p>' +
     button('Prendre rendez-vous', site.booking.url || '/contact/'),
     breadcrumb)}
-    ${pricingSection('coaching-professionnel', { compact: false })}
-    ${pricingSection('pleine-conscience', { compact: false })}
+    ${pricingSection('pleine-conscience', { compact: false, tone: 'paper' })}
+    ${pricingSection('coaching-professionnel', { compact: false, tone: 'ivory' })}
     <section class="section pricing-organizations"><div class="container pricing-organizations-inner">
       <div><p class="eyebrow">Entreprises &amp; organisations</p><h2>Des interventions conçues avec vous</h2><p>Ateliers, coaching, conférences et accompagnements collectifs sont proposés sur devis, selon vos besoins, le format et les modalités de chaque intervention.</p></div>
       <div>${button('Parlons de votre projet', '/contact/?profil=organisation', 'button-outline')}</div>

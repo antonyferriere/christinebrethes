@@ -28,10 +28,12 @@ test('coaching : première rencontre offerte, séance à 75 € et trois program
     ['Coaching Transformation', '8 séances · 4 mois', 500],
   ]);
   for (const program of coachingPrograms.entries) assert.ok(program.description.length > 50);
+  assert.equal(coachingPrograms.entries[0].startNewRow, true);
+  assert.ok(coachingPrograms.entries.slice(1).every(entry => !entry.startNewRow));
 });
 
-test('pleine conscience : ateliers collectifs prioritaires et deux durées TTC', () => {
-  assert.deepEqual(offerPrices['pleine-conscience'].entries, [meditationWorkshop, meditationSession]);
+test('pleine conscience : séance individuelle en premier et deux durées d’ateliers TTC', () => {
+  assert.deepEqual(offerPrices['pleine-conscience'].entries, [meditationSession, meditationWorkshop]);
   assert.equal(meditationSession.price, 60);
   assert.equal(meditationWorkshop.featured, true);
   assert.deepEqual(meditationWorkshop.priceRange, { min: 25, max: 35 });
@@ -65,6 +67,7 @@ test('page Coaching : prix et descriptions des trois programmes dans les composi
   assert.match(page, /href="\/tarifs\/"/);
   assert.doesNotMatch(page, /Parcours Ancrage|programmes-integratifs|coaching et méditation de pleine conscience, à construire/);
   assert.equal((page.match(/<h3>Coaching (Déclic|Élan|Transformation)<\/h3>/g) || []).length, 3);
+  assert.match(page, /class="editorial-block editorial-price-card is-row-start">\s*<div><h3>Coaching Déclic<\/h3>/);
   const pricing = page.match(/<section id="tarifs-coaching-professionnel"[\s\S]*?<\/section>/)?.[0];
   assert.ok(pricing, 'La grille Coaching individuel est présente');
   assert.deepEqual([...pricing.matchAll(/<article class="editorial-block editorial-price-card[^"]*">\s*<div><h3>([^<]+)<\/h3>/g)].map(match => match[1]),
@@ -74,6 +77,9 @@ test('page Coaching : prix et descriptions des trois programmes dans les composi
 test('page Pleine conscience : ateliers en une carte, tarifs et visio explicites', () => {
   const page = html('accompagnements/pleine-conscience');
   assert.match(page, /editorial-price-card is-featured/);
+  const pricesSection = page.match(/<section id="tarifs-pleine-conscience"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(pricesSection);
+  assert.deepEqual([...pricesSection.matchAll(/<article class="editorial-block editorial-price-card[^"]*">\s*<div><h3>([^<]+)<\/h3>/g)].map(match => match[1]), ['Séance individuelle', 'Ateliers collectifs']);
   for (const value of ['25–35 €','25 € TTC','35 € TTC','1 h 30','60 €','présentiel ou en visioconférence']) assert.ok(page.includes(value), value);
   assert.equal((page.match(/<p class="pricing-amount">25–35 €/g) || []).length, 1);
   assert.doesNotMatch(page, /Cycle de 5 séances|275 €|350 €|programmes-integratifs/);
@@ -87,6 +93,12 @@ test('page Tarifs : programme de coaching dans sa rubrique et Santé & Travail s
   assert.equal((page.match(/id="tarifs-coaching-professionnel"/g) || []).length, 1);
   assert.doesNotMatch(page, /id="tarifs-sante-travail"|id="programmes-coaching"/);
   assert.deepEqual([...page.matchAll(/<section id="tarifs-coaching-professionnel"[\s\S]*?<\/section>/g)].map(match => (match[0].match(/class="editorial-block editorial-price-card/g) || []).length), [5]);
+  const meditationIndex = page.indexOf('<section id="tarifs-pleine-conscience"');
+  const coachingIndex = page.indexOf('<section id="tarifs-coaching-professionnel"');
+  assert.ok(meditationIndex >= 0 && coachingIndex > meditationIndex, 'Pleine conscience précède Coaching');
+  assert.match(page, /<section id="tarifs-pleine-conscience" class="section editorial-composition editorial-pricing editorial-tone-paper"/);
+  assert.match(page, /<section id="tarifs-coaching-professionnel" class="section editorial-composition editorial-pricing editorial-tone-ivory"/);
+  assert.match(page, /class="editorial-block editorial-price-card is-row-start">\s*<div><h3>Coaching Déclic<\/h3>/);
   assert.doesNotMatch(page, /Parcours Ancrage|Cycle de 5 séances|275 €|350 €|valables pendant 6 mois|programmes-integratifs/);
   assert.equal(pricingTerms.length,5);
   assert.match(pricingTerms[1].text, /programmes de coaching/);
@@ -114,6 +126,7 @@ test('toutes les grilles gardent trois emplacements par ligne sur desktop', () =
   const css = readFileSync('dist/styles/site.css', 'utf8');
   assert.match(css, /@media \(min-width: 960px\)\s*\{\s*\.editorial-pricing \.editorial-price-grid\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
   assert.doesNotMatch(css, /\.editorial-pricing \.editorial-price-grid:has\(/);
+  assert.match(css, /@media \(min-width: 960px\)[\s\S]*?\.editorial-pricing \.editorial-price-card\.is-row-start\s*\{\s*grid-column:\s*1;/);
   assert.doesNotMatch(css, /border:\s*1px solid var\(--color-outline\);\s*border-radius:\s*var\(--radius-card\);\s*\}\s*\.editorial-tone-paper\.editorial-pricing/);
   assert.match(css, /\.editorial-pricing \.pricing-description\s*\{[^}]*margin: 0;/);
   for (const [path, amount] of [

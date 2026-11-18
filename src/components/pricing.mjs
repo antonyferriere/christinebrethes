@@ -22,11 +22,11 @@ function editorialPriceBlock(offer, id, { compact = true, tone = 'ivory', second
   });
 }
 
-export function pricingSection(slug, { compact = true } = {}) {
+export function pricingSection(slug, { compact = true, tone } = {}) {
   const offer = offerPrices[slug];
   if (!offer) return '';
   return editorialPriceBlock(offer, `tarifs-${slug}`, {
-    compact, tone: compact ? 'sage' : 'ivory',
+    compact, tone: tone ?? (compact ? 'sage' : 'ivory'),
     secondary: compact
       ? { text: 'Tous les tarifs et modalités', href: '/tarifs/' }
       : { text: 'Découvrir cet accompagnement', href: `/accompagnements/${slug}/` },

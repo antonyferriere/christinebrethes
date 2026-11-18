@@ -48,7 +48,7 @@ function pricingCards(pricing) {
       ? `<ul class="pricing-format-list" aria-label="Tarifs par durée">${entry.formats.map(format =>
           `<li><span>${escape(format.duration)}</span><span>${escape(format.price)} € TTC</span></li>`).join('')}</ul>`
       : '';
-    return `<article class="editorial-block editorial-price-card${entry.featured ? ' is-featured' : ''}">
+    return `<article class="editorial-block editorial-price-card${entry.featured ? ' is-featured' : ''}${entry.startNewRow ? ' is-row-start' : ''}">
       <div><h3>${escape(entry.name)}</h3><p class="pricing-duration">${escape(entry.duration)}</p></div>
       <p class="pricing-amount">${amount}${ranged || entry.price != null ? '<span class="pricing-tax">TTC</span>' : ''}</p>
       <p class="pricing-description">${escape(entry.description)}</p>
