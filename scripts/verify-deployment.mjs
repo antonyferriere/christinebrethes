@@ -36,6 +36,20 @@ export async function verifyDeployment(value, { request = fetch, directory = res
     new URL('contact/?deployment-check=1', base).href, 'HTTPS redirect must preserve host, path and query.');
   await redirect.body?.cancel();
 
+  if (base.hostname === 'christinebrethes.fr') {
+    const alias = new URL('contact/?deployment-check=1', base);
+    alias.hostname = 'www.' + base.hostname;
+    const response = await get(alias);
+    assert.ok([301, 308].includes(response.status), 'www must permanently redirect to the canonical host.');
+    assert.equal(new URL(response.headers.get('location'), alias).href, new URL(alias.pathname + alias.search, base).href);
+    await response.body?.cancel();
+  }
+  for (const file of ['robots.txt', 'sitemap.xml']) {
+    const response = await get(new URL(file, base));
+    assert.equal(response.status, 200, file);
+    assert.equal(await response.text(), await readFile(resolve(directory, file), 'utf8'), file);
+  }
+
   // This legacy page is intentionally redirected by Apache. Check every supported
   // spelling explicitly; Contact itself is still verified byte-for-byte below.
   for (const path of ['rendez-vous', 'rendez-vous/', 'rendez-vous/index.html']) {

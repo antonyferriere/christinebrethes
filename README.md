@@ -29,7 +29,7 @@ Ouvrir **http://localhost:4173** et laisser le terminal tourner dans VS Code. Le
 - Photographies et ornements WebP, trois tailles photographiques (480/800/1200), polices locales Lora/Source Sans 3.
 - Révélations au défilement et mouvement botanique discret, avec respect des préférences de réduction des animations.
 - Composants et données LinkedIn indépendants, masqués lorsqu’ils sont vides. Aucun témoignage inventé.
-- Métadonnées, sitemap, robots et données structurées. Préversion en `noindex`.
+- Métadonnées, sitemap, robots et données structurées. Les pages de contenu sont indexables dans tous les environnements et déclarent le domaine canonique christinebrethes.fr.
 
 ## État des conversions
 
@@ -76,7 +76,7 @@ Le rendu visuel dans un navigateur, les interactions réelles sur appareils, les
 
 ## Avant toute mise en ligne
 
-Voir [les validations de production](docs/validation-production.md). Le site ne doit pas être publié en l’état : mentions légales incomplètes, réservation indisponible et contrôle navigateur restant. `node scripts/build.mjs --production` refuse de générer une version de production tant que `site.productionReady` reste `false`. Le déploiement de préproduction est décrit dans [le guide de déploiement](docs/deploiement-preprod.md). Il conserve le blocage de publication en production et le mode non indexable.
+Voir [les validations de production](docs/validation-production.md). Le site ne doit pas être publié en l’état : mentions légales incomplètes, réservation indisponible et contrôle navigateur restant. `node scripts/build.mjs --production` refuse de générer une version de production tant que `site.productionReady` reste `false`. Le déploiement de préproduction est décrit dans [le guide de déploiement](docs/deploiement-preprod.md). La préproduction est inactive.
 
 - [Guide de modification](docs/maintenance.md)
 - [Audit éditorial](docs/audit-editorial.md)
