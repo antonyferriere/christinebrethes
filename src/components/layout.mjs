@@ -15,9 +15,10 @@ function navigationItem(url, label, path) {
     ['coaching-professionnel', 'Coaching & transitions de carrière'],
     ['sante-travail', 'Santé & Travail'],
     ['pleine-conscience', 'Méditation de pleine conscience'],
+    ['/tarifs/', 'Tarifs & modalités'],
   ];
   return `<li class="nav-disclosure"><div class="nav-disclosure-heading"><a href="${url}"${current}${section}>${label}</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="accompagnements-submenu" aria-label="Afficher les offres Accompagnements"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6"/></svg></button></div><ul id="accompagnements-submenu" class="nav-submenu">${links.map(([slug, title]) => {
-    const href = `${url}${slug}/`;
+    const href = slug.startsWith('/') ? slug : `${url}${slug}/`;
     return `<li><a href="${href}"${path === href ? ' aria-current="page"' : ''}>${escape(title)}</a></li>`;
   }).join('')}</ul></li>`;
 }
@@ -32,7 +33,7 @@ function header(path) {
 }
 function footer() {
   return `<footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="/">Christine Brethes</a><p>Coach santé-travail<br>Instructrice méditation de pleine conscience</p><p class="signature">${site.tagline}</p></div>
-  <div><h2>Vous accompagner</h2><ul>${offers.map((o) => `<li><a href="${offerPath(o)}">${escape(o.title)}</a></li>`).join('')}</ul></div>
+  <div><h2>Vous accompagner</h2><ul>${offers.map((o) => `<li><a href="${offerPath(o)}">${escape(o.title)}</a></li>`).join('')}<li><a href="/tarifs/">Tarifs &amp; modalités</a></li></ul></div>
   <div><h2>Restons en lien</h2>${contactDetails()}</div></div>
   <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Christine BRETHES</span><div><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><button type="button" class="cookie-settings" data-cookie-settings>Gestion des cookies</button></div></div></footer>`;
 }

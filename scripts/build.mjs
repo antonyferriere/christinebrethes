@@ -11,6 +11,7 @@ import { offerCards, closing, needsSection } from '../src/components/sections.mj
 import { homePage } from '../src/pages/home.mjs';
 import { aboutPage } from '../src/pages/about.mjs';
 import { contactPage } from '../src/pages/contact.mjs';
+import { pricingPage } from '../src/pages/pricing.mjs';
 import { offerPage } from '../src/pages/offer.mjs';
 import { legalPage, privacyPage } from '../src/pages/legal.mjs';
 import { offers } from '../src/data/offers.mjs';
@@ -31,6 +32,7 @@ const pages = [
   { path: '/accompagnements/', title: 'Les accompagnements', description: 'Une approche intégrative qui relie santé, travail et équilibre de vie pour accompagner vos transitions.', body: accompanimentsPage() },
   { path: '/a-propos/', title: 'À propos de Christine Brethes', description: 'Découvrez le parcours et l’approche intégrative de Christine Brethes, coach professionnelle certifiée et instructrice en pleine conscience.', body: aboutPage() },
   { path: '/contact/', title: 'Contacter Christine', description: 'Contactez Christine Brethes pour un accompagnement à Paris, Chartres ou en visio, une intervention ou un partenariat.', body: contactPage() },
+  { path: '/tarifs/', title: 'Tarifs et modalités des accompagnements', description: 'Tarifs TTC du coaching, des séances de pleine conscience et des ateliers avec Christine Brethes à Paris, Champhol près de Chartres et en visio.', body: pricingPage() },
   { path: '/mentions-legales/', title: 'Mentions légales', description: 'Édition du site, coordonnées professionnelles de Christine Brethes, hébergement et réclamations.', body: legalPage() },
   { path: '/confidentialite/', title: 'Confidentialité', description: 'Informations sur la confidentialité, vos droits sur vos données et le contact dédié du site de Christine Brethes.', body: privacyPage() },
   ...offers.map((offer) => ({ path: offerPath(offer), title: offer.title, description: offer.summary, body: offerPage(offer) })),

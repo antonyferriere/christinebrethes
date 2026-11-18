@@ -157,7 +157,7 @@ export default {
         "En présentiel à Paris ou Chartres, et en visioconférence"
       ],
       "after": [
-        "Les modalités, le rythme et les tarifs sont définis selon la nature de l'accompagnement."
+        "Les tarifs des séances individuelles pour les particuliers sont indiqués ci-dessous. Les modalités des partenariats et interventions auprès des organisations sont définies sur devis."
       ]
     }
   ],
