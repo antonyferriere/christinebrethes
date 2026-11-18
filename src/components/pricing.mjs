@@ -34,9 +34,9 @@ export function pricingSection(slug, { compact = true, tone } = {}) {
 }
 
 export function pricingPractical() {
-  return `<section class="section pricing-practical" aria-labelledby="pricing-practical-title"><div class="container">
+  return `<section class="section pricing-practical editorial-tone-ivory" aria-labelledby="pricing-practical-title"><div class="container">
     <div class="section-heading"><p class="eyebrow">Pour vous accompagner sereinement</p><h2 id="pricing-practical-title">Informations pratiques</h2></div>
     <div class="pricing-terms">${pricingTerms.map(item => `<article class="pricing-term"><h3>${escape(item.title)}</h3><p>${escape(item.text)}</p></article>`).join('')}</div>
-  </div></section>
-  <aside class="container pricing-care-note care-note"><h2>Un accompagnement complémentaire</h2><p>${escape(careInformation)}</p></aside>`;
+    <aside class="pricing-care-note care-note"><h2>Un accompagnement complémentaire</h2><p>${escape(careInformation)}</p></aside>
+  </div></section>`;
 }

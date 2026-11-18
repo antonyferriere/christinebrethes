@@ -326,7 +326,7 @@ textarea { resize: vertical; }
 .pricing-term { border-top: 1px solid var(--color-outline); padding-top: var(--space-6); }
 .pricing-term h3 { font: 600 1.25rem/1.4 var(--font-display); margin: 0 0 .75rem; }
 .pricing-term p { color: var(--color-muted); margin: 0; max-width: 70ch; }
-.pricing-care-note { margin-block: 0 var(--space-section); }
+.pricing-care-note { margin-top: var(--space-8); }
 .pricing-care-note h2 { font-size: 1.2rem; margin-bottom: .75rem; }
 .pricing-care-note p { margin: 0; max-width: 95ch; }
 @media (min-width: 700px) {

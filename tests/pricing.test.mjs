@@ -140,3 +140,18 @@ test('toutes les grilles gardent trois emplacements par ligne sur desktop', () =
     assert.equal((section.match(/class="editorial-block editorial-price-card/g) || []).length, amount, path);
   }
 });
+
+test('informations pratiques et note complémentaire dans la même section ivoire', () => {
+  const page = html('tarifs');
+  const section = page.match(/<section class="section pricing-practical editorial-tone-ivory" aria-labelledby="pricing-practical-title">[\s\S]*?<\/section>/)?.[0];
+  assert.ok(section, 'La section Informations pratiques utilise le fond ivory');
+  assert.match(section, /<div class="pricing-terms">/);
+  assert.match(section, /<aside class="pricing-care-note care-note">/);
+  assert.match(section, /Un accompagnement complémentaire/);
+  assert.match(section, /<\/aside>\s*<\/div><\/section>$/);
+  assert.equal((page.match(/class="pricing-care-note care-note"/g) || []).length, 1);
+  const css = readFileSync('dist/styles/site.css', 'utf8');
+  assert.match(css, /\.editorial-tone-ivory\s*\{\s*background:\s*var\(--color-ivory\)/);
+  assert.match(css, /\.care-note\s*\{[^}]*background:\s*var\(--color-sage\)/);
+  assert.match(css, /\.pricing-care-note\s*\{\s*margin-top:\s*var\(--space-8\)/);
+});
