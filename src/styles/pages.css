@@ -294,14 +294,9 @@ textarea { resize: vertical; }
   display: flex; flex-direction: column; min-width: 0;
   padding: var(--editorial-padding);
   background: var(--color-paper);
-  border: 1px solid var(--color-outline);
   border-radius: var(--radius-card);
 }
 .editorial-tone-paper.editorial-pricing .editorial-price-card { background: var(--color-ivory); }
-.editorial-pricing .editorial-price-card.is-featured {
-  border-color: var(--color-olive);
-  box-shadow: var(--shadow-low);
-}
 .editorial-pricing .editorial-price-card h3 { margin: 0 0 .35rem; }
 .editorial-pricing .pricing-duration { color: var(--color-muted); margin: 0; }
 .editorial-pricing .pricing-amount {
@@ -310,7 +305,7 @@ textarea { resize: vertical; }
   color: var(--color-primary); margin: var(--space-6) 0 var(--space-4);
 }
 .editorial-pricing .pricing-tax { color: var(--color-muted); font: 600 .85rem/1.4 var(--font-body); }
-.editorial-pricing .pricing-description { color: var(--color-muted); margin: auto 0 0; line-height: 1.6; }
+.editorial-pricing .pricing-description { color: var(--color-muted); margin: 0; line-height: 1.6; }
 .editorial-pricing .pricing-format-list {
   list-style: none; display: grid; gap: .5rem;
   border-top: 1px solid var(--color-outline);
@@ -338,7 +333,11 @@ textarea { resize: vertical; }
   .editorial-pricing .editorial-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pricing-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Trois colonnes fixes en desktop, y compris si deux cartes seulement sont renseignées.
+   La troisième colonne reste disponible pour les futures offres Santé & Travail ou méditation. */
+@media (min-width: 960px) {
+  .editorial-pricing .editorial-price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (min-width: 1100px) {
-  .editorial-pricing .editorial-price-grid:has(> :nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pricing-organizations-inner { grid-template-columns: 1.6fr 1fr; }
 }

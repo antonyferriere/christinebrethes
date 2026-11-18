@@ -16,7 +16,11 @@ test('coaching : première rencontre offerte, séance à 75 € et trois program
   assert.equal(discovery.duration, '30 minutes');
   assert.equal(coachingSession.price, 75);
   assert.equal(coachingSession.duration, '1 heure');
-  assert.deepEqual(offerPrices['coaching-professionnel'].entries, [discovery, coachingSession]);
+  assert.deepEqual(offerPrices['coaching-professionnel'].entries,
+    [discovery, coachingSession, ...coachingPrograms.entries]);
+  assert.equal(offerPrices['coaching-professionnel'].title, 'Coaching individuel');
+  assert.equal(offerPrices['coaching-professionnel'].entries.length, 5);
+  assert.match(offerPrices['coaching-professionnel'].introduction, /Un premier échange offert et sans engagement afin de déterminer le parcours qui vous correspond/);
   assert.deepEqual(coachingPrograms.entries.map(({ name, duration, price }) =>
     [name, duration, price]), [
     ['Coaching Déclic', '3 séances · 2 mois', 210],
@@ -56,10 +60,15 @@ test('page Coaching : prix et descriptions des trois programmes dans les composi
   for (const value of ['Coaching Déclic','Coaching Élan','Coaching Transformation','210 €','400 €','500 €','3 séances · 2 mois','6 séances · 3 mois','8 séances · 4 mois']) {
     assert.ok(page.includes(value), value);
   }
-  assert.match(page, /id="programmes-coaching" class="section editorial-composition editorial-pricing/);
-  assert.match(page, /href="\/tarifs\/#programmes-coaching"/);
+  assert.match(page, /id="tarifs-coaching-professionnel" class="section editorial-composition editorial-pricing/);
+  assert.equal((page.match(/id="tarifs-coaching-professionnel"/g) || []).length, 1);
+  assert.match(page, /href="\/tarifs\/"/);
   assert.doesNotMatch(page, /Parcours Ancrage|programmes-integratifs|coaching et méditation de pleine conscience, à construire/);
   assert.equal((page.match(/<h3>Coaching (Déclic|Élan|Transformation)<\/h3>/g) || []).length, 3);
+  const pricing = page.match(/<section id="tarifs-coaching-professionnel"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(pricing, 'La grille Coaching individuel est présente');
+  assert.deepEqual([...pricing.matchAll(/<article class="editorial-block editorial-price-card[^"]*">\s*<div><h3>([^<]+)<\/h3>/g)].map(match => match[1]),
+    ['Premier échange découverte', 'Séance individuelle', 'Coaching Déclic', 'Coaching Élan', 'Coaching Transformation']);
 });
 
 test('page Pleine conscience : ateliers en une carte, tarifs et visio explicites', () => {
@@ -75,8 +84,9 @@ test('page Tarifs : programme de coaching dans sa rubrique et Santé & Travail s
   for (const value of ['60 €','25–35 €','75 €','210 €','400 €','500 €','Déclic','Élan','Transformation','Offert','Champhol','24 heures','Un accompagnement complémentaire','sur devis']) assert.ok(page.includes(value),value);
   assert.match(page, /href="https:\/\/www\.crenolibre\.fr\/prendre-rdv\/166171_brethes-christine"/);
   assert.match(page, /href="\/tarifs\/" aria-current="page"/);
-  assert.equal((page.match(/id="programmes-coaching"/g)||[]).length,1);
-  assert.ok(page.indexOf('id="programmes-coaching"') < page.indexOf('id="tarifs-sante-travail"'));
+  assert.equal((page.match(/id="tarifs-coaching-professionnel"/g) || []).length, 1);
+  assert.doesNotMatch(page, /id="tarifs-sante-travail"|id="programmes-coaching"/);
+  assert.deepEqual([...page.matchAll(/<section id="tarifs-coaching-professionnel"[\s\S]*?<\/section>/g)].map(match => (match[0].match(/class="editorial-block editorial-price-card/g) || []).length), [5]);
   assert.doesNotMatch(page, /Parcours Ancrage|Cycle de 5 séances|275 €|350 €|valables pendant 6 mois|programmes-integratifs/);
   assert.equal(pricingTerms.length,5);
   assert.match(pricingTerms[1].text, /programmes de coaching/);
@@ -97,4 +107,23 @@ test('liens et structure commerciale cohérents dans le site', () => {
   assert.match(html(''), /Consulter les tarifs/);
   assert.match(html('contact'), /Consulter les tarifs/);
   assert.match(html('entreprises-organisations'), /sur devis/);
+});
+
+
+test('toutes les grilles gardent trois emplacements par ligne sur desktop', () => {
+  const css = readFileSync('dist/styles/site.css', 'utf8');
+  assert.match(css, /@media \(min-width: 960px\)\s*\{\s*\.editorial-pricing \.editorial-price-grid\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
+  assert.doesNotMatch(css, /\.editorial-pricing \.editorial-price-grid:has\(/);
+  assert.doesNotMatch(css, /border:\s*1px solid var\(--color-outline\);\s*border-radius:\s*var\(--radius-card\);\s*\}\s*\.editorial-tone-paper\.editorial-pricing/);
+  assert.match(css, /\.editorial-pricing \.pricing-description\s*\{[^}]*margin: 0;/);
+  for (const [path, amount] of [
+    ['accompagnements/coaching-professionnel', 5],
+    ['accompagnements/sante-travail', 2],
+    ['accompagnements/pleine-conscience', 2],
+  ]) {
+    const page = html(path);
+    const section = page.match(/<section id="tarifs-[^"]+" class="section editorial-composition editorial-pricing[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0];
+    assert.ok(section, path);
+    assert.equal((section.match(/class="editorial-block editorial-price-card/g) || []).length, amount, path);
+  }
 });

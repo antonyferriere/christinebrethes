@@ -1,4 +1,4 @@
-import { offerPrices, coachingPrograms, pricingTerms, careInformation } from '../data/pricing.mjs';
+import { offerPrices, pricingTerms, careInformation } from '../data/pricing.mjs';
 import { editorialSection } from './editorial-section.mjs';
 import { site } from '../data/site.mjs';
 import { escape } from './ui.mjs';
@@ -30,15 +30,6 @@ export function pricingSection(slug, { compact = true } = {}) {
     secondary: compact
       ? { text: 'Tous les tarifs et modalités', href: '/tarifs/' }
       : { text: 'Découvrir cet accompagnement', href: `/accompagnements/${slug}/` },
-  });
-}
-
-export function coachingProgramsSection({ compact = true } = {}) {
-  return editorialPriceBlock(coachingPrograms, 'programmes-coaching', {
-    compact, tone: compact ? 'paper' : 'sage',
-    secondary: compact
-      ? { text: 'Voir les tarifs et modalités', href: '/tarifs/#programmes-coaching' }
-      : { text: 'Découvrir le coaching professionnel', href: '/accompagnements/coaching-professionnel/' },
   });
 }
 

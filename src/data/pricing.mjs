@@ -69,10 +69,11 @@ export const offerPrices = {
     entries: [meditationWorkshop, meditationSession],
   },
   'coaching-professionnel': {
-    eyebrow: 'Coaching individuel',
-    title: 'Tarifs des séances de coaching',
-    introduction: 'Un premier échange offert et sans engagement, puis des séances individuelles adaptées à vos besoins.',
-    entries: [discovery, coachingSession],
+    eyebrow: 'Coaching & transitions',
+    title: 'Coaching individuel',
+    introduction: 'Un premier échange offert et sans engagement afin de déterminer le parcours qui vous correspond.',
+    entries: [discovery, coachingSession, ...coachingPrograms.entries],
+    note: 'Prix finaux TTC. Les séances individuelles sont également proposées dans le cadre de Santé & Travail. Le rythme et les modalités des programmes sont définis avec Christine lors du premier échange.',
   },
   'sante-travail': {
     eyebrow: 'Santé & Travail',
