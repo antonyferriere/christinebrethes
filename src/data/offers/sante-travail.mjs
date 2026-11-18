@@ -163,7 +163,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "faq"},
+      "presentation": {"layout": "faq", "tone": "ivory"},
       "eyebrow": "Vos questions",
       "title": "Quelques repères avant de commencer",
       "paragraphs": [],
