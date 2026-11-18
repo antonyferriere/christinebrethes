@@ -145,7 +145,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "frame", "tone": "sage"},
+      "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Le cadre",
       "title": "Un accompagnement personnalisé, respectueux de votre rythme",
       "paragraphs": [

@@ -1,42 +1,56 @@
-// Source unique : tarifs finaux TTC validés par Christine en novembre 2026.
+// Offres individuelles confirmées par Christine (novembre 2026).
+// Les programmes hybrides à 400 / 500 € ont été proposés dans la conversation
+// et restent à valider par Christine avant la mise en production.
 export const discovery = {
   name: 'Premier échange découverte', duration: '30 minutes', price: null,
-  description: 'Un premier échange offert et sans engagement, pour faire connaissance, comprendre vos attentes et vérifier si mon accompagnement vous correspond.',
+  description: 'Un temps offert, sans engagement, pour faire connaissance, comprendre vos attentes et vérifier si l’accompagnement vous convient.',
 };
 export const coachingSession = {
   name: 'Séance individuelle', duration: '1 heure', price: 75,
-  description: 'Un espace pour prendre du recul, clarifier votre situation, identifier vos ressources et avancer vers des objectifs qui ont du sens pour vous.',
-};
-export const coachingCycle = {
-  name: 'Cycle de 5 séances', duration: '5 séances', price: 350,
-  description: 'Un parcours pour inscrire le travail dans la durée, avec des objectifs et un rythme définis ensemble.',
+  description: 'Un espace pour prendre du recul, clarifier votre situation, identifier vos ressources et avancer vers des objectifs qui ont du sens.',
 };
 export const meditationSession = {
   name: 'Séance individuelle', duration: '1 heure', price: 60,
-  description: 'Des temps d’échange et de pratique guidée pour découvrir, approfondir ou adapter la pleine conscience à votre quotidien.',
-};
-export const meditationCycle = {
-  name: 'Cycle de 5 séances', duration: '5 séances', price: 275,
-  description: 'Un parcours progressif pour installer la pratique et en expérimenter les bienfaits au quotidien.',
+  description: 'Échanges et pratiques guidées pour découvrir, approfondir ou adapter la pleine conscience à votre quotidien.',
 };
 export const meditationWorkshop = {
   name: 'Atelier collectif', duration: '1 heure · par personne', price: 25,
-  description: 'En petit groupe, une pratique guidée accessible aux débutants comme aux personnes expérimentées. Des ateliers thématiques peuvent aussi être proposés.',
+  description: 'Une séance en petit groupe pour découvrir et pratiquer la méditation de pleine conscience.',
+};
+export const meditationLongWorkshop = {
+  name: 'Atelier collectif', duration: '1 h 30 · par personne', price: 35,
+  description: 'Un temps de pratique plus approfondi en petit groupe, adapté aux débutants comme aux pratiquants réguliers.',
+};
+export const hybridPrograms = {
+  eyebrow: 'Programmes sur mesure',
+  title: 'Des parcours pour avancer dans la durée',
+  introduction: 'Des programmes intégrant coaching et méditation de pleine conscience, à construire selon votre situation et vos objectifs.',
+  entries: [
+    {
+      name: 'Parcours Élan', duration: '6 séances sur 3 mois', price: 400,
+      description: 'Pour amorcer un changement et développer des ressources en associant coaching et pleine conscience.',
+    },
+    {
+      name: 'Parcours Ancrage', duration: '8 séances sur 4 mois', price: 500,
+      description: 'Pour approfondir le travail dans la durée, à travers un accompagnement combinant coaching et pleine conscience.',
+    },
+  ],
+  note: 'Le programme qui vous correspond, son contenu et ses modalités sont déterminés ensemble lors du premier échange découverte de 30 minutes, offert et sans engagement.',
 };
 export const offerPrices = {
   'pleine-conscience': {
     eyebrow: 'Pleine conscience', title: 'Séances et ateliers de méditation',
     introduction: 'Un accompagnement individuel ou collectif, accessible et adapté à votre expérience.',
-    entries: [meditationSession, meditationCycle, meditationWorkshop],
+    entries: [meditationSession, meditationWorkshop, meditationLongWorkshop],
   },
   'coaching-professionnel': {
     eyebrow: 'Coaching individuel', title: 'Tarifs du coaching individuel',
-    introduction: 'Une séance ponctuelle ou un parcours pour avancer à votre rythme.',
-    entries: [discovery, coachingSession, coachingCycle],
+    introduction: 'Un premier échange offert pour faire connaissance, puis des séances adaptées à vos besoins.',
+    entries: [discovery, coachingSession],
   },
   'sante-travail': {
     eyebrow: 'Santé & Travail', title: 'Tarifs des séances individuelles',
-    introduction: 'Un premier échange offert puis des séances individuelles de coaching à 75 € TTC.',
+    introduction: 'Un premier échange offert et sans engagement, puis des séances individuelles de coaching.',
     entries: [discovery, coachingSession],
   },
 };
@@ -47,11 +61,11 @@ export const pricingTerms = [
   },
   {
     title: 'Règlement',
-    text: 'Le règlement s’effectue à la séance ou au début du parcours pour les forfaits de plusieurs séances.',
+    text: 'Les séances individuelles sont réglées à la séance. Les modalités de règlement des programmes sont précisées lors du premier échange.',
   },
   {
-    title: 'Validité des parcours',
-    text: 'Les parcours de 5 séances sont valables pendant 6 mois à compter de la date de la première séance.',
+    title: 'Programmes personnalisés',
+    text: 'Les programmes combinent coaching et méditation de pleine conscience. Leur contenu, leur rythme et leurs modalités sont adaptés à la situation de chaque personne.',
   },
   {
     title: 'Annulation ou report',

@@ -1,44 +1,63 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { offerPrices, coachingSession, discovery, pricingTerms } from '../src/data/pricing.mjs';
+import { offerPrices, hybridPrograms, coachingSession, discovery, pricingTerms } from '../src/data/pricing.mjs';
+import meditation from '../src/data/offers/pleine-conscience.mjs';
+import health from '../src/data/offers/sante-travail.mjs';
+
 const html = path => readFileSync(`dist/${path}/index.html`, 'utf8');
 
-test('prix finaux TTC centralisés et identiques entre les offres', () => {
+test('prix TTC des séances et des deux formats d’ateliers', () => {
   assert.equal(coachingSession.price, 75);
   assert.equal(discovery.price, null);
-  assert.equal(offerPrices['sante-travail'].entries[0], discovery);
-  assert.equal(offerPrices['sante-travail'].entries[1], coachingSession);
-  assert.equal(offerPrices['coaching-professionnel'].entries[2].price, 350);
-  assert.deepEqual(offerPrices['pleine-conscience'].entries.map(item => item.price), [60, 275, 25]);
+  assert.deepEqual(offerPrices['coaching-professionnel'].entries.map(item => item.price), [null, 75]);
+  assert.deepEqual(offerPrices['sante-travail'].entries.map(item => item.price), [null, 75]);
+  assert.deepEqual(offerPrices['pleine-conscience'].entries.map(item => item.price), [60, 25, 35]);
+  assert.deepEqual(hybridPrograms.entries.map(item => [item.price, item.duration]), [[400, '6 séances sur 3 mois'], [500, '8 séances sur 4 mois']]);
 });
 
-test('page tarifs complète, accessible et réservations proposées', () => {
+test('les deux sections demandées passent sur fond ivoire', () => {
+  const frame = health.sections.find(item => item.eyebrow === 'Le cadre');
+  const formats = meditation.sections.find(item => item.title === 'Des formats adaptés à vos besoins');
+  assert.equal(frame.presentation.tone, 'ivory');
+  assert.equal(formats.presentation.tone, 'ivory');
+});
+
+test('la page tarifs utilise le composant éditorial partagé', () => {
   const page = html('tarifs');
-  for (const amount of ['60 €', '275 €', '25 €', '75 €', '350 €']) assert.ok(page.includes(amount), amount);
-  for (const phrase of ['30 minutes', 'Offert', 'Prix finaux TTC', 'sur devis', 'Champhol', '24 heures', '6 mois', 'Un accompagnement complémentaire']) assert.ok(page.includes(phrase), phrase);
+  for (const phrase of ['60 €', '25 €', '35 €', '75 €', '400 €', '500 €', '30 minutes', 'Offert', 'sur devis', 'Champhol', '24 heures', 'Programmes personnalisés', 'Un accompagnement complémentaire']) {
+    assert.ok(page.includes(phrase), phrase);
+  }
+  assert.match(page, /editorial-composition editorial-pricing editorial-tone-ivory/);
+  assert.match(page, /editorial-composition editorial-pricing editorial-tone-sage/);
+  assert.match(page, /Parcours Élan/);
+  assert.match(page, /Parcours Ancrage/);
   assert.match(page, /href="https:\/\/www\.crenolibre\.fr\/prendre-rdv\/166171_brethes-christine"/);
   assert.match(page, /href="\/tarifs\/" aria-current="page"/);
   assert.equal(pricingTerms.length, 5);
+  assert.doesNotMatch(page, /Cycle de 5 séances|275 €|350 €|valables pendant 6 mois/);
 });
 
-test('les trois offres présentent les montants applicables', () => {
-  const meditation = html('accompagnements/pleine-conscience');
+test('les offres individuelles présentent les prix actualisés', () => {
+  const mindfulness = html('accompagnements/pleine-conscience');
   const coaching = html('accompagnements/coaching-professionnel');
-  const health = html('accompagnements/sante-travail');
-  for (const page of [meditation, coaching, health]) {
+  const healthHtml = html('accompagnements/sante-travail');
+  for (const page of [mindfulness, coaching, healthHtml]) {
     assert.match(page, /href="\/tarifs\/"/);
-    assert.match(page, /Prix finaux TTC/);
+    assert.match(page, /prix finaux TTC/i);
+    assert.match(page, /editorial-pricing/);
   }
-  assert.match(meditation, /25 €/);
-  assert.match(meditation, /275 €/);
-  assert.match(coaching, /350 €/);
-  assert.match(health, /75 €/);
-  assert.match(health, /Offert/);
-  assert.doesNotMatch(health, /350 €/);
+  assert.match(mindfulness, /35 €/);
+  assert.match(mindfulness, /25 €/);
+  assert.match(coaching, /400 €/);
+  assert.match(coaching, /500 €/);
+  assert.match(healthHtml, /75 €/);
+  assert.match(healthHtml, /Offert/);
+  assert.match(healthHtml, /programmes-integratifs/);
+  for (const page of [mindfulness, coaching, healthHtml]) assert.doesNotMatch(page, /Cycle de 5 séances|275 €|350 €/);
 });
 
-test('liens vers les tarifs sur accueil et contact, devis organisations', () => {
+test('accueil et contact conservent les liens, organisations sur devis', () => {
   assert.match(html(''), /Consulter les tarifs/);
   assert.match(html('contact'), /Consulter les tarifs/);
   assert.match(html('entreprises-organisations'), /sur devis/);

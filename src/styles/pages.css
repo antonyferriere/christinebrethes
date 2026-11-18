@@ -285,36 +285,33 @@ textarea { resize: vertical; }
   .editorial-domains .offer-card:hover { transform: none; }
 }
 
-/* Tarifs : reprise de la palette éditoriale et des composants du site. */
-.pricing-section { background: var(--color-paper); }
-.pricing-section .section-heading { max-width: 880px; margin-bottom: var(--space-8); }
-.pricing-section .section-heading .lede { max-width: 740px; }
-.pricing-section-compact { background: var(--color-sage); }
-.pricing-grid { display: grid; gap: var(--space-6); grid-template-columns: minmax(0, 1fr); }
-.pricing-card {
+/* Composition tarifaire dans le même système éditorial que les autres sections. */
+.editorial-pricing .editorial-composition-inner { gap: clamp(1.75rem, 3vw, 3rem); }
+.editorial-pricing .editorial-heading { max-width: 58rem; }
+.editorial-pricing .editorial-heading > p:not(.eyebrow) { color: var(--color-muted); margin: var(--space-4) 0 0; max-width: 65ch; }
+.editorial-pricing .editorial-price-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+.editorial-pricing .editorial-price-card {
   display: flex; flex-direction: column; min-width: 0;
-  padding: clamp(1.4rem, 3vw, 2.2rem);
-  border-radius: var(--radius-card); background: var(--color-paper);
+  padding: var(--editorial-padding);
+  background: var(--color-paper);
   border: 1px solid var(--color-outline);
+  border-radius: var(--radius-card);
 }
-.pricing-section:not(.pricing-section-compact) .pricing-card { background: #fff; }
-.pricing-card h3 { font: 600 clamp(1.18rem, 2vw, 1.5rem)/1.35 var(--font-display); color: var(--color-ink); margin: 0 0 .4rem; }
-.pricing-duration { color: var(--color-muted); margin: 0; }
-.pricing-amount {
+.editorial-tone-paper.editorial-pricing .editorial-price-card { background: var(--color-ivory); }
+.editorial-pricing .editorial-price-card h3 { margin: 0 0 .35rem; }
+.editorial-pricing .pricing-duration { color: var(--color-muted); margin: 0; }
+.editorial-pricing .pricing-amount {
   display: flex; align-items: baseline; flex-wrap: wrap; gap: .65rem;
   font: 600 clamp(2rem, 3vw, 2.65rem)/1.2 var(--font-display);
-  color: var(--color-primary); margin: 1.5rem 0 1rem;
+  color: var(--color-primary); margin: var(--space-6) 0 var(--space-4);
 }
-.pricing-tax { color: var(--color-muted); font: 600 .85rem/1.4 var(--font-body); }
-.pricing-description { color: var(--color-muted); margin: auto 0 0; line-height: 1.6; }
-.pricing-note { font-size: .95rem; color: var(--color-muted); margin: var(--space-6) 0 0; }
-.pricing-actions, .pricing-hero-actions {
-  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem;
-  margin-top: var(--space-8);
-}
-.pricing-actions .text-link, .pricing-place-link .text-link { display: inline-flex; align-items: center; gap: .25rem; }
+.editorial-pricing .pricing-tax { color: var(--color-muted); font: 600 .85rem/1.4 var(--font-body); }
+.editorial-pricing .pricing-description { color: var(--color-muted); margin: auto 0 0; line-height: 1.6; }
+.editorial-pricing .pricing-note { font-size: .95rem; color: var(--color-muted); margin: var(--space-6) 0 0; }
+.editorial-pricing .pricing-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: var(--space-8); }
+.editorial-pricing .pricing-actions .text-link, .pricing-place-link .text-link { display: inline-flex; align-items: center; gap: .25rem; }
 .pricing-place-link { margin-top: var(--space-4); }
-.pricing-hero-actions { margin-top: 1rem; }
+.pricing-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 1rem; }
 .pricing-hero-actions .button { margin-top: 0; }
 .pricing-organizations { background: var(--color-sage); }
 .pricing-organizations-inner { display: grid; gap: 2rem; align-items: center; }
@@ -327,10 +324,10 @@ textarea { resize: vertical; }
 .pricing-care-note h2 { font-size: 1.2rem; margin-bottom: .75rem; }
 .pricing-care-note p { margin: 0; max-width: 95ch; }
 @media (min-width: 700px) {
-  .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .editorial-pricing .editorial-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pricing-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1100px) {
-  .pricing-grid:has(> :nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .editorial-pricing .editorial-price-grid:has(> :nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pricing-organizations-inner { grid-template-columns: 1.6fr 1fr; }
 }

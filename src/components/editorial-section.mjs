@@ -38,6 +38,17 @@ function illustration(name) {
   return `<div class="editorial-illustration"><img src="/assets/${escape(name)}-800.webp" srcset="/assets/${escape(name)}-480.webp 480w, /assets/${escape(name)}-800.webp 800w, /assets/${escape(name)}-1200.webp 1200w" sizes="(min-width: 1200px) 420px, (min-width: 840px) 35vw, calc(100vw - 40px)" width="800" height="600" alt="" loading="lazy" decoding="async"></div>`;
 }
 
+function pricingCards(pricing) {
+  return pricing.entries.map(entry => {
+    const amount = entry.price == null ? 'Offert' : `${escape(entry.price)} €`;
+    return `<article class="editorial-block editorial-price-card">
+      <div><h3>${escape(entry.name)}</h3><p class="pricing-duration">${escape(entry.duration)}</p></div>
+      <p class="pricing-amount">${amount}${entry.price == null ? '' : '<span class="pricing-tax">TTC</span>'}</p>
+      <p class="pricing-description">${escape(entry.description)}</p>
+    </article>`;
+  }).join('');
+}
+
 export function editorialSection(section, index) {
   const heading = `${section.eyebrow ? `<p class="eyebrow">${escape(section.eyebrow)}</p>` : ''}<h2>${escape(section.title)}</h2>`;
   const presentation = section.presentation;
@@ -46,6 +57,22 @@ export function editorialSection(section, index) {
   }
   const { layout = 'split', tone = 'paper', image } = presentation;
   const sectionClass = `section editorial-composition editorial-${escape(layout)} editorial-tone-${escape(tone)}`;
+  if (layout === 'pricing') {
+    const pricing = section.pricing;
+    const headingId = escape(section.id || 'pricing');
+    const primary = pricing.primary ? button(pricing.primary.text, pricing.primary.href) : '';
+    const secondary = pricing.secondary ? `<a class="text-link" href="${escape(pricing.secondary.href)}">${escape(pricing.secondary.text)} ${arrow}</a>` : '';
+    return `<section id="${headingId}" class="${sectionClass}" aria-labelledby="${headingId}-title">
+      <div class="container editorial-composition-inner">
+        <div class="editorial-heading">${heading.replace('<h2>', `<h2 id="${headingId}-title">`)}${paragraphs(section.paragraphs)}</div>
+        <div class="editorial-copy">
+          <div class="editorial-blocks editorial-price-grid">${pricingCards(pricing)}</div>
+          <p class="pricing-note">${escape(pricing.note)}</p>
+          <div class="editorial-actions pricing-actions">${primary}${secondary}</div>
+        </div>
+      </div>
+    </section>`;
+  }
   if (layout === 'split') {
     return `<section class="${sectionClass}${image ? ' editorial-has-image' : ''}"><div class="container editorial-composition-inner"><div class="editorial-copy"><div class="editorial-heading">${heading}</div>${sectionContent(section, presentation)}</div>${image ? illustration(image) : ''}</div></section>`;
   }
