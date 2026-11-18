@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
-import { resolve, extname } from 'node:path';
+import { resolve, extname, relative, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { prepareEmail } from '../src/scripts/contact.js';
 import { linkedinSections } from '../src/components/sections.mjs';
@@ -100,9 +100,29 @@ test('LinkedIn : sections indépendantes, vides masquées, données échappées'
   linkedinSettings.publications = false;
 });
 
-test('le build de présentation bloque l’indexation et la publication prématurée', () => {
-  assert.match(readFileSync('dist/robots.txt','utf8'), /Disallow: \//);
-  for (const path of pages) assert.match(readFileSync(path,'utf8'), /noindex, nofollow/);
+test('les pages du sitemap sont indexables et canoniques', () => {
+  assert.equal(readFileSync('dist/robots.txt','utf8'), `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n`);
+  const sitemap = readFileSync('dist/sitemap.xml','utf8');
+  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  const contentPages = pages.filter(path => path !== resolve('dist/404.html'));
+  assert.equal(urls.length, contentPages.length);
+  for (const path of contentPages) {
+    const html = readFileSync(path, 'utf8');
+    const url = site.domain + '/' + relative('dist', path).split(sep).join('/').replace(/index\.html$/, '');
+    assert.ok(urls.includes(url));
+    assert.ok(html.includes(`<link rel="canonical" href="${url}">`));
+    assert.ok(html.includes('name="robots" content="index, follow"'));
+    const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'];
+    assert.ok(graph.some(node => node['@type'] === 'WebPage' && node.url === url));
+    if (html.includes('aria-label="Fil d’Ariane"')) {
+      assert.ok(graph.some(node => node['@type'] === 'BreadcrumbList' && node.itemListElement.at(-1).item === url));
+    }
+  }
+  assert.match(readFileSync('dist/404.html','utf8'), /noindex, follow/);
+  assert.match(readFileSync('dist/rendez-vous/index.html','utf8'), /noindex, nofollow/);
+});
+
+test('le contrôle explicite de publication reste indépendant du SEO', () => {
   const result = spawnSync(process.execPath, ['scripts/build.mjs','--production'], {encoding:'utf8'});
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Publication bloquée/);
