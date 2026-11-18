@@ -16,7 +16,7 @@ const files = filesIn('dist');
 const pages = files.filter((path) => extname(path) === '.html' && path !== resolve('dist/rendez-vous/index.html'));
 
 test('toutes les pages ont un titre, un H1 et des métadonnées uniques', () => {
-  assert.equal(pages.length, 11);
+  assert.equal(pages.length, 12);
   const titles = new Set();
   for (const path of pages) {
     const html = readFileSync(path, 'utf8');

@@ -61,3 +61,6 @@ export const pageImages = {
   ]
 };
 pageImages['pleine-conscience'] = [[480, 800, 1440], 1440, 1080];
+
+// Ambiance existante du cabinet pour l'en-tête de la page Tarifs.
+pageImages['tarifs'] = pageImages.contact;

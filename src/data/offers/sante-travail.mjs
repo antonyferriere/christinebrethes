@@ -145,7 +145,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "frame", "tone": "sage"},
+      "presentation": {"layout": "frame", "tone": "ivory"},
       "eyebrow": "Le cadre",
       "title": "Un accompagnement personnalisé, respectueux de votre rythme",
       "paragraphs": [
@@ -159,11 +159,11 @@ export default {
       ],
       "after": [
         "Cet accompagnement ne remplace pas un suivi médical ou psychologique. Il s'inscrit en complément des soins et ne se substitue pas aux professionnels de santé, notamment au médecin du travail pour les questions d'aptitude et d'aménagement de poste.",
-        "Les modalités et les tarifs sont précisés lors de notre premier échange."
+        "Les tarifs des séances individuelles sont indiqués ci-dessous. Le rythme et les modalités de l'accompagnement sont adaptés à votre situation."
       ]
     },
     {
-      "presentation": {"layout": "faq"},
+      "presentation": {"layout": "faq", "tone": "ivory"},
       "eyebrow": "Vos questions",
       "title": "Quelques repères avant de commencer",
       "paragraphs": [],
