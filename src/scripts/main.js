@@ -81,7 +81,7 @@ if (hero) {
   };
   const schedule = () => {
     clearTimeout(timer);
-    if (visible && !document.hidden && !motion.matches && !hovered && !focused) timer = setTimeout(() => show((index + 1) % slides.length), 7500);
+    if (visible && !document.hidden && !motion.matches) timer = setTimeout(() => show((index + 1) % slides.length), 5000);
   };
   const show = async (next) => {
     const token = ++request;
