@@ -68,7 +68,6 @@ if (hero) {
   const slides = [...hero.querySelectorAll('.hero-scene')];
   const controls = hero.querySelector('.hero-controls');
   const dots = [...controls.querySelectorAll('[data-slide]')];
-  let hovered = false, focused = false;
   let index = 0, timer, visible = true, request = 0;
   const load = async (i) => {
     const img = slides[i].querySelector('img');
@@ -81,7 +80,7 @@ if (hero) {
   };
   const schedule = () => {
     clearTimeout(timer);
-    if (visible && !document.hidden && !motion.matches && !hovered && !focused) timer = setTimeout(() => show((index + 1) % slides.length), 5000);
+    if (visible && !document.hidden && !motion.matches) timer = setTimeout(() => show((index + 1) % slides.length), 5000);
   };
   const show = async (next) => {
     const token = ++request;
@@ -94,10 +93,6 @@ if (hero) {
     dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
     schedule();
   };
-  hero.addEventListener('mouseenter', () => { hovered = true; schedule(); });
-  hero.addEventListener('mouseleave', () => { hovered = false; schedule(); });
-  hero.addEventListener('focusin', () => { focused = true; schedule(); });
-  hero.addEventListener('focusout', event => { focused = hero.contains(event.relatedTarget); schedule(); });
   motion.addEventListener('change', () => { ++request; schedule(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
   document.addEventListener('visibilitychange', schedule);

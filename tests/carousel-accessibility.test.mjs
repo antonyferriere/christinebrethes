@@ -3,20 +3,36 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 // Execute the real carousel block against a minimal DOM and clock.
-test('carrousel : reduced motion, focus et survol stoppent la minuterie',()=>{
- const source=readFileSync('src/scripts/main.js','utf8');
- const heroHandlers=new Map();const motionHandlers=new Map();let scheduled=0;
- const controls={querySelectorAll:()=>[],hidden:true};
- const hero={querySelector:()=>controls,querySelectorAll:()=>[],addEventListener:(n,f)=>heroHandlers.set(n,f),contains:()=>false};
- const motion={matches:true,addEventListener:(n,f)=>motionHandlers.set(n,f)};
- const context={document:{querySelector:()=>hero,hidden:false,addEventListener(){}},motion,setTimeout:()=>++scheduled,clearTimeout:()=>{scheduled=0;},IntersectionObserver:class{observe(){}},console};
- vm.runInNewContext(source.slice(source.indexOf('const hero ='),source.indexOf('// A single animation frame')),context);
- assert.equal(scheduled,0);
- motion.matches=false;motionHandlers.get('change')();assert.equal(scheduled,1);
- heroHandlers.get('focusin')();assert.equal(scheduled,0);
- heroHandlers.get('focusout')({relatedTarget:null});assert.equal(scheduled,1);
- heroHandlers.get('mouseenter')();assert.equal(scheduled,0);
- heroHandlers.get('mouseleave')();assert.equal(scheduled,1);
+test('carrousel : le survol et le focus préservent la minuterie, le mouvement réduit la suspend', () => {
+  const source = readFileSync('src/scripts/main.js', 'utf8');
+  const hero = new EventTarget();
+  const controls = { querySelectorAll: () => [] };
+  hero.querySelector = () => controls;
+  hero.querySelectorAll = () => [];
+  hero.contains = () => false;
+  const motion = new EventTarget();
+  motion.matches = true;
+  let activeTimer;
+  const context = {
+    document: { querySelector: () => hero, hidden: false, addEventListener() {} },
+    motion,
+    setTimeout: callback => (activeTimer = callback),
+    clearTimeout: timer => { if (timer === activeTimer) activeTimer = undefined; },
+    IntersectionObserver: class { observe() {} }
+  };
+  vm.runInNewContext(source.slice(source.indexOf('const hero ='), source.indexOf('// A single animation frame')), context);
+  assert.equal(activeTimer, undefined);
+  motion.matches = false;
+  motion.dispatchEvent(new Event('change'));
+  const initialTimer = activeTimer;
+  assert.equal(typeof initialTimer, 'function');
+  for (const name of ['mouseenter', 'focusin', 'mouseleave', 'focusout']) {
+    hero.dispatchEvent(new Event(name));
+    assert.equal(activeTimer, initialTimer, name);
+  }
+  motion.matches = true;
+  motion.dispatchEvent(new Event('change'));
+  assert.equal(activeTimer, undefined);
 });
 
 test('organisations : reprise après glissement, molette et barre native, respect du clavier et du mouvement réduit', () => {
