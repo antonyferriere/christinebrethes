@@ -35,7 +35,7 @@ const pages = [
   { path: '/tarifs/', title: 'Tarifs et modalités des accompagnements', description: 'Tarifs TTC du coaching, des séances de pleine conscience et des ateliers avec Christine Brethes à Paris, Champhol près de Chartres et en visio.', body: pricingPage() },
   { path: '/mentions-legales/', title: 'Mentions légales', description: 'Édition du site, coordonnées professionnelles de Christine Brethes, hébergement et réclamations.', body: legalPage() },
   { path: '/confidentialite/', title: 'Confidentialité', description: 'Informations sur la confidentialité, vos droits sur vos données et le contact dédié du site de Christine Brethes.', body: privacyPage() },
-  ...offers.map((offer) => ({ path: offerPath(offer), title: offer.title, description: offer.summary, body: offerPage(offer) })),
+  ...offers.map((offer) => ({ path: offerPath(offer), service: true, title: offer.title, description: offer.summary, body: offerPage(offer) })),
 ];
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
@@ -50,16 +50,16 @@ for (const page of pages) {
   await mkdir(directory, { recursive: true });
   await writeFile(resolve(directory, 'index.html'), layout({ ...page, assetVersion }));
 }
-await writeFile(resolve(dist, '404.html'), layout({ assetVersion, path: '/404/', title: 'Page introuvable', description: 'Retrouvez les accompagnements de Christine Brethes.', body: `<section class="container page-hero compact"><p class="eyebrow">Page introuvable</p><h1>Retrouvons le chemin.</h1><p>Cette page n’existe pas ou a changé d’adresse.</p>${button('Revenir à l’accueil', '/')}</section>` }));
+await writeFile(resolve(dist, '404.html'), layout({ assetVersion, path: '/404/', indexable: false, title: 'Page introuvable', description: 'Retrouvez les accompagnements de Christine Brethes.', body: `<section class="container page-hero compact"><p class="eyebrow">Page introuvable</p><h1>Retrouvons le chemin.</h1><p>Cette page n’existe pas ou a changé d’adresse.</p>${button('Revenir à l’accueil', '/')}</section>` }));
 await mkdir(resolve(dist, 'styles'), { recursive: true });
 await writeFile(resolve(dist, 'styles/site.css'), css.join('\n'));
 await cp(resolve(root, 'src/scripts'), resolve(dist, 'scripts'), { recursive: true });
 for (let index = 0; index < scriptNames.length; index++) {
   await writeFile(resolve(dist, 'scripts', scriptNames[index]), browserScripts[index].replace(/(['"])\.\/([a-z-]+\.js)\1/g, (_, quote, name) => `${quote}./${name}?v=${assetVersion}${quote}`));
 }
-await writeFile(resolve(dist, 'robots.txt'), site.productionReady ? `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
+await writeFile(resolve(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n`);
 await writeFile(resolve(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(({path})=>`<url><loc>${site.domain}${path}</loc></url>`).join('')}</urlset>\n`);
-console.log(`${pages.length} pages + page 404 générées dans dist/ — ${site.productionReady ? 'production' : 'présentation non indexable'}.`);
+console.log(`${pages.length} pages + page 404 générées dans dist/.`);
 
 // Compatibility redirect for existing bookmarks, including static previews.
 await mkdir(resolve(dist, 'rendez-vous'), { recursive: true });
