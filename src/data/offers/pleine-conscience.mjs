@@ -97,7 +97,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "narrative"},
+      "presentation": {"layout": "cards", "splitTitles": true},
       "title": "À qui s'adresse mon accompagnement ?",
       "paragraphs": [],
       "blocks": [
