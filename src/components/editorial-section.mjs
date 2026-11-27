@@ -3,7 +3,7 @@ import { escape, button, list, faq, arrow } from './ui.mjs';
 import { site } from '../data/site.mjs';
 
 export const paragraphs = (items = [], emphasis) => items.map((text, index) =>
-  `<p${index === emphasis ? ' class="editorial-emphasis"' : ''}>${escape(text)}</p>`).join('');
+  `<p${index === emphasis ? ' class="editorial-emphasis"' : ''}>${escape(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>')}</p>`).join('');
 export const actions = (items = [], variant = '') => items.length ? `<div class="editorial-actions">${items.map(({ label, audience }) => button(label, audience === 'organisation' ? '/contact/?profil=organisation' : audience === 'contact' ? '/contact/' : site.booking.url || '/contact/', variant)).join('')}</div>` : '';
 
 function blockTitle(title, presentation) {
@@ -89,13 +89,13 @@ function cardImage(name, layout = 'cards') {
   return `<div class="editorial-card-image"><img src="/assets/${escape(name)}-800.webp" srcset="${editorialSrcset(name)}" sizes="${sizes}" width="800" height="450" alt="" loading="lazy" decoding="async"></div>`;
 }
 
-function illustration(name, layout = 'split') {
+function illustration(name, layout = 'split', alt = '') {
   // Desktop split images stretch with the text: cover can scale the source
   // well beyond the column width. Budget 800px before DPR is applied.
   const sizes = layout === 'split'
     ? '(min-width: 840px) 800px, (min-width: 600px) 92vw, calc(100vw - 40px)'
     : '(min-width: 1440px) 1280px, 92vw';
-  return `<div class="editorial-illustration"><img src="/assets/${escape(name)}-800.webp" srcset="${editorialSrcset(name)}" sizes="${sizes}" width="800" height="600" alt="" loading="lazy" decoding="async"></div>`;
+  return `<div class="editorial-illustration"><img src="/assets/${escape(name)}-800.webp" srcset="${editorialSrcset(name)}" sizes="${sizes}" width="800" height="600" alt="${escape(alt)}" loading="lazy" decoding="async"></div>`;
 }
 
 function pricingCards(pricing) {
@@ -118,11 +118,15 @@ function pricingCards(pricing) {
 }
 
 
+function disclosureToggle(title) {
+  return `<summary class="career-toggle"><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span><span class="sr-only"> : ${escape(title)}</span></summary>`;
+}
+
 function careerSection(section) {
   const chapters = (section.blocks || []).map((block, index) => {
     const [first, ...remaining] = block.paragraphs || [];
     const detail = remaining.length || block.items ? `<details class="career-disclosure">
-      <summary class="career-toggle"><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span><span class="sr-only"> : ${escape(block.title)}</span></summary>
+      ${disclosureToggle(block.title)}
       <div class="career-detail">${paragraphs(remaining)}${block.items ? list(block.items) : ''}</div>
     </details>` : '';
     return `<li>
@@ -164,6 +168,19 @@ export function editorialSection(section, index) {
     </section>`;
   }
   if (layout === 'split') {
+    if (presentation.previewParagraphs) {
+      const preview = section.paragraphs.slice(0, presentation.previewParagraphs);
+      const rest = section.paragraphs.slice(presentation.previewParagraphs);
+      return `<section class="${sectionClass} editorial-has-image editorial-expandable">
+        <article class="container editorial-composition-inner">
+          <div class="editorial-copy"><div class="editorial-heading">${heading}</div>${paragraphs(preview)}</div>
+          ${illustration(image, layout, presentation.imageAlt)}
+          <details class="career-disclosure">${disclosureToggle(section.title)}
+            <div class="career-detail">${paragraphs(rest)}</div>
+          </details>
+        </article>
+      </section>`;
+    }
     return `<section class="${sectionClass}${image ? ' editorial-has-image' : ''}"><div class="container editorial-composition-inner"><div class="editorial-copy"><div class="editorial-heading">${heading}</div>${sectionContent(section, presentation)}</div>${image ? illustration(image, layout) : ''}</div></section>`;
   }
   if (layout === 'frame') {

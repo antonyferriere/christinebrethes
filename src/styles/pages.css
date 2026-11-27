@@ -405,3 +405,22 @@ textarea { resize: vertical; }
 @media (min-width: 1100px) {
   .pricing-organizations-inner { grid-template-columns: 1.6fr 1fr; }
 }
+
+.editorial-expandable .career-disclosure { grid-column: 1 / -1; }
+.editorial-expandable .editorial-illustration img {
+  position: static;
+  height: auto;
+  transform: none;
+}
+.editorial-expandable.editorial-has-image .editorial-illustration {
+  align-self: center;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+}
+@media (min-width: 840px) {
+  .editorial-expandable.editorial-has-image .editorial-composition-inner {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr);
+  }
+  .editorial-expandable.editorial-has-image .editorial-copy { grid-column: 1; }
+  .editorial-expandable.editorial-has-image .editorial-illustration { grid-column: 2; }
+}
