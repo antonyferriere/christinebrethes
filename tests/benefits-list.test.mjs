@@ -37,5 +37,5 @@ test('la liste des bienfaits passe de une à deux colonnes sans largeur imposée
   const css = readFileSync(new URL('../src/styles/pages.css', import.meta.url), 'utf8');
   assert.match(css, /\.editorial-benefits \.benefit-list\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\)/);
   assert.match(css, /@media \(min-width: 600px\)\s*\{\s*\.editorial-benefits \.benefit-list\s*\{\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
-  assert.match(css, /\.editorial-benefits \.benefit-group \+ \.benefit-group\s*\{[^}]*border-top:/);
+  assert.match(css, /\.editorial-benefits \.benefit-group\s*\{[^}]*border-top:\s*1px solid var\(--color-outline\)/);
 });
