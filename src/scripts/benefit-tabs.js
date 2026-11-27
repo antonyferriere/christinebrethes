@@ -25,6 +25,7 @@ document.querySelectorAll('.editorial-benefits').forEach((section, sectionIndex)
     tab.id = id + '-tab';
     tab.textContent = labels[index];
     tab.setAttribute('role', 'tab');
+    panel.querySelector('h3').remove();
     panel.id = id + '-panel';
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', tab.id);
