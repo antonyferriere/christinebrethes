@@ -12,12 +12,40 @@ function blockTitle(title, presentation) {
   return `<span class="editorial-title-primary">${escape(title.slice(0, separator))}</span><span class="sr-only"> — </span><span class="editorial-title-secondary">${escape(title.slice(separator + 3))}</span>`;
 }
 
+// Decorative line icons in the editorial order of the three benefit groups.
+const benefitIcons = [
+  [
+    '<path d="M3 8h12a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M5 16h6a3 3 0 1 1-3 3"/>',
+    '<path d="M12 2v2m7.1.9-1.4 1.4M22 10h-2M5 5l1.4 1.4M4 10H2M8 11a5 5 0 0 1 9-3"/><path d="M7 20h11a4 4 0 0 0 0-8 5 5 0 0 0-9-1 4.5 4.5 0 1 0-2 9Z"/>',
+    '<circle cx="12" cy="12" r="4"/><path d="M8 3H4a1 1 0 0 0-1 1v4m13-5h4a1 1 0 0 1 1 1v4m0 8v4a1 1 0 0 1-1 1h-4m-8 0H4a1 1 0 0 1-1-1v-4"/>',
+    '<path d="M20.8 8.6c0 3.9-8.8 9.4-8.8 9.4S3.2 12.5 3.2 8.6a4.6 4.6 0 0 1 8.8-2 4.6 4.6 0 0 1 8.8 2Z"/><path d="M8 11h2l1-2 2 4 1-2h2"/>',
+  ],
+  [
+    '<path d="M2 12h4l3-7 4 14 3-7h6"/>',
+    '<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/>',
+    '<path d="M20.8 14.2A9 9 0 0 1 9.8 3.2a9 9 0 1 0 11 11Z"/><path d="M18 3v4m-2-2h4"/>',
+    '<path d="M20.8 8.6c0 3.9-8.8 10.4-8.8 10.4S3.2 12.5 3.2 8.6a4.6 4.6 0 0 1 8.8-2 4.6 4.6 0 0 1 8.8 2Z"/><path d="M2 12h5l2-3 3 5 2-2h8"/>',
+  ],
+  [
+    '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>',
+    '<path d="M20 3C11 3 5 6 5 13a6 6 0 0 0 6 6c7 0 9-7 9-16ZM3 21l11-11"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  ],
+];
+
+function benefitIcon(groupIndex, cardIndex) {
+  const shape = benefitIcons[groupIndex]?.[cardIndex];
+  if (!shape) return '';
+  return `<span class="benefit-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${shape}</svg></span>`;
+}
+
 function sectionContent(section, presentation) {
   const renderBody = block => `${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}`;
   const cards = (section.blocks || []).map((block, index, all) => {
     if (block.cards) {
-      const items = block.cards.map(card => `<li class="editorial-block editorial-image-card"><div class="editorial-card-body"><h4 class="editorial-card-title">${escape(card.title)}</h4><p>${escape(card.text)}</p></div></li>`).join('');
-      return `<div class="benefit-group editorial-cards"><h3>${escape(block.title)}</h3><ul class="offer-grid" role="list">${items}</ul></div>`;
+      const items = block.cards.map((card, cardIndex) => `<li class="benefit-item">${benefitIcon(index, cardIndex)}<div class="benefit-copy"><h4 class="benefit-title">${escape(card.title)}</h4><p>${escape(card.text)}</p></div></li>`).join('');
+      return `<div class="benefit-group"><h3>${escape(block.title)}</h3><ul class="benefit-list" role="list">${items}</ul></div>`;
     }
     if (presentation?.layout === 'domains') {
       if (presentation.notes?.includes(index)) return '';

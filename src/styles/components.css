@@ -21,8 +21,6 @@
 .offer-number { position: absolute; top: 1rem; left: 1rem; border-radius: 50%; background: var(--color-paper); width: 40px; height: 40px; display: grid; place-items: center; font-size: .85rem; }
 .offer-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 .offer-content .eyebrow { font-size: .65rem; margin-bottom: 1rem; }
-.benefit-group .offer-grid { list-style: none; padding: 0; margin: 0; }
-.benefit-group .editorial-card-title { font: 400 clamp(1.3rem, 1.8vw, 1.6rem)/1.3 var(--font-display); text-wrap: balance; margin: 0 0 var(--space-4); }
 .offer-content h3 { font-size: 1.45rem; }
 .offer-content h3 a { text-decoration: none; }
 .offer-content p:not(.eyebrow), .review blockquote p { color: var(--color-muted); font-size: 1rem; }
