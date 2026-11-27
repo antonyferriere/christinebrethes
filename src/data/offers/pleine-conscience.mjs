@@ -34,7 +34,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "benefits"},
+      "presentation": {"layout": "benefits", "tone": "ivory"},
       "title": "Les bienfaits de la pleine conscience",
       "paragraphs": [
         "La pratique régulière de la méditation peut contribuer, au bout de huit semaines, à :"
