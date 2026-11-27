@@ -88,7 +88,7 @@ textarea { resize: vertical; }
 .landscape-band { position: relative; isolation: isolate; align-items: center; padding-block: clamp(2.5rem, 5vw, 4rem); }
 .landscape-band::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f3ebe0ed, #f3ebe0c9, #f3ebe0ad); }
 .landscape-band .container { max-width: 900px; }
-.landscape-band h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1.5rem; }
+.landscape-band h2.eyebrow { margin-bottom: var(--space-6); font-family: var(--font-body); }
 .landscape-quote { max-width: 760px; font-style: italic; line-height: 1.65; text-wrap: pretty; }
 
 .landscape-band { overflow: hidden; background-image: none; }
