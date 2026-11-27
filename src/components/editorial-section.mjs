@@ -12,6 +12,13 @@ function blockTitle(title, presentation) {
 }
 
 function sectionContent(section, presentation) {
+  if (section.readingImage) {
+    const { readingImage, quote, quoteSource, paragraphs: intro, ...body } = section;
+    return `<img class="reading-image" src="${escape(readingImage.src)}" alt="${escape(readingImage.alt)}" width="1536" height="1152" loading="lazy" decoding="async">
+      ${paragraphs(intro)}
+      <figure class="reading-quote"><blockquote>${escape(quote)}</blockquote><figcaption>${escape(quoteSource)}</figcaption></figure>
+      ${sectionContent(body, presentation)}`;
+  }
   const renderBody = block => `${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}`;
   const blocks = (section.blocks || []).map((block, index, all) => {
     if (presentation?.layout === 'domains') {

@@ -154,6 +154,13 @@ textarea { resize: vertical; }
 .editorial-domains .editorial-note { border: 0; border-left: 2px solid var(--color-olive); border-radius: 0; background: var(--color-sage); }
 .editorial-domains .editorial-note h3 { font-size: 1.25rem; }
 .editorial-domains .editorial-note p { max-width: none; }
+.reading-image { display: block; width: min(100%, 24rem); height: auto; margin: 0 auto var(--space-6); border-radius: var(--radius-card); }
+.reading-quote { clear: both; margin: var(--space-8) 0; padding-inline-start: var(--space-6); border-inline-start: 2px solid var(--color-primary); }
+.reading-quote blockquote { font-family: var(--font-display); margin: 0 0 var(--space-2); }
+.reading-quote figcaption { color: var(--color-muted); }
+@media (min-width: 840px) {
+  .reading-image { float: right; width: 38%; margin: 0 0 var(--space-6) var(--space-8); }
+}
 .editorial-reading .editorial-composition-inner { max-width: 900px; }
 .editorial-faq .editorial-composition-inner { max-width: 1000px; }
 .editorial-composition .faq summary { min-height: 52px; }

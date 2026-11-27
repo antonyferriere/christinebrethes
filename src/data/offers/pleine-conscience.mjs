@@ -24,13 +24,40 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "reading", "tone": "sage", "emphasis": 2},
+      "presentation": {
+        "layout": "reading",
+        "tone": "sage"
+      },
       "title": "Qu'est-ce que la méditation de pleine conscience ?",
+      "readingImage": {
+        "src": "/assets/pages/be-here-now.webp",
+        "alt": "Des lettres en bois composent « BE HERE NOW », être ici et maintenant."
+      },
       "paragraphs": [
-        "La pleine conscience, ou mindfulness, consiste à porter intentionnellement son attention sur l'expérience du moment présent, avec curiosité, ouverture et sans jugement.",
-        "Popularisée dans le domaine de la santé par Jon Kabat-Zinn, elle s'appuie sur des pratiques simples : respiration consciente, attention aux sensations corporelles, mouvements doux et observation des pensées et des émotions.",
-        "Méditer, ce n'est pas arrêter de penser. C'est apprendre à observer ce qui se passe en soi, sans chercher systématiquement à le modifier.",
-        "La pleine conscience se cultive aussi dans les gestes du quotidien : marcher, manger, écouter ou simplement prendre une pause."
+        "La méditation de pleine conscience est un ancrage dans le moment présent, sans volonté de le modifier. Nous pouvons croire que méditer consisterait à « faire le vide », mais la pleine conscience est tout autre.",
+        "C’est un art de la présence à soi et aux autres. Il s’agit d’être pleinement dans l’expérience directe de ce que vous vivez, avec les sensations corporelles, les pensées, les émotions, les bruits et les silences. Cette forme d’acceptation s’exerce dans les moments agréables comme désagréables.",
+        "Rien n’est permanent, tout est changeant. Ce principe se nomme l’impermanence."
+      ],
+      "quote": "Vous ne pouvez pas arrêter les vagues, mais vous pouvez apprendre à surfer.",
+      "quoteSource": "Légende d’une affiche évoquée par Jon Kabat-Zinn dans Wherever You Go, There You Are.",
+      "blocks": [
+        {
+          "title": "Dans la vie quotidienne",
+          "paragraphs": [
+            "Nous fonctionnons souvent en pilotage automatique. La pleine conscience, ou mindfulness, nous invite à consacrer notre attention à ce qui se passe ici et maintenant. Nous pouvons observer les pensées et les sensations sans jugement, en les accueillant telles qu’elles sont.",
+            "On peut commencer par sentir sa respiration, prêter attention aux sensations du corps, bouger en douceur ou observer les pensées et les émotions qui se présentent. Lorsque nous remarquons que l’esprit repart dans le passé ou se projette dans le futur, nous revenons à l’expérience du moment présent.",
+            "« Méditer, ce n’est pas arrêter de penser. C’est apprendre à observer ce qui se passe en soi, sans chercher systématiquement à le modifier. »",
+            "Cette pratique peut être l’occasion d’explorer la concentration, la gratitude, l’optimisme et l’empathie."
+          ]
+        },
+        {
+          "title": "Des origines de la pratique au programme MBSR",
+          "paragraphs": [
+            "Le mot pali sati, apparenté au sanskrit smṛti, évoque l’attention et le rappel à l’esprit. La pratique contemporaine de la pleine conscience puise dans cette tradition.",
+            "En 1979, Jon Kabat-Zinn lance un programme de réduction du stress à l’université du Massachusetts. Formé en biologie moléculaire, il adapte la pratique à un cadre hospitalier laïque. Le programme MBSR (Mindfulness-Based Stress Reduction) se déroule aujourd’hui sur huit semaines.",
+            "Cette approche s’est progressivement diffusée dans les domaines de la santé, de la psychologie, de l’éducation et dans le monde de l’entreprise."
+          ]
+        }
       ]
     },
     {
