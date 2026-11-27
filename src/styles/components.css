@@ -21,7 +21,10 @@
 .offer-number { position: absolute; top: 1rem; left: 1rem; border-radius: 50%; background: var(--color-paper); width: 40px; height: 40px; display: grid; place-items: center; font-size: .85rem; }
 .offer-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
 .offer-content .eyebrow { font-size: .65rem; margin-bottom: 1rem; }
-.offer-content h3 { font-size: 1.45rem; }
+.benefit-group .offer-grid { list-style: none; padding: 0; margin: 0; }
+.benefit-group .offer-content h4 { font-family: var(--font-display); font-weight: inherit; line-height: 1.2; margin: 0 0 .75rem; }
+.benefit-group .offer-content p { margin: 0; }
+.offer-content h3, .benefit-group .offer-content h4 { font-size: 1.45rem; }
 .offer-content h3 a { text-decoration: none; }
 .offer-content p:not(.eyebrow), .review blockquote p { color: var(--color-muted); font-size: 1rem; }
 .review blockquote p { font-style: italic; }
