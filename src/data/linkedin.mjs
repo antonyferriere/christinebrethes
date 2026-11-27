@@ -3,7 +3,7 @@ export const linkedinSettings = { recommendations: true, publications: false };
 // Champs : author, role, text, source, visible, authorized.
 export const recommendations = [
   {
-    "author": "Antoine F",
+    "author": "Antony F",
     "role": "Chef de projet IT senior · Product Owner",
     "date": "28 septembre 2026",
     "text": "Je suis accompagné par Christine dans le cadre de mon retour à l’emploi, et j’apprécie particulièrement son approche à la fois humaine et très concrète.\n\nElle m’aide à identifier mes freins, à retrouver de la clarté et à avancer étape par étape. Lors de notre dernière séance, nous avons par exemple commencé par une méditation de pleine conscience avant de travailler très concrètement sur ma recherche : candidatures, jobboards, positionnement professionnel ou encore mon site.\n\nJ’apprécie beaucoup cet équilibre entre prise de recul, écoute et passage à l’action.\n\nMerci Christine pour ton accompagnement et ta bienveillance.",
