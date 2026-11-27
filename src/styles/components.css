@@ -42,7 +42,7 @@
 .footer-bottom div { display: flex; flex-wrap: wrap; gap: 1.5rem; }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: .75rem; padding-top: 2rem; font-size: .85rem; color: var(--color-muted); }
 .check-list { list-style: none; padding: 0; }
-.check-list li { padding: .8rem 0 .8rem 1.8rem; position: relative; }
+.check-list li { padding: .8rem 0 .8rem 1.8rem; position: relative; border-bottom: 1px solid #947b6738; }
 .check-list li::before { content: '↗'; color: var(--color-primary); position: absolute; left: 0; }
 .faq { border-top: 1px solid var(--color-outline); }
 .faq details { border-bottom: 1px solid var(--color-outline); }

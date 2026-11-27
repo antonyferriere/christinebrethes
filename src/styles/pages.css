@@ -408,7 +408,7 @@ textarea { resize: vertical; }
 
 .editorial-quotation { margin: 0 0 1.3rem; }
 .editorial-quotation blockquote { margin: 0; }
-.editorial-quotation figcaption { margin-top: var(--space-2); font: 1rem/1.5 var(--font-body); }
+.editorial-quotation figcaption { margin-top: var(--space-2); font: 1rem/1.5 var(--font-body); color: var(--color-muted); }
 .editorial-expandable .editorial-composition-inner { row-gap: 0; }
 .editorial-expandable .career-disclosure { grid-column: 1 / -1; margin: 0; }
 .editorial-expandable article:has(details[open]) > .editorial-copy > :last-child {
