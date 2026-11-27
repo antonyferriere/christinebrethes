@@ -90,7 +90,7 @@ function careerSection(section) {
   const chapters = (section.blocks || []).map((block, index) => {
     const [first, ...remaining] = block.paragraphs || [];
     const detail = remaining.length || block.items ? `<details class="career-disclosure">
-      <summary class="text-link career-toggle"><span class="career-label-more">Lire la suite</span><span class="career-label-less">Replier</span><span class="sr-only"> : ${escape(block.title)}</span><span class="career-toggle-icon" aria-hidden="true"></span></summary>
+      <summary class="career-toggle"><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span><span class="sr-only"> : ${escape(block.title)}</span></summary>
       <div class="career-detail">${paragraphs(remaining)}${block.items ? list(block.items) : ''}</div>
     </details>` : '';
     return `<li>

@@ -6,7 +6,7 @@ import { offers } from '../src/data/offers.mjs';
 import about from '../src/data/about.mjs';
 
 const withoutPresentation = page => JSON.parse(JSON.stringify(page, (key, value) => key === 'presentation' ? undefined : value));
-const text = html => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+const text = html => html.replace(/>\s+</g, '><').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 const links = html => [...html.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0].replace(/ class="[^"]*"/g, ''));
 
 test('les compositions conservent tous les textes, titres, liens et le hero', () => {
@@ -16,7 +16,7 @@ test('les compositions conservent tous les textes, titres, liens et le hero', ()
     const composed = editorialPage(page)
       .replace(/<div class="editorial-card-body offer-content"><h3>[\s\S]*?<div class="domain-detail">/g, '<div>')
       .replace(/<div class="career-step" aria-hidden="true">\d+<\/div>/g, '')
-      .replace(/<summary class="text-link career-toggle">[\s\S]*?<\/summary>/g, '');
+      .replace(/<summary class="career-toggle">[\s\S]*?<\/summary>/g, '');
     assert.equal(text(composed), text(baseline), page.slug);
     assert.deepEqual(links(composed), links(baseline), page.slug);
     assert.deepEqual(composed.match(/<h[123]\b[^>]*>[\s\S]*?<\/h[123]>/g).map(text), baseline.match(/<h[123]\b[^>]*>[\s\S]*?<\/h[123]>/g).map(text), page.slug);
@@ -43,10 +43,10 @@ test('Mon parcours : quatre chapitres indépendants, repliés par défaut et tex
     const [preview, rest] = chapter[1].split('<details class="career-disclosure">');
     assert.equal((preview.match(/<p>/g) || []).length, 1);
     assert.equal((rest.match(/<p>/g) || []).length, section.blocks[index].paragraphs.length - 1);
-    assert.match(rest, /<summary class="text-link career-toggle">/);
+    assert.match(rest, /<summary class="career-toggle">/);
     assert.match(rest, /Lire la suite/);
-    assert.match(rest, /Replier/);
-    assert.match(rest, /class="career-toggle-icon" aria-hidden="true"/);
+    assert.match(rest, /Réduire/);
+    assert.match(rest, /class="review-toggle"/);
   }
   assert.equal(text(html.replace(/<div class="career-step" aria-hidden="true">\d+<\/div>/g, '').replace(/<summary[^>]*>[\s\S]*?<\/summary>/g, '')),
     text(editorialSection({...section, presentation: undefined}, 0)));

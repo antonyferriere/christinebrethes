@@ -87,7 +87,7 @@
 .review-disclosure:not([open]) > summary { padding-top: var(--review-quote-gap); }
 .review-disclosure summary::-webkit-details-marker { display: none; }
 .review-preview { min-height: var(--review-preview-height); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; color: var(--color-muted); font-size: 1rem; font-style: italic; line-height: 1.65; }
-.review-toggle { display: flex; width: fit-content; align-items: center; gap: .35rem; min-height: var(--review-toggle-height); margin-top: var(--review-toggle-gap); color: var(--color-primary); font-size: .95rem; font-style: normal; font-weight: 600; }
+.review-toggle { display: flex; width: fit-content; align-items: center; gap: .35rem; min-height: var(--review-toggle-height, 44px); margin-top: var(--review-toggle-gap, .5rem); color: var(--color-primary); font-size: .95rem; font-style: normal; font-weight: 600; }
 .review-toggle .review-less, .review-disclosure[open] .review-preview, .review-disclosure[open] .review-more { display: none; }
 .review-disclosure:not([open]) .review-toggle { margin-top: max(var(--review-toggle-gap), calc(var(--review-short-height, 0px) - var(--review-preview-height) - var(--review-toggle-height))); }
 /* Keep the native summary first in the DOM, but show "Réduire" below the full review. */
@@ -162,14 +162,15 @@
 .career-copy p { max-width: 70ch; line-height: 1.7; }
 .career-detail > p + p { margin-top: var(--space-4); }
 .career-disclosure { margin-top: var(--space-2); }
-.career-toggle { cursor: pointer; gap: var(--space-3); list-style: none; }
+.career-toggle { cursor: pointer; list-style: none; }
 .career-toggle::-webkit-details-marker { display: none; }
-.career-toggle-icon { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; flex: none; }
-.career-toggle-icon::before { content: '+'; font-size: 1.3rem; line-height: 1; }
-.career-label-less, .career-disclosure[open] .career-label-more { display: none; }
-.career-disclosure[open] .career-label-less { display: inline; }
-.career-disclosure[open] .career-toggle-icon::before { content: '−'; }
-.career-detail { padding-top: var(--space-2); }
+.career-disclosure[open] { display: flex; flex-direction: column; }
+.career-disclosure[open] > summary { order: 1; align-self: flex-start; }
+.career-disclosure[open] .review-more { display: none; }
+.career-disclosure[open] .review-less { display: inline; }
+.career-disclosure[open] .review-toggle [aria-hidden] { transform: rotate(180deg); }
+.career-disclosure[open] .career-detail { padding-top: var(--space-3); }
+.career-disclosure[open] .career-toggle .review-toggle { margin-top: var(--space-3); }
 @media (max-width: 599px) {
   .career-timeline > li { padding-left: var(--space-6); }
 }
@@ -209,3 +210,8 @@
 .organization-viewport .organization-track:focus-visible { outline-offset: 3px; }
 
 @media print { .organization-viewport::before, .organization-viewport::after { display: none; } }
+
+/* Whole-card actions are progressive enhancements; native controls remain keyboard accessible. */
+[data-card-action] { cursor: pointer; }
+.career-toggle:hover, .career-toggle .review-toggle, .review-disclosure summary:hover,
+.offer-grid .offer-card a:hover, .editorial-domain-card .text-link:hover { text-decoration: none; }

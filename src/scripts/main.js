@@ -1,4 +1,13 @@
 import './testimonials.js';
+import { bindCardAction, bindDisclosureCard } from './card-actions.js';
+
+for (const disclosure of document.querySelectorAll('.career-disclosure')) {
+  bindDisclosureCard(disclosure.closest('.career-entry'), disclosure);
+}
+for (const card of document.querySelectorAll('.offer-grid > .offer-card')) {
+  const link = card.querySelector('.offer-content > a.text-link');
+  if (link) bindCardAction(card, () => link.click());
+}
 import './domain-dialogs.js';
 import { initializeSubmenu } from './navigation.js';
 import './organization-carousel.js';

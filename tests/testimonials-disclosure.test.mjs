@@ -39,3 +39,12 @@ test('La prévisualisation continue après le premier paragraphe sans modifier l
   assert.ok(html.includes('<span class="review-preview">' + escape(first + ' ' + second) + '</span>'));
   assert.ok(html.includes('<blockquote><p>' + escape(first) + '</p><p>' + escape(second) + '</p></blockquote>'));
 });
+
+test('Les profils des témoins ne sont plus des liens ; seul le profil de Christine reste accessible', () => {
+  const html = linkedinSections({ recommendations: true, publications: false }, [{
+    author: 'Témoin', role: 'Test', text: 'Merci pour cet accompagnement.', source: 'https://www.linkedin.com/in/temoin-test/', visible: true, authorized: true
+  }], []);
+  assert.match(html, /<span class="review-profile">/);
+  assert.doesNotMatch(html, /temoin-test|<a[^>]*review-profile/);
+  assert.match(html, /Voir le profil LinkedIn de Christine/);
+});

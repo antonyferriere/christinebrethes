@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import { bindDisclosureCard } from '../src/scripts/card-actions.js';
 
-const source = readFileSync(new URL('../src/scripts/testimonials.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../src/scripts/testimonials.js', import.meta.url), 'utf8').replace(/^import .*;\n/, '');
 function setup() {
   const heights = [45, 62, 80];
   const shortHeights = [132, 95];
@@ -11,9 +12,12 @@ function setup() {
   const properties = {};
   const disclosure = {
     open: true,
-    querySelector: selector => selector === 'blockquote'
-      ? { addEventListener: (_, handler) => { click = handler; } }
-      : { focus: () => { focused = true; } }
+    closest: () => ({
+      ownerDocument: { getSelection: () => ({ isCollapsed: !selected }) },
+      setAttribute() {},
+      addEventListener: (_, handler) => { click = handler; }
+    }),
+    querySelector: () => ({ focus: () => { focused = true; } })
   };
   const grid = {
     querySelectorAll: selector => selector === '.review-profile'
@@ -25,12 +29,12 @@ function setup() {
   };
   class ResizeObserver { constructor(handler) { resize = handler; } observe() {} }
   runInNewContext(source, {
-    document: { querySelectorAll: () => [grid] }, ResizeObserver,
+    document: { querySelectorAll: () => [grid] }, ResizeObserver, bindDisclosureCard,
     window: { ResizeObserver, getSelection: () => ({ isCollapsed: !selected }) }
   });
   return { heights, shortHeights, disclosure, resize: () => resize(), minimum: () => properties['--review-person-height'],
     shortMinimum: () => properties['--review-short-height'],
-    click: (link = false) => click({ target: { closest: () => link } }),
+    click: (link = false) => click({ button: 0, target: { closest: () => link } }),
     select: () => { selected = true; }, focused: () => focused };
 }
 
@@ -43,14 +47,15 @@ test('author heights stay equal after resizing, independently of disclosure stat
   assert.equal(state.disclosure.open, true);
 });
 
-test('clicking expanded text collapses it and restores summary focus, preserving selection and links', () => {
+test('clicking anywhere on a review toggles it, restoring summary focus and preserving selection and controls', () => {
   const state = setup();
   state.click(true);
   assert.equal(state.disclosure.open, true);
   state.click();
   assert.equal(state.disclosure.open, false);
   assert.equal(state.focused(), true);
-  state.disclosure.open = true;
+  state.click();
+  assert.equal(state.disclosure.open, true);
   state.select();
   state.click();
   assert.equal(state.disclosure.open, true);
