@@ -97,7 +97,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "narrative"},
+      "presentation": {"layout": "cards", "images": ["pages/seance-individuelle","pages/sante-travail","pages/entreprises-organisations-atelier"]},
       "title": "À qui s'adresse mon accompagnement ?",
       "paragraphs": [],
       "blocks": [
