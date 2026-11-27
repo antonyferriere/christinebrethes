@@ -15,6 +15,10 @@ function blockTitle(title, presentation) {
 function sectionContent(section, presentation) {
   const renderBody = block => `${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}`;
   const cards = (section.blocks || []).map((block, index, all) => {
+    if (presentation?.layout === 'benefits') {
+      const items = block.cards.map(card => `<li class="offer-card"><div class="offer-content"><h4>${escape(card.title)}</h4><p>${escape(card.text)}</p></div></li>`).join('');
+      return `<div class="benefit-group"><h3>${escape(block.title)}</h3><ul class="offer-grid" role="list">${items}</ul></div>`;
+    }
     if (presentation?.layout === 'domains') {
       if (presentation.notes?.includes(index)) return '';
       const note = presentation.notes?.includes(index + 1) ? all[index + 1] : null;
