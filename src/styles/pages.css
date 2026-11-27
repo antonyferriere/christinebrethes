@@ -148,6 +148,57 @@ textarea { resize: vertical; }
   border-radius: var(--radius-card);
 } 
 .editorial-tone-paper.editorial-cards .editorial-block, .editorial-tone-paper.editorial-features .check-list > li { background: var(--color-ivory);} 
+/* Benefits: illustrated lists, not cards. The category headings stay above each list. */
+.editorial-benefits .editorial-copy > p { max-width: 76ch; }
+.editorial-benefits .editorial-blocks { gap: var(--space-8); }
+.editorial-benefits .benefit-group {
+  border-top: 1px solid var(--color-outline);
+  padding-top: var(--space-8);
+}
+.editorial-benefits .benefit-group h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+}
+.editorial-benefits .benefit-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6) clamp(2rem, 5vw, 5rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.editorial-benefits .benefit-item {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-3);
+}
+.editorial-benefits .benefit-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-sage);
+  color: var(--color-forest);
+}
+.editorial-benefits .benefit-icon svg { display: block; }
+.editorial-benefits .benefit-title {
+  font: 400 clamp(1.125rem, 1.5vw, 1.25rem)/1.35 var(--font-display);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-1);
+  text-wrap: pretty;
+}
+.editorial-benefits .benefit-copy p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 58ch;
+  overflow-wrap: break-word;
+}
+@media (min-width: 600px) {
+  .editorial-benefits .benefit-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .editorial-features .check-list { display: grid; gap: var(--space-4); }
 .editorial-features .check-list > li { padding-left: calc(var(--editorial-padding) + 1.25rem); }
 .editorial-features .check-list > li::before { left: var(--editorial-padding); top: var(--editorial-padding); }
