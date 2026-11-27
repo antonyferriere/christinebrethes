@@ -18,10 +18,12 @@ export function linkedinSections(settings = linkedinSettings, reviewsData = reco
   const cards = reviews.map(r => {
     const paragraphs = r.text.split(/\n\n/);
     const quote = `<blockquote>${paragraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</blockquote>`;
-    // Native disclosure: a brief excerpt is visible; the full quotation remains in the document.
+    // The preview flows across paragraph boundaries; CSS limits its visible lines.
+    const preview = paragraphs.join(' ').replace(/\s+/g, ' ').trim();
+    // Native disclosure keeps the original paragraphs available without JavaScript.
     const content = r.text.length > 240
       ? `<details class="review-disclosure">
-          <summary><span class="review-preview">${escape(paragraphs[0])}</span><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span></summary>
+          <summary><span class="review-preview">${escape(preview)}</span><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span></summary>
           ${quote}
         </details>`
       : quote;

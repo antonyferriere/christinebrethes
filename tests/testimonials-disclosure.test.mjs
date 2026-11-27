@@ -27,3 +27,15 @@ test('Les témoignages courts restent visibles et les contenus sont échappés',
   assert.match(html, /&lt;script&gt;alert\(&quot;x&quot;\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<script>/);
 });
+
+test('La prévisualisation continue après le premier paragraphe sans modifier le texte intégral', () => {
+  const first = 'Un début très court.';
+  const second = 'La suite du témoignage & son contenu. '.repeat(8).trim();
+  const html = linkedinSections(
+    { recommendations: true, publications: false },
+    [{ author: 'Test', text: first + '\n\n' + second, visible: true, authorized: true }],
+    []
+  );
+  assert.ok(html.includes('<span class="review-preview">' + escape(first + ' ' + second) + '</span>'));
+  assert.ok(html.includes('<blockquote><p>' + escape(first) + '</p><p>' + escape(second) + '</p></blockquote>'));
+});
