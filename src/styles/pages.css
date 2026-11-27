@@ -158,7 +158,6 @@ textarea { resize: vertical; }
   margin-block: var(--space-6);
   border-bottom: 1px solid #947b6738;
 }
-.editorial-audience .benefit-tabs { --benefit-tab-width: calc(100% / 3); }
 .benefit-tabs::after {
   content: '';
   position: absolute;
