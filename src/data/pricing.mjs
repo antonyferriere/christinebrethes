@@ -39,7 +39,7 @@ export const coachingPrograms = {
       description: 'Réinventer son avenir professionnel sans renoncer à l’essentiel : questionner sa trajectoire, redéfinir ses priorités et construire un projet aligné avec ses valeurs et ses ambitions.',
     },
   ],
-  note: 'Tarifs finaux TTC par programme. Le rythme et les modalités pratiques sont précisés avec Christine lors du premier échange découverte de 30 minutes, offert et sans engagement.',
+  note: 'Tarifs finaux TTC par programme. Le rythme et les modalités pratiques sont précisés ensemble lors de notre premier échange découverte de 30 minutes, offert et sans engagement.',
 };
 
 export const meditationSession = {
@@ -74,7 +74,7 @@ export const offerPrices = {
     title: 'Coaching individuel',
     introduction: 'Un premier échange offert et sans engagement afin de déterminer le parcours qui vous correspond.',
     entries: [discovery, coachingSession, ...coachingPrograms.entries],
-    note: 'Prix finaux TTC. Les séances individuelles sont également proposées dans le cadre de Santé & Travail. Le rythme et les modalités des programmes sont définis avec Christine lors du premier échange.',
+    note: 'Prix finaux TTC. Les séances individuelles sont également proposées dans le cadre de Santé & Travail. Le rythme et les modalités des programmes sont définis ensemble lors de notre premier échange.',
   },
   'sante-travail': {
     eyebrow: 'Santé & Travail',
@@ -95,7 +95,7 @@ export const pricingTerms = [
   },
   {
     title: 'Programmes de coaching',
-    text: 'Les parcours Déclic, Élan et Transformation sont destinés à l’accompagnement des transitions de carrière. Leur nombre de séances, leur durée et leur tarif sont indiqués ci-dessus ; le rythme concret est défini avec Christine.',
+    text: 'Les parcours Déclic, Élan et Transformation sont destinés à l’accompagnement des transitions de carrière. Leur nombre de séances, leur durée et leur tarif sont indiqués ci-dessus ; nous définissons ensemble le rythme des séances.',
   },
   {
     title: 'Annulation ou report',
@@ -103,7 +103,7 @@ export const pricingTerms = [
   },
   {
     title: 'Tarif adapté',
-    text: 'Quelques possibilités de tarif adapté peuvent être proposées selon la situation. N’hésitez pas à contacter Christine pour en parler en toute simplicité et transparence.',
+    text: 'Quelques possibilités de tarif adapté peuvent être proposées selon la situation. N’hésitez pas à me contacter pour en parler en toute simplicité et transparence.',
   },
 ];
 

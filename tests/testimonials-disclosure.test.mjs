@@ -6,11 +6,11 @@ import { recommendations } from '../src/data/linkedin.mjs';
 
 test('Les témoignages longs sont repliés par défaut avec une ouverture native accessible', () => {
   const html = linkedinSections({ recommendations: true, publications: false });
-  assert.equal((html.match(/<details class="review-disclosure">/g) || []).length, 3);
-  assert.equal((html.match(/<summary>/g) || []).length, 3);
-  assert.equal((html.match(/<blockquote>/g) || []).length, 3);
-  assert.equal((html.match(/Lire la suite/g) || []).length, 3);
-  assert.equal((html.match(/class="review-less">Réduire/g) || []).length, 3);
+  assert.equal((html.match(/<details class="review-disclosure">/g) || []).length, 4);
+  assert.equal((html.match(/<summary>/g) || []).length, 4);
+  assert.equal((html.match(/<blockquote>/g) || []).length, 5);
+  assert.equal((html.match(/Lire la suite/g) || []).length, 4);
+  assert.equal((html.match(/class="review-less">Réduire/g) || []).length, 4);
   for (const review of recommendations) {
     assert.ok(html.includes(review.author));
     assert.ok(html.includes(escape(review.text.split(/\n\n/)[0].slice(0, 28))));
