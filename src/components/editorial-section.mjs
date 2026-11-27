@@ -1,3 +1,4 @@
+import { readdirSync } from 'node:fs';
 import { escape, button, list, faq, arrow } from './ui.mjs';
 import { site } from '../data/site.mjs';
 
@@ -32,17 +33,20 @@ function sectionContent(section, presentation) {
   return `${paragraphs(section.paragraphs, presentation?.emphasis)}${section.items ? list(section.items) : ''}${blocks ? (presentation ? `<div class="editorial-blocks">${blocks}</div>` : blocks) : ''}${section.faq ? faq(section.faq) : ''}${section.after ? (presentation ? `<div class="editorial-after">${paragraphs(section.after)}</div>` : paragraphs(section.after)) : ''}${actions(section.actions, presentation?.layout === 'frame' ? 'button-outline' : '')}`;
 }
 
-// Existing asset families have different maximum widths; never advertise a missing file.
-const editorialMaxWidths = {
-  'pages/carnet-outplacement': 1200,
-  'pages/coaching-bilan-professionnel-en-duo': 1254,
-  'pages/christine-portrait': 1280,
-  'pages/contact': 1254,
-  'hero/portrait-tasse': 1122,
-};
+// Discover actual WebP variants at build time instead of guessing the maximum
+// resolution from the directory name. New illustrations can use any width.
 function editorialSrcset(name) {
-  const max = editorialMaxWidths[name] ?? (/^(pages|hero)\//.test(name) ? 1440 : 1200);
-  return [480, 800, max].map(width => `/assets/${escape(name)}-${width}.webp ${width}w`).join(', ');
+  const slash = name.lastIndexOf('/');
+  const directory = name.slice(0, slash + 1);
+  const prefix = name.slice(slash + 1) + '-';
+  const widths = readdirSync(new URL('../../public/assets/' + directory, import.meta.url), { withFileTypes: true })
+    .filter(entry => entry.isFile() && entry.name.startsWith(prefix))
+    .map(entry => entry.name.slice(prefix.length).match(/^([1-9]\d*)\.webp$/))
+    .filter(Boolean)
+    .map(match => Number(match[1]))
+    .sort((a, b) => a - b);
+  if (!widths.includes(800)) throw new Error('Missing editorial fallback: ' + name + '-800.webp');
+  return widths.map(width => `/assets/${escape(name)}-${width}.webp ${width}w`).join(', ');
 }
 function cardImage(name, layout = 'cards') {
   // Two-column domains and three-column cards have different image slots.

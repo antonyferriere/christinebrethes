@@ -57,3 +57,12 @@ test('heroes et offres : variantes et prise en compte du recadrage', () => {
   assert.equal((home.match(/data-srcset="/g) ?? []).length, 5);
   assert.match(home, /sizes="\(min-width: 840px\) 800px,/);
 });
+
+test('une nouvelle illustration éditoriale utilise sa résolution réelle, sans URL 1440 fictive', () => {
+  const html = editorialSection({
+    title: 'Test',
+    presentation: { layout: 'split', image: 'pages/nenuphar-ardeche' }
+  }, 0);
+  assert.match(html, /nenuphar-ardeche-1200\.webp 1200w/);
+  assert.doesNotMatch(html, /nenuphar-ardeche-1440\.webp/);
+});
