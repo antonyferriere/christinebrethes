@@ -150,6 +150,9 @@ textarea { resize: vertical; }
 .editorial-narrative .editorial-block { border-top: 1px solid var(--color-outline); padding-block: var(--space-8); }
 .editorial-narrative .editorial-blocks { gap: 0; }
 .editorial-narrative .editorial-block h3 { color: var(--color-primary); }
+[data-page="entreprises-organisations"] :is(.editorial-domains, .editorial-frame) .editorial-heading h2 {
+  color: var(--color-primary);
+}
 .editorial-domains .editorial-block { padding: var(--editorial-padding); border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: var(--color-paper); }
 .editorial-domains .editorial-note { border: 0; border-left: 2px solid var(--color-olive); border-radius: 0; background: var(--color-sage); }
 .editorial-domains .editorial-note h3 { font-size: 1.25rem; }
