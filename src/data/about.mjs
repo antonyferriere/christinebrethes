@@ -6,7 +6,7 @@ export default {
   "eyebrow": "À propos",
   "summary": "Une expérience du monde professionnel, une attention à la personne dans sa globalité.",
   "heroParagraphs": [
-    "Je suis Christine Brethes, coach professionnelle certifiée, consultante en transition professionnelle et instructrice certifiée méditation de pleine conscience."
+    "Je suis Christine Brethes, coach professionnelle certifiée, consultante en gestion de carrière et instructrice certifiée méditation de pleine conscience."
   ],
   "heroActions": [
     {
@@ -19,9 +19,9 @@ export default {
       "presentation": {"layout": "split", "image": "livres-fleurs", "emphasis": 1},
       "title": "Une approche attentive à la personne dans sa globalité",
       "paragraphs": [
-        "Mon parcours s'est construit à la croisée de plusieurs univers : le recrutement international, le conseil en ressources humaines, l'outplacement, le coaching professionnel et la pleine conscience.",
+        "Mon parcours s'est construit à la croisée de plusieurs univers : le recrutement, le conseil en gestion de carrière et coaching, la pleine conscience.",
         "Au fil de mes expériences, j'ai développé une conviction : derrière chaque parcours professionnel se trouvent une histoire, des aspirations, des ressources et parfois des périodes de questionnement ou de transformation.",
-        "Aujourd'hui, j'accompagne les particuliers, les professionnels et les organisations en associant une connaissance concrète du monde de l'entreprise à une approche attentive à la personne dans sa globalité."
+        "Aujourd'hui, j'accompagne les particuliers et les organisations en associant une connaissance concrète du monde de l'entreprise à une approche attentive à la personne dans sa globalité."
       ]
     },
     {
@@ -34,7 +34,7 @@ export default {
           "paragraphs": [
             "Diplômée d’une école de commerce avec un cursus à l’international en Espagne et en Australie, j’ai démarré mon parcours dans le recrutement et le conseil en ressources humaines.",
             "J'ai notamment exercé chez Catenon, cabinet international de recrutement et de chasse de tête, entre les bureaux de Paris et Madrid.",
-            "Cette expérience internationale, menée en français, anglais et espagnol, m'a permis de développer une connaissance approfondie des processus de recrutement, de l'évaluation des compétences et des attentes des entreprises.",
+            "Cette expérience internationale m'a permis de développer une connaissance approfondie des processus de recrutement, de l'évaluation des compétences et des attentes des entreprises.",
             "Elle a également nourri mon intérêt pour les trajectoires professionnelles et les aspirations individuelles."
           ]
         },
@@ -42,7 +42,7 @@ export default {
           "title": "Accompagner les transitions et les nouveaux départs",
           "paragraphs": [
             "J'ai ensuite développé mon expertise dans l'accompagnement des mobilités et des transitions professionnelles.",
-            "En tant que consultante chez LHH, cabinet spécialisé dans l'accompagnement des transitions de carrière, je suis intervenue sur des missions d'outplacement et de bilans de compétences en accompagnant les personnes dans leurs réflexions sur leur parcours, leurs compétences et leur avenir professionnel.",
+            "En tant que consultante chez LHH, cabinet spécialisé dans l'accompagnement des transitions de carrière, je suis intervenue sur des missions d'outplacement et de bilans de compétences en accompagnant les personnes dans une réflexion sur leurs parcours, compétences et avenirs professionnels.",
             "Ces expériences m'ont permis de développer une approche à la fois structurée, pragmatique et humaine de l'accompagnement des carrières.",
             "Elles constituent aujourd'hui un socle essentiel de ma pratique : aider chacun à reconnaître sa valeur, à clarifier ses perspectives et à construire un projet professionnel qui lui ressemble."
           ]

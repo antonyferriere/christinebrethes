@@ -148,6 +148,10 @@ textarea { resize: vertical; }
 .editorial-features .check-list > li::before { left: var(--editorial-padding); top: var(--editorial-padding); }
 .editorial-journey .editorial-block { border-top: 1px solid var(--color-outline); padding-top: var(--space-6); }
 .editorial-narrative .editorial-block { border-top: 1px solid var(--color-outline); padding-block: var(--space-8); }
+.editorial-page:has(.hero-title-lines) .editorial-narrative .editorial-block {
+  padding-block: clamp(1.75rem, 4vw, 3.5rem);
+}
+.editorial-page:has(.hero-title-lines) .editorial-narrative .editorial-block p { max-width: 60ch; line-height: 1.7; }
 .editorial-narrative .editorial-blocks { gap: 0; }
 .editorial-narrative .editorial-block h3 { color: var(--color-primary); }
 .editorial-domains .editorial-block { padding: var(--editorial-padding); border: 1px solid var(--color-outline); border-radius: var(--radius-card); background: var(--color-paper); }
