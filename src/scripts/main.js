@@ -2,7 +2,7 @@ import './testimonials.js';
 import { bindCardAction, bindDisclosureCard } from './card-actions.js';
 
 for (const disclosure of document.querySelectorAll('.career-disclosure')) {
-  bindDisclosureCard(disclosure.closest('.career-entry'), disclosure);
+  bindDisclosureCard(disclosure.closest('article'), disclosure);
 }
 for (const card of document.querySelectorAll('.offer-grid > .offer-card')) {
   const link = card.querySelector('.offer-content > a.text-link');
