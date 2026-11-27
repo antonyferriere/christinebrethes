@@ -34,21 +34,36 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "features"},
+      "presentation": {
+        "layout": "narrative"
+      },
       "title": "Les bienfaits de la pleine conscience",
       "paragraphs": [
-        "La pratique régulière de la méditation peut contribuer à :"
+        "Les recherches portent souvent sur des programmes structurés. Huit semaines correspondent à un format de pratique. Les effets varient selon les personnes, le type de programme et la situation."
       ],
-      "items": [
-        "Mieux appréhender le stress et les émotions.",
-        "Développer l'attention et la concentration.",
-        "Prendre du recul face aux pensées et aux situations difficiles.",
-        "Favoriser un rapport plus apaisé à soi-même.",
-        "Améliorer le bien-être psychologique et, chez certaines personnes, la qualité du sommeil.",
-        "Cultiver la bienveillance envers soi et les autres."
-      ],
-      "after": [
-        "Les bénéfices varient selon les personnes, les pratiques et les contextes."
+      "blocks": [
+        {
+          "title": "Santé mentale",
+          "paragraphs": [
+            "Certains programmes peuvent atténuer modestement les symptômes anxieux. Les résultats sur le stress perçu sont plus variables. En séance, on peut apprendre à reconnaître une émotion ou une pensée qui revient en boucle.",
+            "Chez des personnes ayant connu des dépressions récurrentes, la thérapie cognitive basée sur la pleine conscience (MBCT) peut réduire le risque de rechute. Ce résultat concerne un accompagnement clinique spécifique.",
+            "Les études suggèrent de petits effets sur certaines fonctions cognitives, comme la mémoire de travail. Les résultats sur l’attention et la concentration varient selon les exercices et les comparaisons."
+          ]
+        },
+        {
+          "title": "Santé physique",
+          "paragraphs": [
+            "Certaines personnes rapportent une amélioration de leur sommeil ou un soulagement modeste de certaines douleurs chroniques. Ces effets dépendent notamment du problème étudié.",
+            "Les données sur la pression artérielle restent limitées. Les recherches sur des marqueurs immunitaires ne permettent pas de conclure à un renforcement général des défenses de l’organisme."
+          ]
+        },
+        {
+          "title": "Vie quotidienne",
+          "paragraphs": [
+            "Dans un échange, vous pouvez essayer d’écouter une personne jusqu’au bout avant de préparer votre réponse. Avant une décision, vous pouvez prendre le temps de remarquer vos réactions.",
+            "Faire une pause pour explorer une idée ou observer comment vous répartissez votre temps sont d’autres pistes de pratique. Les effets sur la créativité, la qualité des décisions ou la gestion du temps restent incertains."
+          ]
+        }
       ]
     },
     {
