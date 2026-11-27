@@ -78,7 +78,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "split", "tone": "sage", "image": "allee", "emphasis": 1},
+      "presentation": {"layout": "split", "tone": "sage", "image": "pages/carnet-outplacement", "emphasis": 1},
       "eyebrow": "Outplacement & mobilité professionnelle",
       "title": "Accompagner les transitions, ouvrir de nouvelles perspectives.",
       "paragraphs": [

@@ -179,6 +179,9 @@ textarea { resize: vertical; }
   min-height: 16rem;
   aspect-ratio: 4 / 3;
 }
+@media (max-width: 374px) {
+  .editorial-split .editorial-illustration { min-height: 0; width: 100%; }
+}
 .editorial-split .editorial-illustration img {
   position: absolute;
   inset: -24px 0;
