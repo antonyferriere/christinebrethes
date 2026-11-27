@@ -42,6 +42,18 @@ export default {
     {
       "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/papeterie-creative","pages/bureau-ordinateur","livres-fleurs","hero/chemin-elan"]},
       "eyebrow": "Ce que nous travaillons ensemble",
+      "tools": {
+        "intro": "Exemple d’outils à adapter dans une approche sur mesure et personnalisée",
+        "items": [
+          "La courbe de satisfaction professionnelle",
+          "Les cartes de valeurs",
+          "Analyse des sources d’énergie et de démotivation",
+          "Questionnaire Retour Image",
+          "L’exploration des drivers",
+          "La boussole professionnelle",
+          "Le portefeuille de compétences et la méthode STAR"
+        ]
+      },
       "title": "De la réflexion à l'action",
       "paragraphs": [],
       "blocks": [
