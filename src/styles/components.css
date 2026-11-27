@@ -63,6 +63,7 @@
 .testimonials .review { padding: clamp(1.25rem, 2vw, 2rem); background: var(--color-paper); }
 .review-person { min-height: var(--review-person-height, 0px); }
 .review-person img { flex: none; border-radius: 50%; object-fit: cover; }
+.review-initials { flex: 0 0 45px; height: 45px; display: grid; place-items: center; border-radius: 50%; background: var(--color-ivory); color: var(--color-primary); }
 .review-profile { display: flex; gap: 1rem; }
 .review-identity { display: grid; gap: 0; line-height: 1.25; }
 .review-role { font-size: .875rem; font-weight: 400; color: var(--color-muted); }
