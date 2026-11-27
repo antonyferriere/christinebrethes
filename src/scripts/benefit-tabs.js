@@ -1,8 +1,12 @@
-const labels = ['Santé mentale', 'Santé physique', 'Vie quotidienne'];
+const benefitLabels = ['Santé mentale', 'Santé physique', 'Vie quotidienne'];
 
-document.querySelectorAll('.editorial-benefits').forEach((section, sectionIndex) => {
-  const panels = [...section.querySelectorAll('.benefit-group')];
-  if (panels.length !== labels.length) return;
+document.querySelectorAll('.editorial-benefits, .editorial-audience').forEach((section, sectionIndex) => {
+  const audience = section.matches('.editorial-audience');
+  const panels = [...section.querySelectorAll(audience ? '.editorial-block' : '.benefit-group')];
+  const labels = audience
+    ? panels.map(panel => panel.querySelector('.editorial-title-primary')?.textContent)
+    : benefitLabels;
+  if (!panels.length || panels.length !== labels.length || labels.some(label => !label)) return;
 
   const tablist = document.createElement('div');
   tablist.className = 'benefit-tabs';
@@ -19,13 +23,18 @@ document.querySelectorAll('.editorial-benefits').forEach((section, sectionIndex)
   }
 
   const tabs = panels.map((panel, index) => {
-    const id = `benefits-${sectionIndex}-${index}`;
+    const id = `editorial-${sectionIndex}-${index}`;
     const tab = document.createElement('button');
     tab.type = 'button';
     tab.id = id + '-tab';
     tab.textContent = labels[index];
     tab.setAttribute('role', 'tab');
-    panel.querySelector('h3').remove();
+    const heading = panel.querySelector('h3');
+    if (audience) {
+      heading.replaceChildren(heading.querySelector('.editorial-title-secondary'));
+    } else {
+      heading.remove();
+    }
     panel.id = id + '-panel';
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', tab.id);
