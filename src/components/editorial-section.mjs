@@ -12,7 +12,7 @@ export const paragraphs = (items = [], emphasis) => items.map((item, index) => {
 export const actions = (items = [], variant = '') => items.length ? `<div class="editorial-actions">${items.map(({ label, audience }) => button(label, audience === 'organisation' ? '/contact/?profil=organisation' : audience === 'contact' ? '/contact/' : site.booking.url || '/contact/', variant)).join('')}</div>` : '';
 
 function blockTitle(title, presentation) {
-  if (presentation?.layout !== 'narrative' || !title.includes(' — ')) return escape(title);
+  if (!['narrative', 'audience'].includes(presentation?.layout) || !title.includes(' — ')) return escape(title);
   const separator = title.indexOf(' — ');
   return `<span class="editorial-title-primary">${escape(title.slice(0, separator))}</span><span class="sr-only"> — </span><span class="editorial-title-secondary">${escape(title.slice(separator + 3))}</span>`;
 }
