@@ -13,7 +13,7 @@ function blockTitle(title, presentation) {
 
 function sectionContent(section, presentation) {
   const renderBody = block => `${paragraphs(block.paragraphs)}${block.items ? list(block.items) : ''}`;
-  const blocks = (section.blocks || []).map((block, index, all) => {
+  const cards = (section.blocks || []).map((block, index, all) => {
     if (presentation?.layout === 'domains') {
       if (presentation.notes?.includes(index)) return '';
       const note = presentation.notes?.includes(index + 1) ? all[index + 1] : null;
@@ -26,6 +26,9 @@ function sectionContent(section, presentation) {
     }
     return `<article${presentation ? ' class="editorial-block"' : ''}><h3>${blockTitle(block.title, presentation)}</h3>${presentation ? '<div>' : ''}${renderBody(block)}${presentation ? '</div>' : ''}</article>`;
   }).join('');
+  const tools = section.tools;
+  const toolsList = tools ? `<aside class="editorial-tools"><h3>${escape(tools.intro)}</h3>${list(tools.items)}</aside>` : '';
+  const blocks = cards + toolsList;
   return `${paragraphs(section.paragraphs, presentation?.emphasis)}${section.items ? list(section.items) : ''}${blocks ? (presentation ? `<div class="editorial-blocks">${blocks}</div>` : blocks) : ''}${section.faq ? faq(section.faq) : ''}${section.after ? (presentation ? `<div class="editorial-after">${paragraphs(section.after)}</div>` : paragraphs(section.after)) : ''}${actions(section.actions, presentation?.layout === 'frame' ? 'button-outline' : '')}`;
 }
 
