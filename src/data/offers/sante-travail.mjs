@@ -48,6 +48,21 @@ export default {
     {
       "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","jardin"]},
       "eyebrow": "Ce que nous travaillons ensemble",
+      "tools": {
+        "intro": "Des outils à explorer en séance et à adapter dans le cadre d’une approche sur mesure, selon la demande.",
+        "items": [
+          "Cartographie de la semaine de travail",
+          "Journal énergie–activités",
+          "Analyse d’une situation de travail",
+          "Cartes de valeurs et boussole santé–travail",
+          "Exploration des drivers",
+          "Cercles de contrôle et d’influence",
+          "Cartographie des soutiens",
+          "Jeu de rôle et méthode DESC",
+          "Pratique courte de pleine conscience",
+          "Fiche de préparation à la reprise"
+        ]
+      },
       "title": "Retrouver des ressources, construire de nouveaux repères",
       "paragraphs": [],
       "blocks": [
