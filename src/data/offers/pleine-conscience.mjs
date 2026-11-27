@@ -109,7 +109,7 @@ export default {
           ]
         },
         {
-          "title": "Santé et maladie chronique — Accompagner autrement",
+          "title": "Maladie chronique — Accompagner autrement",
           "paragraphs": [
             "Vivre avec une maladie chronique, une fatigue persistante ou des douleurs peut bouleverser le rapport à son corps, au travail et à la vie quotidienne.",
             "La pleine conscience peut offrir un espace pour accueillir son expérience avec davantage de douceur, apprivoiser certaines émotions et développer une relation plus bienveillante avec soi-même.",
@@ -118,7 +118,7 @@ export default {
           ]
         },
         {
-          "title": "Entreprises et organisations — Cultiver une qualité de présence au travail",
+          "title": "Professionnels — Cultiver une qualité de présence au travail",
           "paragraphs": [
             "Dans un environnement professionnel marqué par les sollicitations permanentes, les transformations et les exigences de performance, la pleine conscience peut constituer une ressource pour les collaborateurs et les équipes.",
             "Je propose des interventions autour de la gestion du stress, de l'attention, de la régulation émotionnelle et de la qualité de vie et des conditions de travail (QVCT).",
