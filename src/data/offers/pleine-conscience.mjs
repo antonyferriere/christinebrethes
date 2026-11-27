@@ -89,7 +89,7 @@ export default {
           ]
         },
         {
-          "title": "Santé et maladie chronique — S'accompagner autrement",
+          "title": "Santé et maladie chronique — Accompagner autrement",
           "paragraphs": [
             "Vivre avec une maladie chronique, une fatigue persistante ou des douleurs peut bouleverser le rapport à son corps, au travail et à la vie quotidienne.",
             "La pleine conscience peut offrir un espace pour accueillir son expérience avec davantage de douceur, apprivoiser certaines émotions et développer une relation plus bienveillante avec soi-même.",
@@ -127,7 +127,7 @@ export default {
         {
           "title": "Interventions en entreprise",
           "paragraphs": [
-            "Ateliers découverte, cycles thématiques et séances collectives adaptés aux enjeux et aux besoins des équipes."
+            "Ateliers découverte, cycles thématiques, séances collectives adaptés aux enjeux et aux besoins des équipes."
           ]
         }
       ]

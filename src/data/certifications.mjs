@@ -38,7 +38,7 @@ export const certifications = [
     "logo": "/assets/organisations/inseec.webp",
     "width": 200,
     "height": 200,
-    "title": "Master 2 Management and International Trade",
+    "title": "Master Management and International Trade",
     "date": "2007",
     "contentApproved": true,
     "logoAuthorized": true
@@ -49,7 +49,7 @@ export const certifications = [
     "logo": "/assets/organisations/ipag.webp",
     "width": 220,
     "height": 220,
-    "title": "Master 1 Ressources humaines",
+    "title": "Master Ressources Humaines",
     "date": "2006",
     "contentApproved": true,
     "logoAuthorized": true

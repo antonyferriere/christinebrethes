@@ -8,6 +8,7 @@ test('references : aucune attribution ni logo sans double validation',()=>{
  assert.doesNotMatch(referencesSection([item]), /<img/);
  item.logoAuthorized=true;
  assert.match(referencesSection([item]), /<img/);
- assert.match(referencesSection([item]), /&lt;validation de test&gt;/);
+ assert.doesNotMatch(referencesSection([item]), /validation de test|offer-content/);
+ assert.ok(referencesSection([item]).includes(`alt="${item.organization}"`));
  item.relationship='';assert.equal(referencesSection([item]),'');
 });

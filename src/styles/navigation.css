@@ -70,7 +70,7 @@
 .nav-disclosure { position: relative; }
 .nav-disclosure-heading { display: flex; align-items: center; }
 .nav-disclosure-heading > a { flex: 1; }
-.submenu-toggle { display: none; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-small); color: var(--color-forest); background: transparent; cursor: pointer; }
+.submenu-toggle { display: none; align-items: center; justify-content: center; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-small); color: var(--color-forest); background: transparent; cursor: pointer; padding-right: .7rem;}
 @media (min-width: 1200px) { .js .submenu-toggle { display: inline-flex; } }
 .submenu-toggle:hover, .submenu-toggle[aria-expanded="true"] { color: var(--color-primary); }
 .submenu-toggle svg { transition: transform var(--duration-fast) var(--ease-standard); }

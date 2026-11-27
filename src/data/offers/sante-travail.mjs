@@ -16,7 +16,7 @@ export default {
   ],
   "sections": [
     {
-      "presentation": {"layout": "split", "image": "jardin", "emphasis": 2},
+      "presentation": {"layout": "split", "image": "pages/nenuphar-ardeche", "emphasis": 2},
       "eyebrow": "Un espace pour avancer",
       "title": "Quand la santé vient bousculer le travail",
       "paragraphs": [
@@ -46,8 +46,23 @@ export default {
       "after": []
     },
     {
-      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","jardin"]},
+      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","pages/nenuphar-ardeche"]},
       "eyebrow": "Ce que nous travaillons ensemble",
+      "tools": {
+        "intro": "Des outils à explorer en séance et à adapter dans le cadre d’une approche sur mesure, selon la demande.",
+        "items": [
+          "Cartographie de la semaine de travail",
+          "Journal énergie–activités",
+          "Analyse d’une situation de travail",
+          "Cartes de valeurs et boussole santé–travail",
+          "Exploration des drivers",
+          "Cercles de contrôle et d’influence",
+          "Cartographie des soutiens",
+          "Jeu de rôle et méthode DESC",
+          "Pratique courte de pleine conscience",
+          "Fiche de préparation à la reprise"
+        ]
+      },
       "title": "Retrouver des ressources, construire de nouveaux repères",
       "paragraphs": [],
       "blocks": [

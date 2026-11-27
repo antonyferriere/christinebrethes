@@ -6,11 +6,11 @@ import { recommendations } from '../src/data/linkedin.mjs';
 
 test('Les témoignages longs sont repliés par défaut avec une ouverture native accessible', () => {
   const html = linkedinSections({ recommendations: true, publications: false });
-  assert.equal((html.match(/<details class="review-disclosure">/g) || []).length, 3);
-  assert.equal((html.match(/<summary>/g) || []).length, 3);
-  assert.equal((html.match(/<blockquote>/g) || []).length, 3);
-  assert.equal((html.match(/Lire la suite/g) || []).length, 3);
-  assert.equal((html.match(/class="review-less">Réduire/g) || []).length, 3);
+  assert.equal((html.match(/<details class="review-disclosure">/g) || []).length, 4);
+  assert.equal((html.match(/<summary>/g) || []).length, 4);
+  assert.equal((html.match(/<blockquote>/g) || []).length, 5);
+  assert.equal((html.match(/Lire la suite/g) || []).length, 4);
+  assert.equal((html.match(/class="review-less">Réduire/g) || []).length, 4);
   for (const review of recommendations) {
     assert.ok(html.includes(review.author));
     assert.ok(html.includes(escape(review.text.split(/\n\n/)[0].slice(0, 28))));
@@ -26,4 +26,25 @@ test('Les témoignages courts restent visibles et les contenus sont échappés',
   assert.doesNotMatch(html, /<details/);
   assert.match(html, /&lt;script&gt;alert\(&quot;x&quot;\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<script>/);
+});
+
+test('La prévisualisation continue après le premier paragraphe sans modifier le texte intégral', () => {
+  const first = 'Un début très court.';
+  const second = 'La suite du témoignage & son contenu. '.repeat(8).trim();
+  const html = linkedinSections(
+    { recommendations: true, publications: false },
+    [{ author: 'Test', text: first + '\n\n' + second, visible: true, authorized: true }],
+    []
+  );
+  assert.ok(html.includes('<span class="review-preview">' + escape(first + ' ' + second) + '</span>'));
+  assert.ok(html.includes('<blockquote><p>' + escape(first) + '</p><p>' + escape(second) + '</p></blockquote>'));
+});
+
+test('Les profils des témoins ne sont plus des liens ; seul le profil de Christine reste accessible', () => {
+  const html = linkedinSections({ recommendations: true, publications: false }, [{
+    author: 'Témoin', role: 'Test', text: 'Merci pour cet accompagnement.', source: 'https://www.linkedin.com/in/temoin-test/', visible: true, authorized: true
+  }], []);
+  assert.match(html, /<span class="review-profile">/);
+  assert.doesNotMatch(html, /temoin-test|<a[^>]*review-profile/);
+  assert.match(html, /Voir le profil LinkedIn de Christine/);
 });

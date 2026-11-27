@@ -1,7 +1,12 @@
+import { bindCardAction, bindDisclosureCard } from './card-actions.js';
+
 // Native details keep every topic accessible if JavaScript is unavailable.
 document.querySelectorAll('.domain-disclosure').forEach((disclosure, index) => {
-  if (typeof HTMLDialogElement === 'undefined' || !HTMLDialogElement.prototype.showModal) return;
   const card = disclosure.closest('.editorial-domain-card');
+  if (typeof HTMLDialogElement === 'undefined' || !HTMLDialogElement.prototype.showModal) {
+    bindDisclosureCard(card, disclosure);
+    return;
+  }
   const summary = disclosure.querySelector('summary');
   const content = disclosure.querySelector('.domain-detail');
   const dialog = document.createElement('dialog');
@@ -51,6 +56,7 @@ document.querySelectorAll('.domain-disclosure').forEach((disclosure, index) => {
       document.documentElement.classList.add('domain-dialog-open');
     });
   });
+  bindCardAction(card, () => trigger.click());
   close.addEventListener('click', () => dialog.close());
   // Escape and focus containment are provided by the native modal dialog.
   dialog.addEventListener('close', () => {
