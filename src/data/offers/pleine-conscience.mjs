@@ -29,19 +29,18 @@ export default {
         "tone": "sage",
         "image": "pages/be-here-now",
         "imageAlt": "Des lettres en bois forment les mots « BE HERE NOW ».",
-        "previewParagraphs": 6
+        "previewParagraphs": 4
       },
       "title": "Qu'est-ce que la méditation de pleine conscience ?",
       "paragraphs": [
         "La méditation de pleine conscience correspond à un état d’ancrage du moment présent, sans volonté de le modifier. Nous pouvons croire que méditer consisterait à « faire le vide », mais la pleine conscience est tout autre.",
         "C’est un art de la présence à soi et aux autres : être dans l’expérience directe de ce que vous êtes en train de vivre, pleinement, avec ce qui est là — sensations corporelles, pensées, émotions, bruits, silences et dans cette forme d’acceptation, que ce soit des moments agréables ou désagréables.",
         "Rien n’est permanent, tout est changeant : ce principe se nomme l’impermanence et il constitue un des piliers de la méditation de pleine conscience.",
-        "« Vous ne pouvez pas arrêter les vagues, mais vous pouvez apprendre à surfer. »",
-        "Jon Kabat-Zinn",
+        {"quote": "Vous ne pouvez pas arrêter les vagues, mais vous pouvez apprendre à surfer.", "author": "Jon Kabat-Zinn"},
         "Dans la vie quotidienne, nous fonctionnons souvent en mode pilotage automatique.",
         "La pleine conscience ou mindfulness permet de couper ce pilotage automatique et de vivre l’instant présent. Elle nous invite à consacrer pleinement notre attention, ici et maintenant plutôt que sur le passé ou le futur et à observer le moment sans jugement, en acceptant les pensées et sensations telles qu’elles sont, sans chercher à les modifier.",
         "On peut commencer par des pratiques simples, comme sentir sa respiration, prêter attention aux sensations du corps, bouger en douceur ou observer les pensées et émotions qui se présentent. Dans la pratique, nous remarquons comment l’esprit va dans le passé, ou dans le futur et dès que nous nous en rendons compte, nous revenons à l’expérience du moment présent.",
-        "« Méditer, ce n'est pas arrêter de penser. C'est apprendre à observer ce qui se passe en soi, sans chercher systématiquement à le modifier »",
+        {"quote": "Méditer, ce n'est pas arrêter de penser. C'est apprendre à observer ce qui se passe en soi, sans chercher systématiquement à le modifier."},
         "Cela entraîne notre esprit à cultiver de bonnes habitudes mentales telles que l’optimisme, la concentration, la gratitude, l’empathie.",
         "À l’origine, c’est une traduction de sanskrit « Sati », qui évoque « l’attention juste ».",
         "En 1979, Jon Kabat-Zinn, docteur en biologie moléculaire et professeur de médecine à l’université du Massachusetts, crée le Centre de recherche clinique pour la réduction du stress et le programme MBSR (*Mindfulness-Based Stress Reduction*), un parcours de huit semaines consacré à la réduction du stress par la pleine conscience. Il s’emploie à rendre cette **pratique laïque** et l’adapte au milieu hospitalier, à la fois pour les patients et les soignants.",
