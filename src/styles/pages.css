@@ -149,19 +149,20 @@ textarea { resize: vertical; }
 } 
 .editorial-tone-paper.editorial-cards .editorial-block, .editorial-tone-paper.editorial-features .check-list > li { background: var(--color-ivory);} 
 /* Benefits: illustrated lists, not cards. The category headings stay above each list. */
-/* Full-width tab targets share one sliding selection indicator. */
+/* The tabs and indicator share a track width; the divider spans the container. */
 .benefit-tabs {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  max-width: 40rem;
-  margin-block: var(--space-6) var(--space-6);
+  --benefit-tab-width: min(calc(100% / 3), 10rem);
+  grid-template-columns: repeat(3, var(--benefit-tab-width));
+  margin-block: var(--space-6);
+  border-bottom: 1px solid #947b6738;
 }
 .benefit-tabs::after {
   content: '';
   position: absolute;
-  inset: auto auto 0 0;
-  width: calc(100% / 3);
+  inset: auto auto -1px 0;
+  width: var(--benefit-tab-width);
   height: 3px;
   border-radius: 3px 3px 0 0;
   background: var(--color-primary);
@@ -171,6 +172,13 @@ textarea { resize: vertical; }
 .benefit-tabs:has(:nth-child(3)[aria-selected="true"])::after { transform: translateX(200%); }
 @media (prefers-reduced-motion: no-preference) {
   .benefit-tabs::after { transition: transform 180ms ease-out; }
+  .editorial-benefits [role="tabpanel"]:not([hidden]) {
+    animation: benefit-panel-in 220ms ease-out;
+  }
+}
+@keyframes benefit-panel-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .benefit-tabs button {
   min-width: 0;
