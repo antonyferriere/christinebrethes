@@ -29,10 +29,10 @@ export function linkedinSections(settings = linkedinSettings, reviewsData = reco
       : quote;
     return `<figure class="offer-card review">
       <figcaption class="review-person">
-        ${r.source ? `<a class="text-link review-profile" href="${escape(r.source)}">` : '<span class="review-profile">'}
+        <span class="review-profile">
           ${r.portrait ? `<img src="${escape(r.portrait)}" alt="" width="45" height="45" loading="lazy" decoding="async">` : `<span class="review-initials" aria-hidden="true">${escape(r.initials)}</span>`}
           <span class="review-identity"><span>${escape(r.author)}</span>${r.role ? `<span class="review-role">${escape(r.role)}</span>` : ''}</span>
-        ${r.source ? '</a>' : '</span>'}
+        </span>
       </figcaption>
       ${content}
     </figure>`;

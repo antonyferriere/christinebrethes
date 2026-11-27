@@ -25,7 +25,7 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "narrative", "tone": "ivory"},
+      "presentation": {"layout": "career", "tone": "ivory"},
       "title": "Mon parcours",
       "paragraphs": [],
       "blocks": [

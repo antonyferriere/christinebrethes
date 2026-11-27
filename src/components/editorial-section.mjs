@@ -85,9 +85,31 @@ function pricingCards(pricing) {
   }).join('');
 }
 
+
+function careerSection(section) {
+  const chapters = (section.blocks || []).map((block, index) => {
+    const [first, ...remaining] = block.paragraphs || [];
+    const detail = remaining.length || block.items ? `<details class="career-disclosure">
+      <summary class="career-toggle"><span class="review-toggle"><span class="review-more">Lire la suite</span><span class="review-less">Réduire</span> <span aria-hidden="true">↘</span></span><span class="sr-only"> : ${escape(block.title)}</span></summary>
+      <div class="career-detail">${paragraphs(remaining)}${block.items ? list(block.items) : ''}</div>
+    </details>` : '';
+    return `<li>
+      <div class="career-step" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>
+      <article class="career-entry">
+        <div class="career-copy"><h3>${escape(block.title)}</h3>${first === undefined ? '' : paragraphs([first])}${detail}</div>
+      </article>
+    </li>`;
+  }).join('');
+  return `<section class="section career-section" aria-labelledby="career-title"><div class="container">
+    <h2 id="career-title">${escape(section.title)}</h2>${paragraphs(section.paragraphs)}
+    <ol class="career-timeline" role="list">${chapters}</ol>
+  </div></section>`;
+}
+
 export function editorialSection(section, index) {
   const heading = `${section.eyebrow ? `<p class="eyebrow">${escape(section.eyebrow)}</p>` : ''}<h2>${escape(section.title)}</h2>`;
   const presentation = section.presentation;
+  if (presentation?.layout === 'career') return careerSection(section);
   if (!presentation) {
     return `<section class="section${index % 2 ? ' tinted' : ''}"><div class="container editorial-section">${heading}<div class="prose">${sectionContent(section)}</div></div></section>`;
   }

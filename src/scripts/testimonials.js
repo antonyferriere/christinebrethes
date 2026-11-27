@@ -1,3 +1,5 @@
+import { bindDisclosureCard } from './card-actions.js';
+
 // Match resting card areas without tying their heights to an expanded neighbour.
 for (const grid of document.querySelectorAll('.review-grid')) {
   const profiles = [...grid.querySelectorAll('.review-profile')];
@@ -16,11 +18,6 @@ for (const grid of document.querySelectorAll('.review-grid')) {
   }
 
   for (const disclosure of grid.querySelectorAll('.review-disclosure')) {
-    disclosure.querySelector('blockquote').addEventListener('click', event => {
-      // Keep text selection and any future links usable.
-      if (!disclosure.open || event.target.closest('a, button') || !window.getSelection().isCollapsed) return;
-      disclosure.open = false;
-      disclosure.querySelector('summary').focus({ preventScroll: true });
-    });
+    bindDisclosureCard(disclosure.closest('.review'), disclosure);
   }
 }
