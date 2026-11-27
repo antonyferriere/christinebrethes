@@ -11,7 +11,7 @@
   .approach-visual { --approach-image: url('/assets/vase-fleurs-800.webp'); }
   .approach-visual[data-books] { --approach-image: url('/assets/livres-fleurs-800.webp'); }
 }
-@media (min-width: 1200px), (min-width: 600px) and (min-resolution: 1.5dppx) {
+@media (min-width: 1200px), (min-width: 600px) and (min-resolution: 1.5dppx), (min-width: 400px) and (min-resolution: 2.5dppx) {
   .approach-visual { --approach-image: url('/assets/vase-fleurs-1200.webp'); }
   .approach-visual[data-books] { --approach-image: url('/assets/livres-fleurs-1200.webp'); }
 }
@@ -108,8 +108,8 @@ textarea { resize: vertical; }
   .closing-grid { grid-template-columns: 1.9fr 1fr; }
 }
 
-@media (min-width: 700px) { .landscape-depth { background-image: url('/assets/soleil-tablette-1000.webp'); } }
-@media (min-width: 1200px) { .landscape-depth { background-image: url('/assets/soleil-large-2100.webp'); } }
+@media (min-width: 525px), (min-resolution: 1.5dppx) { .landscape-depth { background-image: url('/assets/soleil-tablette-1000.webp'); } }
+@media (min-width: 1000px), (min-width: 600px) and (min-resolution: 1.5dppx), (min-width: 400px) and (min-resolution: 2.5dppx) { .landscape-depth { background-image: url('/assets/soleil-large-2100.webp'); } }
 
 
 .landscape-quote { color: var(--color-forest); }

@@ -5,7 +5,7 @@ export const arrow = '<span aria-hidden="true">↗</span>';
 export function button(label, href, variant = '') {
   return `<a class="button ${variant}" href="${escape(href)}">${escape(label)} ${arrow}</a>`;
 }
-export function photo(name, alt, { priority = false, sizes = '(min-width: 840px) 45vw, 100vw', className = '' } = {}) {
+export function photo(name, alt, { priority = false, sizes = '(min-width: 840px) 800px, 110vw', className = '' } = {}) {
   const portrait = name.startsWith('christine');
   return `<span class="photo-depth"><img class="photo ${className}" src="/assets/${name}-800.webp" srcset="/assets/${name}-480.webp 480w, /assets/${name}-800.webp 800w, /assets/${name}-1200.webp 1200w" sizes="${sizes}" width="800" height="${portrait ? 1000 : 600}" alt="${escape(alt)}" ${priority ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'} decoding="async"></span>`;
 }
