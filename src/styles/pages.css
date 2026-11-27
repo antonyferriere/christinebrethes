@@ -172,7 +172,7 @@ textarea { resize: vertical; }
 .benefit-tabs:has(:nth-child(3)[aria-selected="true"])::after { transform: translateX(200%); }
 @media (prefers-reduced-motion: no-preference) {
   .benefit-tabs::after { transition: transform 180ms ease-out; }
-  .editorial-benefits [role="tabpanel"]:not([hidden]) {
+  .benefit-tabs + .editorial-blocks > [role="tabpanel"]:not([hidden]) {
     animation: benefit-panel-in 220ms ease-out;
   }
 }
@@ -202,7 +202,7 @@ textarea { resize: vertical; }
   outline: 2px solid var(--color-primary);
   outline-offset: -2px;
 }
-.editorial-benefits .benefit-group[hidden] { display: none; }
+.benefit-tabs + .editorial-blocks > [hidden] { display: none; }
 .editorial-benefits .editorial-copy > p { max-width: 76ch; }
 .editorial-benefits .editorial-blocks { gap: var(--space-8); padding-top: var(--space-8); }
 .editorial-benefits .benefit-group h3 {
