@@ -23,8 +23,8 @@ export default {
       "paragraphs": [
         "Charge mentale, transformations organisationnelles, nouvelles attentes des collaborateurs, évolution des pratiques managériales…",
         "Les défis du monde professionnel invitent à repenser notre rapport au travail, aux autres et à nous-mêmes.",
-        "Je suis convaincue qu'une organisation attentive aux personnes, aux relations et aux conditions de travail favorise un environnement plus sain, plus coopératif et durable.",
-        "Coach professionnelle certifiée, consultante en accompagnement des carrières et instructrice méditation de pleine conscience, je propose une approche qui associe connaissance du monde de l'entreprise, compréhension des mécanismes humains et outils concrets.",
+        "Je suis convaincue qu'une organisation attentive aux personnes, aux relations et aux conditions de travail favorise un environnement plus sain, coopératif et durable.",
+        "Coach professionnelle certifiée, consultante en gestion de carrière et instructrice méditation de pleine conscience, je propose une approche qui associe connaissance du monde de l'entreprise, compréhension des mécanismes humains et outils concrets.",
         "Chaque intervention est construite avec vous, en fonction de vos enjeux, de votre culture et des besoins de vos équipes."
       ]
     },
@@ -77,7 +77,7 @@ export default {
           ]
         },
         {
-          "title": "Coaching professionnel & accompagnement du changement",
+          "title": "Coaching professionnel & accompagnement au changement",
           "paragraphs": [
             "Accompagner les personnes dans leurs évolutions.",
             "Les transformations professionnelles mobilisent autant les compétences que les ressources humaines et relationnelles.",
@@ -237,7 +237,7 @@ export default {
       "title": "Des interventions souples et sur mesure",
       "paragraphs": [],
       "items": [
-        "Entreprises, PME, grandes organisations et institutions.",
+        "Entreprises et institutions.",
         "Établissements d'enseignement supérieur et écoles de commerce.",
         "Associations et structures de santé.",
         "Cabinets de conseil RH, de mobilité et d'outplacement.",
