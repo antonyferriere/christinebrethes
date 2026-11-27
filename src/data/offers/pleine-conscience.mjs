@@ -34,18 +34,39 @@ export default {
       ]
     },
     {
-      "presentation": {"layout": "features"},
+      "presentation": {"layout": "benefits"},
       "title": "Les bienfaits de la pleine conscience",
       "paragraphs": [
-        "La pratique régulière de la méditation peut contribuer à :"
+        "La pratique régulière de la méditation peut contribuer, au bout de huit semaines, à :"
       ],
-      "items": [
-        "Mieux appréhender le stress et les émotions.",
-        "Développer l'attention et la concentration.",
-        "Prendre du recul face aux pensées et aux situations difficiles.",
-        "Favoriser un rapport plus apaisé à soi-même.",
-        "Améliorer le bien-être psychologique et, chez certaines personnes, la qualité du sommeil.",
-        "Cultiver la bienveillance envers soi et les autres."
+      "blocks": [
+        {
+          "title": "Effets sur la santé mentale",
+          "cards": [
+            {"title": "Réduire le stress et l’anxiété", "text": "La pleine conscience permet de prendre du recul face aux situations stressantes."},
+            {"title": "Prévenir la dépression", "text": "Elle aide à rompre les cycles de rumination négative."},
+            {"title": "Améliorer la concentration", "text": "Elle renforce les capacités attentionnelles."},
+            {"title": "Réguler la sphère émotionnelle", "text": "Elle favorise une meilleure gestion des émotions difficiles."}
+          ]
+        },
+        {
+          "title": "Impacts sur la santé physique",
+          "cards": [
+            {"title": "Diminuer la pression artérielle", "text": "La relaxation induite par la méditation a un effet positif sur la tension."},
+            {"title": "Renforcer le système immunitaire", "text": "La réduction du stress améliore les défenses naturelles de l’organisme."},
+            {"title": "Améliorer la qualité du sommeil", "text": "La pratique aide à apaiser le mental avant le coucher."},
+            {"title": "Gérer la douleur chronique", "text": "La pleine conscience peut modifier la perception de la douleur."}
+          ]
+        },
+        {
+          "title": "Effets sur la vie quotidienne",
+          "cards": [
+            {"title": "Améliorer les relations interpersonnelles", "text": "Développement de l’empathie et de l’écoute."},
+            {"title": "Augmenter la créativité", "text": "La pratique favorise l’émergence de nouvelles idées."},
+            {"title": "Prendre des décisions plus éclairées", "text": "Capacité accrue à prendre du recul avant d’agir."},
+            {"title": "Meilleure gestion du temps", "text": "Conscience développée du cadre temporel."}
+          ]
+        }
       ],
       "after": [
         "Les bénéfices varient selon les personnes, les pratiques et les contextes."
