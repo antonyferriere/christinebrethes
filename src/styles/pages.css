@@ -147,7 +147,7 @@ textarea { resize: vertical; }
   padding: var(--editorial-padding); background: var(--color-paper);
   border-radius: var(--radius-card);
 } 
-.editorial-tone-paper.editorial-cards .editorial-block, .editorial-tone-paper.editorial-features .check-list > li { background: var(--color-ivory);} 
+.editorial-tone-paper.editorial-cards .editorial-block, .editorial-tone-paper.editorial-benefits .editorial-block, .editorial-tone-paper.editorial-features .check-list > li { background: var(--color-ivory);} 
 .editorial-features .check-list { display: grid; gap: var(--space-4); }
 .editorial-features .check-list > li { padding-left: calc(var(--editorial-padding) + 1.25rem); }
 .editorial-features .check-list > li::before { left: var(--editorial-padding); top: var(--editorial-padding); }
