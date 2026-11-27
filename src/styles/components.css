@@ -159,7 +159,6 @@
 
 /* Mon parcours — same timeline, spacing and card treatment as certifications. */
 .career-entry { min-width: 0; }
-.career-copy p { max-width: 70ch; line-height: 1.7; }
 .career-detail > p + p { margin-top: var(--space-4); }
 .career-disclosure { margin-top: var(--space-2); }
 .career-toggle { cursor: pointer; list-style: none; }
