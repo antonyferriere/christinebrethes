@@ -77,26 +77,25 @@ export default {
         {
           "title": "Recrutement international & chasse de tête",
           "paragraphs": [
-            "Expérience chez Catenon, entre Paris et Madrid, dans la recherche, l'évaluation et la sélection de talents, au sein d'un environnement international et multiculturel."
+            "Au sein de cabinets, entre Paris et Madrid, dans la recherche, l'évaluation et la sélection de talents, au sein d'un environnement international et multiculturel."
           ]
         },
         {
-          "title": "Outplacement & bilans de compétences",
+          "title": "Outplacement & bilans de compétences et de carrière",
           "paragraphs": [
-            "Consultante chez LHH, accompagnement des transitions professionnelles, du repositionnement de carrière et de la réflexion sur les compétences et les perspectives d'évolution."
+            "Consultante dans l’accompagnement des transitions professionnelles, réflexion sur les compétences et perspectives d’évolution, repositionnement de carrière."
           ]
         },
         {
-          "title": "Coaching professionnel & accompagnement des carrières",
+          "title": "Coaching professionnel",
           "paragraphs": [
-            "Accompagnements individuels autour de l'évolution professionnelle, de la recherche d'emploi, du repositionnement, de la confiance en soi et des transitions."
+            "Accompagnements individuels autour de l'évolution et des mobilités professionnelles, des thématiques de gestion du stress et de l’axe santé travail."
           ]
         },
         {
           "title": "Enseignement supérieur & employabilité",
           "paragraphs": [
-            "Interventions auprès d'étudiants et de jeunes professionnels, notamment à l'IPAG et à l'INSEEC",
-            "Animation de cours, ateliers et séminaires consacrés à l'employabilité, à la valorisation des compétences, à la prise de parole en public, à la recherche d'emploi et au développement professionnel."
+            "Animation d’ateliers collectifs et séminaires consacrés à l'employabilité, à la valorisation des compétences, à la prise de parole en public, à la recherche d'emploi et au développement professionnel."
           ]
         },
         {
