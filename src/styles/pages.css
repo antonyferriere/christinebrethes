@@ -204,7 +204,7 @@ textarea { resize: vertical; }
 }
 .editorial-benefits .benefit-group[hidden] { display: none; }
 .editorial-benefits .editorial-copy > p { max-width: 76ch; }
-.editorial-benefits .editorial-blocks { gap: var(--space-8); }
+.editorial-benefits .editorial-blocks { gap: var(--space-8); padding-top: var(--space-8); }
 .editorial-benefits .benefit-group h3 {
   color: var(--color-primary);
   margin-bottom: var(--space-6);
