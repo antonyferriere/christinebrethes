@@ -406,7 +406,17 @@ textarea { resize: vertical; }
   .pricing-organizations-inner { grid-template-columns: 1.6fr 1fr; }
 }
 
-.editorial-expandable .career-disclosure { grid-column: 1 / -1; }
+.editorial-expandable .editorial-composition-inner { row-gap: 0; }
+.editorial-expandable .career-disclosure { grid-column: 1 / -1; margin: 0; }
+.editorial-expandable article:has(details[open]) > .editorial-copy > p:last-child {
+  margin-bottom: 1.3rem;
+}
+@media (max-width: 839.98px) {
+  .editorial-expandable .editorial-illustration {
+    grid-row: 1;
+    margin-bottom: var(--editorial-gap);
+  }
+}
 .editorial-expandable .editorial-illustration img {
   position: static;
   height: auto;
@@ -421,6 +431,6 @@ textarea { resize: vertical; }
   .editorial-expandable.editorial-has-image .editorial-composition-inner {
     grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr);
   }
-  .editorial-expandable.editorial-has-image .editorial-copy { grid-column: 1; }
+  .editorial-expandable.editorial-has-image article > .editorial-copy { grid-column: 1; }
   .editorial-expandable.editorial-has-image .editorial-illustration { grid-column: 2; }
 }

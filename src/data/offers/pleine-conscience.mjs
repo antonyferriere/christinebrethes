@@ -29,7 +29,7 @@ export default {
         "tone": "sage",
         "image": "pages/be-here-now",
         "imageAlt": "Des lettres en bois forment les mots « BE HERE NOW ».",
-        "previewParagraphs": 2
+        "previewParagraphs": 6
       },
       "title": "Qu'est-ce que la méditation de pleine conscience ?",
       "paragraphs": [

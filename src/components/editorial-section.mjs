@@ -2,8 +2,8 @@ import { readdirSync } from 'node:fs';
 import { escape, button, list, faq, arrow } from './ui.mjs';
 import { site } from '../data/site.mjs';
 
-export const paragraphs = (items = [], emphasis) => items.map((text, index) =>
-  `<p${index === emphasis ? ' class="editorial-emphasis"' : ''}>${escape(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>')}</p>`).join('');
+export const paragraphs = (items = [], emphasis, emphasizeQuotes = false) => items.map((text, index) =>
+  `<p${index === emphasis || (emphasizeQuotes && text.startsWith('«') && text.endsWith('»')) ? ' class="editorial-emphasis"' : ''}>${escape(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>')}</p>`).join('');
 export const actions = (items = [], variant = '') => items.length ? `<div class="editorial-actions">${items.map(({ label, audience }) => button(label, audience === 'organisation' ? '/contact/?profil=organisation' : audience === 'contact' ? '/contact/' : site.booking.url || '/contact/', variant)).join('')}</div>` : '';
 
 function blockTitle(title, presentation) {
@@ -173,10 +173,10 @@ export function editorialSection(section, index) {
       const rest = section.paragraphs.slice(presentation.previewParagraphs);
       return `<section class="${sectionClass} editorial-has-image editorial-expandable">
         <article class="container editorial-composition-inner">
-          <div class="editorial-copy"><div class="editorial-heading">${heading}</div>${paragraphs(preview)}</div>
+          <div class="editorial-copy"><div class="editorial-heading">${heading}</div>${paragraphs(preview, undefined, true)}</div>
           ${illustration(image, layout, presentation.imageAlt)}
           <details class="career-disclosure">${disclosureToggle(section.title)}
-            <div class="career-detail">${paragraphs(rest)}</div>
+            <div class="editorial-copy">${paragraphs(rest, undefined, true)}</div>
           </details>
         </article>
       </section>`;
