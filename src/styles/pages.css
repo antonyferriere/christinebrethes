@@ -151,7 +151,7 @@ textarea { resize: vertical; }
 /* Benefits: illustrated lists, not cards. The category headings stay above each list. */
 .editorial-benefits .editorial-copy > p { max-width: 76ch; }
 .editorial-benefits .editorial-blocks { gap: var(--space-8); }
-.editorial-benefits .benefit-group + .benefit-group {
+.editorial-benefits .benefit-group {
   border-top: 1px solid var(--color-outline);
   padding-top: var(--space-8);
 }
