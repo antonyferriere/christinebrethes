@@ -1,3 +1,4 @@
+import './benefit-tabs.js';
 import './testimonials.js';
 import { bindCardAction, bindDisclosureCard } from './card-actions.js';
 

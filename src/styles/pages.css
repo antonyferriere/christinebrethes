@@ -149,12 +149,62 @@ textarea { resize: vertical; }
 } 
 .editorial-tone-paper.editorial-cards .editorial-block, .editorial-tone-paper.editorial-features .check-list > li { background: var(--color-ivory);} 
 /* Benefits: illustrated lists, not cards. The category headings stay above each list. */
-.editorial-benefits .editorial-copy > p { max-width: 76ch; }
-.editorial-benefits .editorial-blocks { gap: var(--space-8); }
-.editorial-benefits .benefit-group {
-  border-top: 1px solid var(--color-outline);
-  padding-top: var(--space-8);
+/* The tabs and indicator share a track width; the divider spans the container. */
+.benefit-tabs {
+  position: relative;
+  display: grid;
+  --benefit-tab-width: min(calc(100% / 3), 10rem);
+  grid-template-columns: repeat(3, var(--benefit-tab-width));
+  margin-block: var(--space-6);
+  border-bottom: 1px solid #947b6738;
 }
+.benefit-tabs::after {
+  content: '';
+  position: absolute;
+  inset: auto auto -1px 0;
+  width: var(--benefit-tab-width);
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--color-primary);
+  pointer-events: none;
+}
+.benefit-tabs:has(:nth-child(2)[aria-selected="true"])::after { transform: translateX(100%); }
+.benefit-tabs:has(:nth-child(3)[aria-selected="true"])::after { transform: translateX(200%); }
+@media (prefers-reduced-motion: no-preference) {
+  .benefit-tabs::after { transition: transform 180ms ease-out; }
+  .editorial-benefits [role="tabpanel"]:not([hidden]) {
+    animation: benefit-panel-in 220ms ease-out;
+  }
+}
+@keyframes benefit-panel-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.benefit-tabs button {
+  min-width: 0;
+  min-height: 48px;
+  padding: .65rem .25rem;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  color: var(--color-ink);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .benefit-tabs button:hover { background: color-mix(in srgb, var(--color-primary) 8%, transparent); }
+}
+.benefit-tabs button[aria-selected="true"] { color: var(--color-primary); }
+.benefit-tabs button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+.editorial-benefits .benefit-group[hidden] { display: none; }
+.editorial-benefits .editorial-copy > p { max-width: 76ch; }
+.editorial-benefits .editorial-blocks { gap: var(--space-8); padding-top: var(--space-8); }
 .editorial-benefits .benefit-group h3 {
   color: var(--color-primary);
   margin-bottom: var(--space-6);
