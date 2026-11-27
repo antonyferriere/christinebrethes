@@ -16,7 +16,7 @@ export default {
   ],
   "sections": [
     {
-      "presentation": {"layout": "split", "image": "jardin", "emphasis": 2},
+      "presentation": {"layout": "split", "image": "pages/nenuphar-ardeche", "emphasis": 2},
       "eyebrow": "Un espace pour avancer",
       "title": "Quand la santé vient bousculer le travail",
       "paragraphs": [
@@ -46,7 +46,7 @@ export default {
       "after": []
     },
     {
-      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","jardin"]},
+      "presentation": {"layout": "cards", "images": ["pages/carnet-cafe","pages/fauteuil-lecture","hero/horizon","pages/bureau-ordinateur","pages/nenuphar-ardeche"]},
       "eyebrow": "Ce que nous travaillons ensemble",
       "tools": {
         "intro": "Des outils à explorer en séance et à adapter dans le cadre d’une approche sur mesure, selon la demande.",
